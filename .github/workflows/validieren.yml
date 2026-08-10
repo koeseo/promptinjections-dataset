@@ -1,0 +1,60 @@
+name: Datensatz validieren
+
+# Pflege-Signal: Jede Änderung wird gegen die JSON-Schemas geprüft.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: JSON-Syntax prüfen
+        run: |
+          for f in daten/*.json schema/*.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || exit 1
+            echo "ok  $f"
+          done
+
+      - name: Gegen JSON-Schema validieren
+        run: |
+          npm install --no-save ajv@8 ajv-formats@3
+          node -e "
+          const fs=require('fs'), Ajv=require('ajv/dist/2020'), addFormats=require('ajv-formats');
+          const ajv=new Ajv({allErrors:true, strict:false}); addFormats(ajv);
+          let fehler=0;
+          for (const datei of fs.readdirSync('schema')) {
+            const name = datei.replace('.schema.json','');
+            const schema = JSON.parse(fs.readFileSync('schema/'+datei,'utf8'));
+            const daten  = JSON.parse(fs.readFileSync('daten/'+name+'.json','utf8'));
+            const gueltig = ajv.validate(schema, daten);
+            if (!gueltig) { fehler++; console.error('FEHLER '+name+':', ajv.errorsText(ajv.errors)); }
+            else console.log('ok  '+name+' ('+daten.eintraege.length+' Einträge)');
+          }
+          process.exit(fehler ? 1 : 0);
+          "
+
+      - name: Jeder Eintrag braucht eine Primärquelle
+        run: |
+          node -e "
+          const fs=require('fs');
+          let ohne=0, gesamt=0;
+          for (const datei of fs.readdirSync('daten')) {
+            if (datei === 'index.json') continue;
+            const d = JSON.parse(fs.readFileSync('daten/'+datei,'utf8'));
+            for (const e of d.eintraege) {
+              gesamt++;
+              const hatQuelle = e.quelle_url || (e.quellen && e.quellen.length);
+              if (!hatQuelle) { ohne++; console.error('ohne Quelle: '+datei+' → '+(e.slug||e.id)); }
+            }
+          }
+          console.log(gesamt+' Einträge geprüft, '+ohne+' ohne Primärquelle');
+          process.exit(ohne ? 1 : 0);
+          "

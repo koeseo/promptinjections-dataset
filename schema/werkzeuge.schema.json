@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/werkzeuge.schema.json",
+  "title": "Werkzeuge zur Abwehr",
+  "description": "Defensive tooling. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "name": {
+            "type": "string"
+          },
+          "anbieter": {
+            "type": "string"
+          },
+          "typ": {
+            "type": "string",
+            "description": "guardrail-api | guardrail-framework | schutzmodell | scanner | red-teaming | benchmark | forschungs-referenz | plattform"
+          },
+          "lizenz": {
+            "type": "string",
+            "description": "open-source | kommerziell | forschung | gemischt"
+          },
+          "was": {
+            "type": "string"
+          },
+          "einsatz": {
+            "type": "string"
+          },
+          "quelle_url": {
+            "type": "string",
+            "description": "Primärquelle: Paper, Hersteller-Advisory oder Standarddokument"
+          },
+          "belegt": {
+            "type": "boolean",
+            "description": "true = offizielle Projekt- oder Herstellerquelle verlinkt"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

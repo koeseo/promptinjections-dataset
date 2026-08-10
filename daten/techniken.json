@@ -1,0 +1,1418 @@
+{
+  "meta": {
+    "titel": "Techniken der Prompt Injection",
+    "title_en": "Prompt injection techniques",
+    "version": "1.0.0",
+    "stand": "2026-08-03",
+    "sprache": "de",
+    "anzahl": 51,
+    "herausgeber": "Gökhan Köse, koeseo",
+    "quelle": "https://promptinjections.de/techniken/",
+    "lizenz": "CC-BY-4.0",
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
+    "ethik_hinweis": "Alle Einträge sind defensiv und erklärend gehalten. Sie beschreiben das Prinzip einer Technik, damit Betreiber ihre Systeme schützen können — sie enthalten keine einsatzfertigen Payloads gegen konkrete Live-Systeme."
+  },
+  "eintraege": [
+    {
+      "slug": "ignore-previous-instructions",
+      "url": "https://promptinjections.de/techniken/ignore-previous-instructions/",
+      "name_de": "Anweisungen-ignorieren-Angriff",
+      "name_en": "Ignore Previous Instructions",
+      "kategorie": "direkte-injection",
+      "kurzdefinition": "Der klassische Einstieg in die Prompt Injection: Der Angreifer schreibt in die Nutzereingabe eine Anweisung, die dem Modell befiehlt, seine bisherigen Vorgaben zu verwerfen und stattdessen der neuen Anweisung zu folgen.",
+      "funktionsweise": [
+        "System-Prompt und Nutzereingabe landen im selben Kontextfenster — das Modell kann beide technisch nicht sicher trennen.",
+        "Die eingeschleuste Anweisung tritt als scheinbar höherrangiger Befehl auf („vergiss alles davor\").",
+        "Weil das Modell dem zuletzt und am nachdrücklichsten Gesagten oft mehr Gewicht gibt, überschreibt die Injektion die Anwendungslogik."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Instruktions-Hierarchie im Modell nutzen (System vor Nutzer vor Daten).",
+        "Nutzereingaben klar delimitieren und als Daten, nicht als Anweisungen kennzeichnen (Spotlighting).",
+        "Ausgaben gegen erwartetes Format prüfen, statt dem Modell zu vertrauen."
+      ],
+      "verwandte": [
+        "prompt-leaking",
+        "kontext-ueberlauf",
+        "refusal-suppression"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://simonwillison.net/2022/Sep/12/prompt-injection/",
+      "sameAs": [
+        "https://simonwillison.net/2022/Sep/12/prompt-injection/",
+        "https://en.wikipedia.org/wiki/Prompt_injection"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "prompt-leaking",
+      "url": "https://promptinjections.de/techniken/prompt-leaking/",
+      "name_de": "System-Prompt-Auslesen",
+      "name_en": "Prompt Leaking",
+      "kategorie": "direkte-injection",
+      "kurzdefinition": "Angriff mit dem Ziel, den verborgenen System-Prompt einer Anwendung offenzulegen — samt Regeln, Rollenbeschreibung und teils eingebetteten Geschäftsgeheimnissen.",
+      "funktionsweise": [
+        "Der Angreifer bittet das Modell, seine „Anweisungen von oben\" wiederzugeben, zu übersetzen oder zusammenzufassen.",
+        "Umwege wie Formatwechsel (als Gedicht, als JSON, als Code-Kommentar) unterlaufen einfache Sperrlisten.",
+        "Der erbeutete System-Prompt macht anschließende Angriffe gezielter und zuverlässiger."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Keine Secrets, Schlüssel oder personenbezogenen Daten in den System-Prompt schreiben.",
+        "System-Prompt als vertraulich, aber nicht als Sicherheitsmechanismus behandeln.",
+        "Ausgabefilter auf charakteristische Passagen des eigenen System-Prompts."
+      ],
+      "verwandte": [
+        "ignore-previous-instructions",
+        "rollenspiel-persona"
+      ],
+      "owasp": "LLM07",
+      "quelle_url": "https://arxiv.org/abs/2505.23817",
+      "belegt": true
+    },
+    {
+      "slug": "rollenspiel-persona",
+      "url": "https://promptinjections.de/techniken/rollenspiel-persona/",
+      "name_de": "Rollenspiel-Persona",
+      "name_en": "Roleplay / Persona Jailbreak",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Das Modell wird gebeten, eine fiktive Rolle einzunehmen, für die die üblichen Regeln angeblich nicht gelten — die Fiktion dient als Vorwand für regelwidrige Ausgaben.",
+      "funktionsweise": [
+        "Ein Szenario wird aufgebaut, in dem das Modell eine andere Identität simuliert.",
+        "Die Sicherheitsregeln werden der Rolle zugeschrieben, nicht dem Modell selbst.",
+        "Nachfragen bleiben in der Fiktion, wodurch Verweigerungen als „Bruch der Rolle\" umgedeutet werden."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Sicherheitsprüfung auf die Ausgabe anwenden, unabhängig vom erzählerischen Rahmen.",
+        "Rollenwechsel-Muster im Eingabe-Scanner erkennen.",
+        "Modelle mit robustem Alignment und Constitutional-Classifier-Ansatz einsetzen."
+      ],
+      "verwandte": [
+        "dan-do-anything-now",
+        "deepinception",
+        "persuasions-jailbreak"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2308.03825",
+      "belegt": true
+    },
+    {
+      "slug": "dan-do-anything-now",
+      "url": "https://promptinjections.de/techniken/dan-do-anything-now/",
+      "name_de": "DAN („Do Anything Now\")",
+      "name_en": "DAN (Do Anything Now)",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Die bekannteste Familie von Community-Jailbreak-Prompts: Das Modell soll eine entfesselte Zweitpersönlichkeit annehmen, die „alles darf\" — häufig verstärkt durch ein fiktives Punkte- oder Strafsystem.",
+      "funktionsweise": [
+        "Eine ausführliche Persona-Beschreibung erklärt die Sicherheitsregeln für die Zweitpersönlichkeit für ungültig.",
+        "Doppelantworten („normal\" und „als DAN\") normalisieren den Regelbruch.",
+        "Die Prompts zirkulieren öffentlich und werden laufend an neue Modellversionen angepasst."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Bekannte DAN-Varianten als Signatur im Eingabe-Scanner führen — jedoch nie als alleinigen Schutz.",
+        "Ausgabeseitige Klassifikatoren statt reiner Eingabefilter.",
+        "Modell-Updates einspielen, da Anbieter bekannte Varianten gezielt nachtrainieren."
+      ],
+      "verwandte": [
+        "rollenspiel-persona",
+        "skeleton-key",
+        "policy-puppetry"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2308.03825",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Prompt_injection"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "skeleton-key",
+      "url": "https://promptinjections.de/techniken/skeleton-key/",
+      "name_de": "Skeleton Key",
+      "name_en": "Skeleton Key",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Von Microsoft dokumentierte Technik, bei der das Modell nicht zum Regelbruch überredet, sondern gebeten wird, seine Regeln zu „ergänzen\": Es soll künftig alles beantworten und lediglich eine Warnung voranstellen.",
+      "funktionsweise": [
+        "Der Angreifer rahmt die Anfrage als Kontext-Erweiterung (z. B. Forschung, Sicherheitsprüfung).",
+        "Statt einer Verweigerung wird eine Warnhinweis-Antwort als neues Verhalten verhandelt.",
+        "Nach erfolgreicher Verhandlung gilt die neue Regel für den weiteren Gesprächsverlauf."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Ein- und ausgehende Inhalte durch dedizierte Klassifikatoren prüfen (z. B. Prompt Shields).",
+        "Systemseitig verankern, dass Regeln nicht im Dialog verhandelbar sind.",
+        "Abuse-Monitoring auf Verhandlungsmuster über mehrere Turns."
+      ],
+      "verwandte": [
+        "policy-puppetry",
+        "refusal-suppression",
+        "crescendo"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/",
+      "belegt": true
+    },
+    {
+      "slug": "policy-puppetry",
+      "url": "https://promptinjections.de/techniken/policy-puppetry/",
+      "name_de": "Policy Puppetry",
+      "name_en": "Policy Puppetry",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Von HiddenLayer 2025 veröffentlichte Technik: Der Angriffs-Prompt wird als strukturierte Richtliniendatei (XML, JSON, INI) formuliert, die das Modell als interne Konfiguration statt als Nutzereingabe interpretiert.",
+      "funktionsweise": [
+        "Die Anweisung imitiert das Format einer Policy- oder Entwicklerkonfiguration.",
+        "Das Modell ordnet strukturierte Formate tendenziell einer höheren Vertrauensstufe zu.",
+        "HiddenLayer beschreibt die Vorlage als über Modellfamilien hinweg übertragbar."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Strukturierte Blöcke in Nutzereingaben neutralisieren oder escapen.",
+        "Klare Trennung zwischen Konfigurationskanal und Inhaltskanal auf Anwendungsebene.",
+        "Guardrail-Prüfung vor Weitergabe an das Modell, nicht nur danach."
+      ],
+      "verwandte": [
+        "skeleton-key",
+        "ignore-previous-instructions",
+        "dan-do-anything-now"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "refusal-suppression",
+      "url": "https://promptinjections.de/techniken/refusal-suppression/",
+      "name_de": "Verweigerungs-Unterdrückung",
+      "name_en": "Refusal Suppression",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Dem Modell wird untersagt, typische Ablehnungsformeln zu verwenden („sage niemals ‚Ich kann nicht'\") — der sprachliche Ausweg für eine Verweigerung wird ihm damit genommen.",
+      "funktionsweise": [
+        "Eine Liste verbotener Formulierungen schließt die üblichen Ablehnungsmuster aus.",
+        "Das Modell muss eine Antwort erzeugen, die nicht wie eine Verweigerung klingt.",
+        "In Kombination mit anderen Techniken steigt die Erfolgsquote deutlich."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Ausgabe-Klassifikator, der Inhalte prüft statt Formulierungen.",
+        "Sicherheitsentscheidungen außerhalb des Modells treffen.",
+        "Feste, nicht überschreibbare Antwortpfade für erkannte Risikoanfragen."
+      ],
+      "verwandte": [
+        "ignore-previous-instructions",
+        "skeleton-key"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2311.16119",
+      "belegt": true
+    },
+    {
+      "slug": "kontext-ueberlauf",
+      "url": "https://promptinjections.de/techniken/kontext-ueberlauf/",
+      "name_de": "Kontext-Überflutung",
+      "name_en": "Context Overflow",
+      "kategorie": "direkte-injection",
+      "kurzdefinition": "Der Angreifer füllt das Kontextfenster mit sehr viel Text, sodass die eigentlichen Sicherheitsanweisungen an Gewicht verlieren oder aus dem Kontext gedrängt werden.",
+      "funktionsweise": [
+        "Große Mengen Fülltext verschieben das Verhältnis zwischen Anweisung und Daten.",
+        "Anweisungen am Anfang des Kontexts verlieren gegenüber späten Anweisungen an Wirkung.",
+        "In der HackAPrompt-Auswertung als eigenständige, wirksame Angriffsklasse dokumentiert."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Eingabelänge begrenzen und Kontextbudget überwachen.",
+        "Sicherheitsanweisungen zusätzlich am Ende des Kontexts wiederholen.",
+        "Externe Policy-Prüfung, die unabhängig vom Kontextinhalt greift."
+      ],
+      "verwandte": [
+        "many-shot-jailbreaking",
+        "ignore-previous-instructions"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2311.16119",
+      "belegt": true
+    },
+    {
+      "slug": "base64-kodierung",
+      "url": "https://promptinjections.de/techniken/base64-kodierung/",
+      "name_de": "Base64- und Kodierungs-Umgehung",
+      "name_en": "Base64 / Encoding Bypass",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Die schädliche Anweisung wird kodiert übergeben (z. B. Base64) und erst vom Modell selbst dekodiert — Filter, die den Klartext prüfen, greifen ins Leere.",
+      "funktionsweise": [
+        "Der Filter sieht nur eine unverdächtige Zeichenkette.",
+        "Das Modell dekodiert die Zeichenkette als Teil der Aufgabenbearbeitung.",
+        "Die Arbeit „Jailbroken\" führt dies auf ein Auseinanderfallen von Fähigkeiten und Sicherheitstraining zurück."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Eingaben vor der Prüfung normalisieren und bekannte Kodierungen auflösen.",
+        "Prüfung auch auf der Ausgabeseite, nicht nur auf der Eingabeseite.",
+        "Auffällige Kodierungsdichte als Risikosignal werten."
+      ],
+      "verwandte": [
+        "rot13-chiffre",
+        "ascii-smuggling",
+        "payload-splitting"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2307.02483",
+      "sameAs": [
+        "https://arxiv.org/abs/2307.02483"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "rot13-chiffre",
+      "url": "https://promptinjections.de/techniken/rot13-chiffre/",
+      "name_de": "Chiffren- und Leetspeak-Umgehung",
+      "name_en": "Cipher-based Jailbreak",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Die Anfrage wird in einer einfachen Chiffre (ROT13, Caesar, Leetspeak, Morse) gestellt; das Modell entschlüsselt sie und antwortet, während Sicherheitsfilter die Bedeutung nicht erfassen.",
+      "funktionsweise": [
+        "Sicherheitstraining wirkt vor allem auf natürlichsprachliche Klartext-Muster.",
+        "Leistungsfähige Modelle beherrschen einfache Chiffren und wenden sie automatisch an.",
+        "Die Studie „GPT-4 Is Too Smart To Be Safe\" zeigt: Je fähiger das Modell, desto wirksamer der Angriff."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Ausgabe-Klassifikator, der die entschlüsselte Antwort bewertet.",
+        "Chiffre-typische Eingabemuster als Risikosignal führen.",
+        "Sicherheitsprüfung außerhalb des Modells in einer eigenen Instanz."
+      ],
+      "verwandte": [
+        "base64-kodierung",
+        "artprompt-ascii-art",
+        "flipattack"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2308.06463",
+      "belegt": true
+    },
+    {
+      "slug": "ascii-smuggling",
+      "url": "https://promptinjections.de/techniken/ascii-smuggling/",
+      "name_de": "ASCII Smuggling (unsichtbare Unicode-Tags)",
+      "name_en": "ASCII Smuggling",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Anweisungen werden in Unicode-Tag-Zeichen kodiert, die in Oberflächen unsichtbar bleiben, vom Modell aber als Text gelesen werden — der Mensch sieht nichts, das Modell folgt.",
+      "funktionsweise": [
+        "Zeichen aus dem Unicode-Tags-Block spiegeln ASCII, werden aber meist nicht dargestellt.",
+        "Der Text kann in Dokumente, Webseiten oder Zwischenablagen eingebettet werden.",
+        "Besonders gefährlich bei indirekter Injektion, weil weder Nutzer noch einfache Monitore etwas sehen."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Unicode-Normalisierung: Tag-Block und Zero-Width-Zeichen vor Verarbeitung entfernen.",
+        "Eingehende Inhalte auf nicht darstellbare Zeichen prüfen und protokollieren.",
+        "Copy-Paste-Pfade in der Oberfläche mit bereinigen."
+      ],
+      "verwandte": [
+        "token-schmuggel-homoglyphen",
+        "hidden-text-html",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://embracethered.com/blog/posts/2024/hiding-and-finding-text-with-unicode-tags/",
+      "sameAs": [
+        "https://embracethered.com/blog/posts/2024/hiding-and-finding-text-with-unicode-tags/"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "token-schmuggel-homoglyphen",
+      "url": "https://promptinjections.de/techniken/token-schmuggel-homoglyphen/",
+      "name_de": "Homoglyphen und Zero-Width-Zeichen",
+      "name_en": "Homoglyph / Zero-Width Obfuscation",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Schlüsselwörter werden mit optisch identischen Zeichen aus anderen Alphabeten oder mit unsichtbaren Trennzeichen geschrieben, um Signatur- und Sperrlisten-Filter zu unterlaufen.",
+      "funktionsweise": [
+        "Kyrillische oder griechische Buchstaben ersetzen lateinische Zeichen.",
+        "Zero-Width-Joiner zerlegen ein Wort für den Filter, nicht für das Modell.",
+        "Die Bedeutung bleibt für das Sprachmodell erhalten, der Signaturabgleich scheitert."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Unicode-Normalisierung (NFKC) und Homoglyph-Mapping vor der Prüfung.",
+        "Semantische Klassifikatoren statt reiner Wortlisten.",
+        "Warnsignal bei Alphabet-Mischungen innerhalb eines Wortes."
+      ],
+      "verwandte": [
+        "ascii-smuggling",
+        "base64-kodierung"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://blogs.cisco.com/ai/understanding-and-mitigating-unicode-tag-prompt-injection",
+      "belegt": true
+    },
+    {
+      "slug": "artprompt-ascii-art",
+      "url": "https://promptinjections.de/techniken/artprompt-ascii-art/",
+      "name_de": "ASCII-Art-Jailbreak (ArtPrompt)",
+      "name_en": "ArtPrompt",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Ein sicherheitsrelevantes Schlüsselwort wird als ASCII-Art dargestellt. Das Modell rekonstruiert das Wort aus der Grafik, die Sicherheitsprüfung auf Textebene erkennt es nicht.",
+      "funktionsweise": [
+        "Das kritische Wort wird aus dem Klartext entfernt und als Zeichengrafik eingesetzt.",
+        "Das Modell setzt die Aufgabe zusammen und beantwortet die eigentliche Anfrage.",
+        "Die Autoren zeigen höhere Erfolgsquoten als bei mehreren etablierten Angriffen."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Ausgabeseitige Prüfung, die die rekonstruierte Bedeutung bewertet.",
+        "ASCII-Art-Blöcke in sicherheitskritischen Eingaben erkennen und ablehnen.",
+        "Mehrschichtige Guardrails statt eines einzelnen Textfilters."
+      ],
+      "verwandte": [
+        "rot13-chiffre",
+        "flipattack",
+        "base64-kodierung"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2402.11753",
+      "belegt": true
+    },
+    {
+      "slug": "flipattack",
+      "url": "https://promptinjections.de/techniken/flipattack/",
+      "name_de": "Zeichen-Umkehr-Angriff (FlipAttack)",
+      "name_en": "FlipAttack",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Der schädliche Prompt wird zeichen- oder wortweise umgekehrt übergeben; das Modell dreht ihn im Zuge der Bearbeitung zurück und führt ihn aus.",
+      "funktionsweise": [
+        "Die Umkehr erzeugt eine linksseitige Störung, die autoregressives Lesen erschwert.",
+        "Eine begleitende Anweisung erklärt dem Modell die Rückwärts-Kodierung.",
+        "Die Autoren berichten von Erfolg bereits mit einer einzigen Anfrage."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Eingabe-Vorverarbeitung inklusive Rückwärts-Prüfung.",
+        "Ausgabeseitige Klassifikation als primärer Schutz.",
+        "Auffällige Anweisungen zur Selbst-Dekodierung als Risikosignal führen."
+      ],
+      "verwandte": [
+        "rot13-chiffre",
+        "artprompt-ascii-art",
+        "payload-splitting"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2410.02832",
+      "belegt": true
+    },
+    {
+      "slug": "payload-splitting",
+      "url": "https://promptinjections.de/techniken/payload-splitting/",
+      "name_de": "Payload-Splitting",
+      "name_en": "Payload Splitting",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Die schädliche Anweisung wird in harmlose Bruchstücke zerlegt, die einzeln jeden Filter passieren; das Modell setzt sie erst im Kontext wieder zusammen.",
+      "funktionsweise": [
+        "Fragmente werden getrennt übergeben und Variablen zugewiesen.",
+        "Eine abschließende Anweisung fügt die Teile zusammen und führt sie aus.",
+        "Filter, die jedes Fragment einzeln bewerten, sehen nichts Auffälliges."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Bewertung des zusammengesetzten Kontexts statt einzelner Fragmente.",
+        "Ausgabeseitige Kontrolle vor jeder Aktion mit Außenwirkung.",
+        "Verkettungs- und Zusammensetzungsanweisungen als Risikosignal führen."
+      ],
+      "verwandte": [
+        "base64-kodierung",
+        "flipattack",
+        "kontext-ueberlauf"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2302.05733",
+      "belegt": true
+    },
+    {
+      "slug": "sprachwechsel-low-resource",
+      "url": "https://promptinjections.de/techniken/sprachwechsel-low-resource/",
+      "name_de": "Sprachwechsel in ressourcenarme Sprachen",
+      "name_en": "Low-Resource Language Attack",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Die Anfrage wird in einer Sprache gestellt, für die vergleichsweise wenig Sicherheitstraining existiert — die Fähigkeiten des Modells reichen weiter als sein Schutz.",
+      "funktionsweise": [
+        "Sicherheitstraining ist stark auf Englisch und wenige große Sprachen konzentriert.",
+        "Das Modell versteht die Anfrage dennoch und beantwortet sie.",
+        "Die Multilingual-Jailbreak-Studie belegt deutlich erhöhte Erfolgsquoten."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Guardrails mehrsprachig auslegen und testen — auch für Deutsch.",
+        "Vor der Prüfung in eine Referenzsprache übersetzen.",
+        "Sprachabdeckung der eingesetzten Schutzmodelle explizit prüfen."
+      ],
+      "verwandte": [
+        "rot13-chiffre",
+        "base64-kodierung"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2310.06474",
+      "belegt": true
+    },
+    {
+      "slug": "crescendo",
+      "url": "https://promptinjections.de/techniken/crescendo/",
+      "name_de": "Crescendo",
+      "name_en": "Crescendo",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Von Microsoft beschriebener Mehrschritt-Angriff: Das Gespräch beginnt harmlos und steigert sich in kleinen, jeweils plausiblen Schritten, bis das Modell den ursprünglich abgelehnten Inhalt liefert.",
+      "funktionsweise": [
+        "Jeder Schritt bezieht sich auf die vorherige Antwort des Modells.",
+        "Das Modell bleibt konsistent zu seinem eigenen Gesprächsverlauf statt zu seinen Regeln.",
+        "Kein einzelner Turn wirkt für sich genommen schädlich."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Sicherheitsbewertung über den gesamten Gesprächsverlauf, nicht pro Turn.",
+        "Eskalationsmuster über mehrere Turns erkennen.",
+        "Sitzungen mit auffälliger Themendrift begrenzen oder zurücksetzen."
+      ],
+      "verwandte": [
+        "echo-chamber",
+        "bad-likert-judge",
+        "deceptive-delight"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2404.01833",
+      "belegt": true
+    },
+    {
+      "slug": "echo-chamber",
+      "url": "https://promptinjections.de/techniken/echo-chamber/",
+      "name_de": "Echo Chamber",
+      "name_en": "Echo Chamber",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Von NeuralTrust beschriebene Kontextvergiftung: Harmlose „Saat\"-Aussagen werden gesetzt und über mehrere Turns vom Modell selbst wiederholt, bis der vergiftete Kontext als eigener Konsens wirkt.",
+      "funktionsweise": [
+        "Der Angreifer nennt das Ziel nie direkt, sondern setzt Anknüpfungspunkte.",
+        "Das Modell greift eigene frühere Formulierungen wieder auf und verstärkt sie.",
+        "In Kombination mit erzählerischer Einbettung wurde die Technik gegen aktuelle Spitzenmodelle demonstriert."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Kontexthistorie in die Sicherheitsbewertung einbeziehen.",
+        "Selbstreferenz-Schleifen und schleichende Themendrift überwachen.",
+        "Guardrails auf Sitzungsebene statt nur auf Nachrichtenebene."
+      ],
+      "verwandte": [
+        "crescendo",
+        "many-shot-jailbreaking",
+        "persuasions-jailbreak"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://neuraltrust.ai/blog/echo-chamber-context-poisoning-jailbreak",
+      "belegt": true
+    },
+    {
+      "slug": "bad-likert-judge",
+      "url": "https://promptinjections.de/techniken/bad-likert-judge/",
+      "name_de": "Bad Likert Judge",
+      "name_en": "Bad Likert Judge",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Von Unit 42 beschriebene Technik: Das Modell wird als Bewertungsinstanz eingesetzt und soll Beispielantworten zu verschiedenen Stufen einer Likert-Skala erzeugen — die Höchststufe enthält den schädlichen Inhalt.",
+      "funktionsweise": [
+        "Der Angriff nutzt die Bewertungsfähigkeit des Modells als legitimen Rahmen.",
+        "Die Aufgabe erscheint als Evaluations- statt als Erzeugungsaufgabe.",
+        "Nachfragen zur „Verdeutlichung\" der Höchststufe liefern die eigentlichen Details."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Ausgabefilter auch auf Antworten in Bewertungs- und Meta-Aufgaben anwenden.",
+        "Sicherheitsprüfung getrennt vom bewertenden Modell betreiben.",
+        "Skalen- und Beispielgenerierung als eigenes Risikomuster führen."
+      ],
+      "verwandte": [
+        "crescendo",
+        "deceptive-delight",
+        "echo-chamber"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://unit42.paloaltonetworks.com/multi-turn-technique-jailbreaks-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "deceptive-delight",
+      "url": "https://promptinjections.de/techniken/deceptive-delight/",
+      "name_de": "Deceptive Delight",
+      "name_en": "Deceptive Delight",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Von Unit 42 beschriebene Technik: Ein unzulässiges Thema wird zwischen zwei harmlose Themen gebettet und das Modell gebeten, alle drei in einer positiven Erzählung zu verbinden — anschließend soll es den kritischen Teil ausführen.",
+      "funktionsweise": [
+        "Die Einbettung in harmlose Themen senkt die Aufmerksamkeit der Sicherheitsmechanismen.",
+        "Der erste Turn erzeugt nur eine unverfängliche Verbindung.",
+        "Erst die Bitte um Vertiefung fördert die problematischen Details zutage."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Themenmischungen mit einem auffälligen Element gesondert prüfen.",
+        "Vertiefungsanfragen erneut vollständig bewerten.",
+        "Kontextübergreifende statt turnweiser Klassifikation."
+      ],
+      "verwandte": [
+        "bad-likert-judge",
+        "crescendo",
+        "echo-chamber"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://unit42.paloaltonetworks.com/jailbreak-llms-through-camouflage-distraction/",
+      "belegt": true
+    },
+    {
+      "slug": "many-shot-jailbreaking",
+      "url": "https://promptinjections.de/techniken/many-shot-jailbreaking/",
+      "name_de": "Many-Shot-Jailbreaking",
+      "name_en": "Many-shot Jailbreaking",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Von Anthropic veröffentlichte Technik: Sehr viele fingierte Dialogbeispiele, in denen ein „Assistent\" regelwidrig antwortet, werden in den Prompt gestellt — das Modell setzt das Muster fort.",
+      "funktionsweise": [
+        "Große Kontextfenster erlauben hunderte gefälschter Beispieldialoge.",
+        "In-Context-Lernen überschreibt Teile des Sicherheitstrainings.",
+        "Die Wirksamkeit steigt messbar mit der Anzahl der Beispiele."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Kontextlänge und Anteil dialogartiger Beispiele begrenzen.",
+        "Prompt-Klassifikation vor der Modellabfrage (nachweislich wirksam laut Anthropic).",
+        "Kontextfenster für nicht vertrauenswürdige Quellen strikt beschneiden."
+      ],
+      "verwandte": [
+        "kontext-ueberlauf",
+        "echo-chamber",
+        "crescendo"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "belegt": true
+    },
+    {
+      "slug": "persuasions-jailbreak",
+      "url": "https://promptinjections.de/techniken/persuasions-jailbreak/",
+      "name_de": "Persuasions-Jailbreak",
+      "name_en": "Persuasive Adversarial Prompts (PAP)",
+      "kategorie": "multi-turn",
+      "kurzdefinition": "Der Angriff nutzt klassische sozialwissenschaftliche Überzeugungstechniken — Autorität, Reziprozität, emotionale Appelle — statt technischer Tricks, um das Modell zur Kooperation zu bewegen.",
+      "funktionsweise": [
+        "Eine Taxonomie menschlicher Überzeugungsstrategien wird auf Prompts übertragen.",
+        "Das Modell reagiert auf sozialen Druck ähnlich wie auf inhaltliche Argumente.",
+        "Die Autoren berichten hohe Erfolgsquoten gegen mehrere Spitzenmodelle."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Sicherheitsentscheidungen an den Inhalt koppeln, nicht an die Begründung.",
+        "Prüfung auf Autoritäts- und Dringlichkeitsrahmung in Eingaben.",
+        "Klar definierte, nicht verhandelbare Ausnahmen im Anwendungsdesign."
+      ],
+      "verwandte": [
+        "rollenspiel-persona",
+        "skeleton-key",
+        "crescendo"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2401.06373",
+      "belegt": true
+    },
+    {
+      "slug": "gcg-suffix",
+      "url": "https://promptinjections.de/techniken/gcg-suffix/",
+      "name_de": "GCG-Suffix-Angriff",
+      "name_en": "Greedy Coordinate Gradient (GCG)",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "Gradientenbasiertes Verfahren, das automatisch eine scheinbar sinnlose Zeichenkette berechnet, die an beliebige Anfragen angehängt die Verweigerung des Modells aushebelt.",
+      "funktionsweise": [
+        "Optimiert wird auf die Wahrscheinlichkeit einer zustimmenden Antworteinleitung.",
+        "Greedy- und Gradientensuche erzeugen das Suffix ohne manuelles Prompt-Engineering.",
+        "Die Autoren zeigen Übertragbarkeit auch auf Modelle ohne Gewichts-Zugriff."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Perplexitäts-Filter erkennen typische GCG-Suffixe zuverlässig.",
+        "Adversariales Training und Preference-Optimierung (SecAlign).",
+        "Rate-Limits und Anomalieerkennung gegen die nötigen Optimierungsläufe."
+      ],
+      "verwandte": [
+        "autodan",
+        "pgd-angriff",
+        "best-of-n-jailbreaking"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2307.15043",
+      "belegt": true
+    },
+    {
+      "slug": "autodan",
+      "url": "https://promptinjections.de/techniken/autodan/",
+      "name_de": "AutoDAN",
+      "name_en": "AutoDAN",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "Verfahren, das mit einem genetischen Algorithmus Jailbreak-Prompts erzeugt, die im Gegensatz zu GCG-Suffixen sprachlich unauffällig und damit für Perplexitäts-Filter schwer erkennbar sind.",
+      "funktionsweise": [
+        "Ausgangspunkt sind menschlich formulierte Jailbreak-Prompts.",
+        "Ein hierarchischer genetischer Algorithmus mutiert und selektiert Varianten.",
+        "Ergebnis sind flüssig lesbare Prompts mit hoher Erfolgsquote."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Perplexitäts-Filter reichen nicht — semantische Klassifikatoren einsetzen.",
+        "Ausgabeseitige Prüfung als zweite Verteidigungslinie.",
+        "Auffällige Wiederholungsmuster über viele Anfragen erkennen."
+      ],
+      "verwandte": [
+        "gcg-suffix",
+        "pair",
+        "tap-tree-of-attacks"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2310.04451",
+      "belegt": true
+    },
+    {
+      "slug": "pair",
+      "url": "https://promptinjections.de/techniken/pair/",
+      "name_de": "PAIR (iterative Prompt-Verfeinerung)",
+      "name_en": "Prompt Automatic Iterative Refinement",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "Ein angreifendes Sprachmodell verfeinert seinen Prompt anhand der Antworten des Zielmodells — die Autoren berichten Jailbreaks häufig in unter zwanzig Anfragen, ohne Zugriff auf Modellgewichte.",
+      "funktionsweise": [
+        "Angreifer-LLM erzeugt einen Kandidaten-Prompt.",
+        "Das Zielmodell antwortet, eine Bewertungsinstanz misst den Erfolg.",
+        "Die Rückmeldung fließt in den nächsten Versuch — vollautomatisch, Black-Box."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Rate-Limits und Missbrauchserkennung pro Konto und IP.",
+        "Sitzungsübergreifende Erkennung iterativer Umformulierungen.",
+        "Robustheitstests im eigenen Red-Teaming (PyRIT, garak) fahren."
+      ],
+      "verwandte": [
+        "tap-tree-of-attacks",
+        "autodan",
+        "best-of-n-jailbreaking"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2310.08419",
+      "belegt": true
+    },
+    {
+      "slug": "tap-tree-of-attacks",
+      "url": "https://promptinjections.de/techniken/tap-tree-of-attacks/",
+      "name_de": "Tree of Attacks (TAP)",
+      "name_en": "Tree of Attacks with Pruning",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "Weiterentwicklung von PAIR: Statt einer linearen Verfeinerung wird ein Baum von Angriffspfaden aufgespannt, aussichtslose Zweige werden früh abgeschnitten.",
+      "funktionsweise": [
+        "Mehrere Angriffsvarianten werden parallel verzweigt.",
+        "Ein Bewertungsschritt verwirft Zweige ohne Fortschritt.",
+        "Die Baumsuche findet Jailbreaks mit weniger Anfragen als lineare Verfahren."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Anfragebudgets pro Sitzung und Konto durchsetzen.",
+        "Semantische Ähnlichkeitserkennung über Anfrageserien.",
+        "Ausgabeseitige Guardrails unabhängig vom Eingabepfad."
+      ],
+      "verwandte": [
+        "pair",
+        "autodan",
+        "gcg-suffix"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2312.02119",
+      "belegt": true
+    },
+    {
+      "slug": "best-of-n-jailbreaking",
+      "url": "https://promptinjections.de/techniken/best-of-n-jailbreaking/",
+      "name_de": "Best-of-N-Jailbreaking",
+      "name_en": "Best-of-N Jailbreaking",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "Ein Black-Box-Verfahren, das dieselbe Anfrage in vielen zufällig variierten Schreibweisen stellt, bis eine Variante die Schutzmechanismen passiert — auch für Bild und Audio anwendbar.",
+      "funktionsweise": [
+        "Zufällige Augmentierungen: Groß-/Kleinschreibung, Zeichendreher, Rauschen.",
+        "Jede Variante wird erneut gesendet, bis ein Treffer gelingt.",
+        "Die Erfolgsquote wächst systematisch mit der Zahl der Versuche."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Rate-Limits als primäre Gegenmaßnahme — der Angriff lebt von Wiederholung.",
+        "Eingabenormalisierung vor der Prüfung.",
+        "Erkennung semantisch identischer Wiederholungen über eine Sitzung."
+      ],
+      "verwandte": [
+        "pair",
+        "tap-tree-of-attacks",
+        "bild-injection-multimodal"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2412.03556",
+      "belegt": true
+    },
+    {
+      "slug": "pgd-angriff",
+      "url": "https://promptinjections.de/techniken/pgd-angriff/",
+      "name_de": "Projizierter Gradientenabstieg",
+      "name_en": "Projected Gradient Descent Attack",
+      "kategorie": "automatisiert",
+      "kurzdefinition": "White-Box-Angriff, der adversariale Eingaben im kontinuierlichen Einbettungsraum optimiert und dadurch deutlich schneller zum Ziel kommt als diskrete Suchverfahren.",
+      "funktionsweise": [
+        "Die diskrete Token-Suche wird auf eine kontinuierliche Relaxierung übertragen.",
+        "Gradientenschritte werden zurück auf gültige Token projiziert.",
+        "Setzt Zugriff auf Modellgewichte voraus — relevant für offene Modelle."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Bei selbst gehosteten offenen Modellen: Guardrails außerhalb des Modells.",
+        "Adversariales Training bzw. SecAlign-artige Preference-Optimierung.",
+        "Zugriff auf Gewichte in produktiven Umgebungen strikt begrenzen."
+      ],
+      "verwandte": [
+        "gcg-suffix",
+        "autodan"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2402.09154",
+      "belegt": true
+    },
+    {
+      "slug": "deepinception",
+      "url": "https://promptinjections.de/techniken/deepinception/",
+      "name_de": "DeepInception (verschachtelte Fiktion)",
+      "name_en": "DeepInception",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Mehrfach verschachtelte fiktive Szenen — eine Geschichte in einer Geschichte in einer Geschichte — verwässern den Bezug zur Realität, bis das Modell die Sicherheitsprüfung auf die innerste Ebene nicht mehr anwendet.",
+      "funktionsweise": [
+        "Jede Verschachtelungsebene erhöht die erzählerische Distanz.",
+        "Das Modell behandelt den Inhalt als Fiktion statt als reale Anfrage.",
+        "Die Wirkung hält teils über mehrere Folgeanfragen an."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Ausgabeprüfung unabhängig von der Erzählebene.",
+        "Verschachtelungstiefe als Risikosignal führen.",
+        "Sitzung bei erkannter Rahmenverschachtelung zurücksetzen."
+      ],
+      "verwandte": [
+        "rollenspiel-persona",
+        "self-deception-semantic-firewall",
+        "dan-do-anything-now"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2311.03191",
+      "belegt": true
+    },
+    {
+      "slug": "self-deception-semantic-firewall",
+      "url": "https://promptinjections.de/techniken/self-deception-semantic-firewall/",
+      "name_de": "Selbsttäuschung des Modells",
+      "name_en": "Self-Deception",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Das Modell wird veranlasst, den schädlichen Kontext selbst zu erzeugen — anschließend arbeitet es mit seinem eigenen, als vertrauenswürdig behandelten Output weiter.",
+      "funktionsweise": [
+        "Zunächst erzeugt das Modell ein scheinbar neutrales Szenario.",
+        "Die eigene Ausgabe wird im nächsten Schritt als Ausgangsmaterial verwendet.",
+        "Der selbst erzeugte Kontext umgeht die Prüfung fremder Eingaben."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Modell-Ausgaben, die zurück in den Kontext fließen, wie fremde Eingaben prüfen.",
+        "Keine impliziten Vertrauensvorschüsse für selbst erzeugten Text.",
+        "Eigene Prüfinstanz zwischen Generierungs- und Verwendungsschritt."
+      ],
+      "verwandte": [
+        "deepinception",
+        "echo-chamber"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2308.11521",
+      "belegt": true
+    },
+    {
+      "slug": "indirekte-prompt-injection",
+      "url": "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+      "name_de": "Indirekte Prompt Injection",
+      "name_en": "Indirect Prompt Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Die Anweisung stammt nicht vom Nutzer, sondern aus Inhalten, die das System selbst lädt — Webseiten, Dokumente, E-Mails. Der Angreifer muss nie mit der Anwendung interagieren.",
+      "funktionsweise": [
+        "Der Angreifer platziert Anweisungen in Inhalten, die das LLM später verarbeitet.",
+        "Beim Abruf gelangen sie unbemerkt in dasselbe Kontextfenster wie die Systemanweisung.",
+        "Das Modell kann Daten nicht zuverlässig von Anweisungen unterscheiden und folgt ihnen."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Externe Inhalte konsequent als nicht vertrauenswürdig markieren (Spotlighting).",
+        "Architektonische Trennung: privilegiertes und unprivilegiertes Modell (Dual-LLM, CaMeL).",
+        "Aktionen mit Außenwirkung nur nach deterministischer Policy-Prüfung."
+      ],
+      "verwandte": [
+        "gespeicherte-prompt-injection",
+        "rag-poisoning",
+        "email-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2302.12173",
+      "sameAs": [
+        "https://atlas.mitre.org/techniques/AML.T0051.001",
+        "https://arxiv.org/abs/2302.12173",
+        "https://en.wikipedia.org/wiki/Prompt_injection"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "gespeicherte-prompt-injection",
+      "url": "https://promptinjections.de/techniken/gespeicherte-prompt-injection/",
+      "name_de": "Gespeicherte Prompt Injection",
+      "name_en": "Stored / Persistent Prompt Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Die Anweisung wird dauerhaft in einem Datenspeicher abgelegt — Vektordatenbank, Wissensbasis, Profilfeld — und wirkt bei jedem künftigen Abruf erneut, auch auf andere Nutzer.",
+      "funktionsweise": [
+        "Der Payload gelangt einmalig in einen persistenten Speicher.",
+        "Jeder Abruf lädt ihn erneut in den Kontext — vergleichbar mit Stored XSS.",
+        "Die Wirkung überdauert Sitzungen und trifft Nutzer, die den Angreifer nie gesehen haben."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Inhalte vor der Aufnahme in Wissensbasen bereinigen und prüfen.",
+        "Herkunft und Schreibrechte pro Dokument protokollieren.",
+        "Regelmäßige Prüfung von Wissensbasen auf eingebettete Anweisungen."
+      ],
+      "verwandte": [
+        "indirekte-prompt-injection",
+        "rag-poisoning",
+        "memory-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "sameAs": [
+        "https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "rag-poisoning",
+      "url": "https://promptinjections.de/techniken/rag-poisoning/",
+      "name_de": "RAG-Vergiftung",
+      "name_en": "RAG Poisoning / PoisonedRAG",
+      "kategorie": "daten-vergiftung",
+      "kurzdefinition": "Präparierte Dokumente werden so gestaltet, dass sie für bestimmte Nutzerfragen sicher in die Top-Treffer der Vektorsuche gelangen und dort ihre Anweisungen ausspielen.",
+      "funktionsweise": [
+        "Der Text wird auf semantische Nähe zur Zielfrage optimiert.",
+        "Der Retriever wählt ihn aus, das Modell übernimmt seinen Inhalt als Fakt.",
+        "Die Autoren zeigen hohe Erfolgsquoten mit sehr wenigen eingeschleusten Dokumenten."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Nur kuratierte, herkunftsgeprüfte Quellen indexieren.",
+        "Zugriffsrechte auch auf Chunk-Ebene durchsetzen.",
+        "Abgerufene Passagen vor der Übergabe an das Modell prüfen und kennzeichnen."
+      ],
+      "verwandte": [
+        "gespeicherte-prompt-injection",
+        "indirekte-prompt-injection",
+        "suchmaschinen-vergiftung"
+      ],
+      "owasp": "LLM08",
+      "quelle_url": "https://arxiv.org/abs/2402.07867",
+      "sameAs": [
+        "https://arxiv.org/abs/2402.07867"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "memory-injection",
+      "url": "https://promptinjections.de/techniken/memory-injection/",
+      "name_de": "Gedächtnis-Injektion",
+      "name_en": "Memory Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Der Angriff schreibt manipulierte Einträge in das Langzeitgedächtnis eines Assistenten — die Anweisung überdauert damit die einzelne Sitzung und wirkt in allen künftigen Gesprächen fort.",
+      "funktionsweise": [
+        "Eine Injektion veranlasst den Assistenten, sich eine präparierte „Tatsache\" zu merken.",
+        "Der Eintrag wird bei jedem neuen Gespräch automatisch in den Kontext geladen.",
+        "Der Nutzer bemerkt die Manipulation nicht, weil sie im Speicher und nicht im Chat steht."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Schreibzugriffe auf das Gedächtnis nur nach ausdrücklicher Nutzerbestätigung.",
+        "Gedächtnisinhalte einsehbar und einzeln löschbar machen.",
+        "Inhalte aus nicht vertrauenswürdigen Quellen nie als Erinnerung speichern."
+      ],
+      "verwandte": [
+        "gespeicherte-prompt-injection",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://embracethered.com/blog/posts/2024/chatgpt-hacking-memories/",
+      "belegt": true
+    },
+    {
+      "slug": "hidden-text-html",
+      "url": "https://promptinjections.de/techniken/hidden-text-html/",
+      "name_de": "Versteckter Text in Webseiten",
+      "name_en": "Hidden Text Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Anweisungen werden für Menschen unsichtbar in eine Webseite eingebettet — weiße Schrift auf weißem Grund, Schriftgröße null, HTML-Kommentare oder ausgeblendete Elemente — bleiben für den Agenten aber lesbar.",
+      "funktionsweise": [
+        "Der Agent liest das DOM oder den Rohtext, nicht das gerenderte Bild.",
+        "Für den Nutzer ist die Seite unauffällig.",
+        "Brave demonstrierte damit sitzungsübergreifende Aktionen in KI-Browsern."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Nur sichtbaren, gerenderten Text an das Modell übergeben.",
+        "Seiteninhalte als nicht vertrauenswürdig kennzeichnen und delimitieren.",
+        "Sensible Aktionen nur nach ausdrücklicher Nutzerbestätigung ausführen."
+      ],
+      "verwandte": [
+        "ascii-smuggling",
+        "indirekte-prompt-injection",
+        "suchmaschinen-vergiftung"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://brave.com/blog/comet-prompt-injection/",
+      "belegt": true
+    },
+    {
+      "slug": "dokumenten-injection",
+      "url": "https://promptinjections.de/techniken/dokumenten-injection/",
+      "name_de": "Injektion über Dokumente",
+      "name_en": "Document-borne Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "PDF-, Office- oder Textdateien enthalten versteckte Anweisungen, die wirksam werden, sobald ein Assistent das Dokument zusammenfassen oder auswerten soll.",
+      "funktionsweise": [
+        "Der Payload liegt in Metadaten, weißer Schrift oder Kommentarfeldern.",
+        "Beim Einlesen landet er ununterscheidbar im Kontext.",
+        "Typischer Weg in Bewerbungs-, Rechnungs- und Vertragsprozesse."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Textextraktion normalisieren, Metadaten getrennt behandeln.",
+        "Dokumenteninhalt strikt als Daten kennzeichnen (Spotlighting).",
+        "Keine automatischen Folgeaktionen ohne menschliche Freigabe."
+      ],
+      "verwandte": [
+        "indirekte-prompt-injection",
+        "ascii-smuggling",
+        "email-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2302.12173",
+      "belegt": true
+    },
+    {
+      "slug": "email-injection",
+      "url": "https://promptinjections.de/techniken/email-injection/",
+      "name_de": "Injektion über E-Mail",
+      "name_en": "Email-borne Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Eine präparierte E-Mail genügt: Sobald ein Assistent das Postfach durchsucht oder zusammenfasst, gelangen die eingebetteten Anweisungen in seinen Kontext — ohne dass der Nutzer die Mail öffnen muss.",
+      "funktionsweise": [
+        "Der Angreifer versendet eine Nachricht mit verstecktem Anweisungstext.",
+        "Der Assistent liest sie beim Beantworten einer beliebigen Nutzerfrage mit.",
+        "Bei EchoLeak reichte dies für einen Zero-Click-Datenabfluss aus Microsoft 365 Copilot."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Eingehende Nachrichten vor der Verarbeitung auf eingebettete Anweisungen prüfen.",
+        "Ausgehende Verbindungen und Link-Ziele des Assistenten strikt begrenzen.",
+        "Externe Absender im Kontext deutlich als nicht vertrauenswürdig markieren."
+      ],
+      "verwandte": [
+        "zero-click-injection",
+        "datenexfiltration-markdown-bild",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2509.10540",
+      "belegt": true
+    },
+    {
+      "slug": "kalender-injection",
+      "url": "https://promptinjections.de/techniken/kalender-injection/",
+      "name_de": "Injektion über Kalender-Einladungen",
+      "name_en": "Calendar Invite Injection",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Anweisungen werden in Titel oder Beschreibung eines Kalendereintrags versteckt und ausgelöst, sobald der Assistent den Kalender liest — bis hin zur Steuerung angebundener Geräte.",
+      "funktionsweise": [
+        "Eine Einladung mit präpariertem Text landet automatisch im Kalender.",
+        "Der Assistent liest den Eintrag beim Beantworten einer Terminfrage mit.",
+        "SafeBreach demonstrierte darüber Aktionen bis in die Gebäudesteuerung."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Automatisches Annehmen fremder Einladungen abschalten.",
+        "Kalendertexte als nicht vertrauenswürdige Daten behandeln.",
+        "Gerätesteuernde Aktionen an eine ausdrückliche Bestätigung binden."
+      ],
+      "verwandte": [
+        "email-injection",
+        "indirekte-prompt-injection",
+        "zero-click-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://www.safebreach.com/blog/gemini-voice-assistant-prompt-injection-exploit/",
+      "belegt": true
+    },
+    {
+      "slug": "suchmaschinen-vergiftung",
+      "url": "https://promptinjections.de/techniken/suchmaschinen-vergiftung/",
+      "name_de": "Vergiftung von Suchergebnissen",
+      "name_en": "Search / Web Poisoning for AI Agents",
+      "kategorie": "indirekte-injection",
+      "kurzdefinition": "Angreifer stellen Webseiten ins Netz, deren sichtbarer Inhalt für Menschen belanglos ist, die aber gezielt Anweisungen für Agenten enthalten, die diese Seiten über die Websuche abrufen.",
+      "funktionsweise": [
+        "Die Seite wird auf Fragen optimiert, die Agenten typischerweise recherchieren.",
+        "Der Agent ruft sie ab und übernimmt die enthaltenen Anweisungen.",
+        "Unit 42 dokumentierte solche Seiten bereits im produktiven Netz."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Nur Inhalte von geprüften Domains in den Kontext geben.",
+        "Abgerufene Seiten als Daten kennzeichnen und Anweisungsmuster filtern.",
+        "Keine automatische Ausführung von Aktionen aus Suchergebnissen."
+      ],
+      "verwandte": [
+        "hidden-text-html",
+        "rag-poisoning",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/",
+      "belegt": true
+    },
+    {
+      "slug": "bild-injection-multimodal",
+      "url": "https://promptinjections.de/techniken/bild-injection-multimodal/",
+      "name_de": "Multimodale Injektion über Bild und Ton",
+      "name_en": "Multi-Modal Instruction Injection",
+      "kategorie": "multimodal",
+      "kurzdefinition": "Anweisungen werden in Bilder oder Audiodateien eingebettet — als sichtbarer Text im Bild oder als adversariale Störung — und wirken, sobald ein multimodales Modell die Datei verarbeitet.",
+      "funktionsweise": [
+        "Sichtbarer Text im Bild wird vom Modell gelesen wie Prompt-Text.",
+        "Adversariale Perturbationen können Anweisungen für Menschen unsichtbar einbetten.",
+        "Auch Screenshots von Webseiten übertragen Injektionen weiter."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Bild- und Audioinhalte als nicht vertrauenswürdige Daten behandeln.",
+        "OCR-Text separat prüfen, bevor er in den Kontext gelangt.",
+        "Multimodale Eingaben in Guardrail-Tests einbeziehen."
+      ],
+      "verwandte": [
+        "artprompt-ascii-art",
+        "hidden-text-html",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2307.10490",
+      "sameAs": [
+        "https://arxiv.org/abs/2307.10490"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "tool-poisoning-mcp",
+      "url": "https://promptinjections.de/techniken/tool-poisoning-mcp/",
+      "name_de": "Tool-Poisoning (MCP)",
+      "name_en": "Tool Poisoning",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Die Beschreibung eines Werkzeugs — etwa eines MCP-Servers — enthält versteckte Anweisungen. Der Agent liest sie beim Auflisten der verfügbaren Tools, noch bevor er das Werkzeug überhaupt aufruft.",
+      "funktionsweise": [
+        "Tool-Beschreibungen gelangen ungeprüft in den System-Kontext des Agenten.",
+        "Ein bösartiger Server kann so Verhalten für alle anderen Tools umdefinieren.",
+        "Nachträgliche Änderungen der Beschreibung bleiben oft unbemerkt („Rug Pull\")."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Nur Tool-Server aus geprüften Quellen einbinden und Beschreibungen pinnen.",
+        "Tool-Beschreibungen wie nicht vertrauenswürdige Eingaben behandeln.",
+        "Änderungen an Tool-Definitionen protokollieren und alarmieren."
+      ],
+      "verwandte": [
+        "prompt-infection-multiagent",
+        "tool-missbrauch",
+        "confused-deputy-agent"
+      ],
+      "owasp": "LLM03",
+      "quelle_url": "https://arxiv.org/abs/2504.03767",
+      "sameAs": [
+        "https://arxiv.org/abs/2510.14300",
+        "https://www.anthropic.com/news/model-context-protocol"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "prompt-infection-multiagent",
+      "url": "https://promptinjections.de/techniken/prompt-infection-multiagent/",
+      "name_de": "Prompt-Infektion in Multi-Agenten-Systemen",
+      "name_en": "Prompt Infection",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Eine Injektion, die sich selbst weitergibt: Ein kompromittierter Agent reicht die Anweisung samt Vervielfältigungsauftrag an die nächsten Agenten weiter — wurmartige Ausbreitung im Verbund.",
+      "funktionsweise": [
+        "Der Payload enthält die Anweisung, sich in jede Weitergabe einzufügen.",
+        "Agenten vertrauen einander typischerweise mehr als externen Quellen.",
+        "Ein einziger Einstiegspunkt kann das gesamte System erfassen."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Nachrichten zwischen Agenten wie externe Eingaben prüfen.",
+        "Rechte je Agent minimal halten, kein gemeinsamer Vollzugriff.",
+        "Herkunftskennzeichnung über die gesamte Agentenkette führen."
+      ],
+      "verwandte": [
+        "tool-poisoning-mcp",
+        "confused-deputy-agent",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2410.07283",
+      "belegt": true
+    },
+    {
+      "slug": "confused-deputy-agent",
+      "url": "https://promptinjections.de/techniken/confused-deputy-agent/",
+      "name_de": "Verwirrter Stellvertreter",
+      "name_en": "Confused Deputy",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Der Agent handelt mit den Rechten des Nutzers, folgt aber der Absicht eines Angreifers — er wird zum Stellvertreter, der seine Berechtigungen fremdgesteuert einsetzt.",
+      "funktionsweise": [
+        "Eine indirekte Injektion setzt das Ziel des Agenten neu.",
+        "Der Agent nutzt weiterhin seine legitimen Zugriffsrechte.",
+        "Aus Sicht der Zielsysteme ist die Aktion vollständig autorisiert."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Rechte des Agenten auf das für die Aufgabe Nötige beschränken.",
+        "Aktionen mit Außenwirkung an eine menschliche Freigabe binden.",
+        "Die tödliche Trias vermeiden: private Daten, fremde Inhalte, Außenkommunikation."
+      ],
+      "verwandte": [
+        "tool-missbrauch",
+        "prompt-infection-multiagent",
+        "datenexfiltration-link"
+      ],
+      "owasp": "LLM06",
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "belegt": true
+    },
+    {
+      "slug": "tool-missbrauch",
+      "url": "https://promptinjections.de/techniken/tool-missbrauch/",
+      "name_de": "Werkzeug-Missbrauch durch Injektion",
+      "name_en": "Tool Misuse via Injection",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Die eingeschleuste Anweisung veranlasst den Agenten, seine angebundenen Werkzeuge zweckwidrig einzusetzen — Mails versenden, Dateien schreiben, Käufe auslösen, Code ausführen.",
+      "funktionsweise": [
+        "Der Payload beschreibt konkrete Tool-Aufrufe mit Parametern.",
+        "Der Agent führt sie im Rahmen seiner normalen Arbeitsweise aus.",
+        "Der InjecAgent-Benchmark zeigt hohe Erfolgsquoten gegen gängige Agenten."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Werkzeuge mit minimalen Rechten und engen Parametergrenzen ausstatten.",
+        "Deterministische Policy-Prüfung vor jedem Aufruf (CaMeL-Ansatz).",
+        "Schreibende und bezahlpflichtige Aktionen grundsätzlich bestätigen lassen."
+      ],
+      "verwandte": [
+        "confused-deputy-agent",
+        "code-injection-via-llm",
+        "tool-poisoning-mcp"
+      ],
+      "owasp": "LLM06",
+      "quelle_url": "https://arxiv.org/abs/2403.02691",
+      "belegt": true
+    },
+    {
+      "slug": "datenexfiltration-markdown-bild",
+      "url": "https://promptinjections.de/techniken/datenexfiltration-markdown-bild/",
+      "name_de": "Datenabfluss über Markdown-Bilder",
+      "name_en": "Markdown Image Exfiltration",
+      "kategorie": "exfiltration",
+      "kurzdefinition": "Das Modell wird veranlasst, ein Bild einzubetten, dessen URL die zu stehlenden Daten als Parameter enthält. Das Rendern der Antwort löst den Abruf aus und schickt die Daten an den Angreifer.",
+      "funktionsweise": [
+        "Die injizierte Anweisung verlangt eine Bild-Referenz mit dynamischer URL.",
+        "Vertrauliche Kontextdaten werden in den URL-Pfad kodiert.",
+        "Der Client lädt das Bild automatisch — kein Klick des Nutzers nötig."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Content-Security-Policy: Bildquellen auf eigene Domains beschränken.",
+        "Markdown-Bilder aus Modellausgaben nicht automatisch rendern.",
+        "Ausgehende URLs auf kodierte Nutzdaten prüfen."
+      ],
+      "verwandte": [
+        "datenexfiltration-link",
+        "zero-click-injection",
+        "email-injection"
+      ],
+      "owasp": "LLM02",
+      "quelle_url": "https://embracethered.com/blog/posts/2023/data-exfiltration-in-azure-openai-playground-fixed/",
+      "belegt": true
+    },
+    {
+      "slug": "datenexfiltration-link",
+      "url": "https://promptinjections.de/techniken/datenexfiltration-link/",
+      "name_de": "Datenabfluss über präparierte Links",
+      "name_en": "Link-based Exfiltration",
+      "kategorie": "exfiltration",
+      "kurzdefinition": "Die Antwort des Assistenten enthält einen scheinbar hilfreichen Link, in dessen Parametern vertrauliche Daten stecken — ein Klick des Nutzers genügt für den Abfluss.",
+      "funktionsweise": [
+        "Die Injektion verlangt einen Link mit eingebetteten Kontextdaten.",
+        "Der Text wirkt legitim („hier weiterlesen\").",
+        "PromptArmor demonstrierte dies für den Abzug von Daten aus privaten Slack-Kanälen."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Links aus Modellausgaben gegen eine Allowlist prüfen.",
+        "Externe Ziele im Interface deutlich kennzeichnen.",
+        "Parameter ausgehender Links auf Kontextdaten prüfen."
+      ],
+      "verwandte": [
+        "datenexfiltration-markdown-bild",
+        "confused-deputy-agent",
+        "indirekte-prompt-injection"
+      ],
+      "owasp": "LLM02",
+      "quelle_url": "https://www.promptarmor.com/resources/data-exfiltration-from-slack-ai-via-indirect-prompt-injection",
+      "belegt": true
+    },
+    {
+      "slug": "zero-click-injection",
+      "url": "https://promptinjections.de/techniken/zero-click-injection/",
+      "name_de": "Zero-Click-Injektion",
+      "name_en": "Zero-Click Prompt Injection",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Angriffsklasse, die ganz ohne Zutun des Opfers auskommt: Das Zustellen eines Inhalts in ein vom Assistenten durchsuchtes System genügt, um Injektion und Datenabfluss auszulösen.",
+      "funktionsweise": [
+        "Der Payload wird in eine Quelle gelegt, die der Assistent automatisch indexiert.",
+        "Eine beliebige, unverwandte Nutzerfrage zieht ihn in den Kontext.",
+        "EchoLeak (CVE-2025-32711) gilt als erster dokumentierter Fall in einem Produktivsystem."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Herkunftsbasierte Trennung des Abrufumfangs (keine Vermischung von Vertrauensstufen).",
+        "Ausgehende Kanäle des Assistenten strikt begrenzen.",
+        "Automatische Indexierung externer Inhalte einschränken."
+      ],
+      "verwandte": [
+        "email-injection",
+        "datenexfiltration-markdown-bild",
+        "kalender-injection"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2509.10540",
+      "sameAs": [
+        "https://nvd.nist.gov/vuln/detail/cve-2025-32711"
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "code-injection-via-llm",
+      "url": "https://promptinjections.de/techniken/code-injection-via-llm/",
+      "name_de": "Code-Injektion über LLM-Ausgaben",
+      "name_en": "Insecure Output Handling / Code Injection",
+      "kategorie": "agenten-angriff",
+      "kurzdefinition": "Die Ausgabe des Modells wird ungeprüft weiterverarbeitet — als HTML gerendert, als SQL abgesetzt, als Shell-Befehl ausgeführt. Eine Injektion wird damit zu klassischer Codeausführung.",
+      "funktionsweise": [
+        "Der Payload lässt das Modell Markup, Query oder Befehl erzeugen.",
+        "Die nachgelagerte Komponente vertraut der Ausgabe blind.",
+        "Ergebnis reicht von XSS über SQL-Injection bis zur Remote-Codeausführung."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Modellausgaben wie Nutzereingaben behandeln: validieren, escapen, parametrisieren.",
+        "Ausführung nur in Sandbox-Umgebungen mit minimalen Rechten.",
+        "Strenge Schema-Validierung vor jeder Weiterverarbeitung."
+      ],
+      "verwandte": [
+        "tool-missbrauch",
+        "confused-deputy-agent"
+      ],
+      "owasp": "LLM05",
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "belegt": true
+    },
+    {
+      "slug": "sleeper-agent-backdoor",
+      "url": "https://promptinjections.de/techniken/sleeper-agent-backdoor/",
+      "name_de": "Backdoor im Modell (Sleeper Agent)",
+      "name_en": "Sleeper Agents / Model Backdoor",
+      "kategorie": "daten-vergiftung",
+      "kurzdefinition": "Ein Modell wird im Training so präpariert, dass es sich normal verhält, bis ein bestimmter Auslöser erscheint — Anthropic zeigte, dass Standard-Sicherheitstraining solche Hintertüren nicht zuverlässig entfernt.",
+      "funktionsweise": [
+        "Ein seltener Auslöser wird beim Training mit abweichendem Verhalten verknüpft.",
+        "Im Normalbetrieb bleibt das Verhalten unauffällig.",
+        "Sicherheitstraining kann das Verbergen sogar verstärken statt es zu entfernen."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Modelle und Feintunings nur aus geprüfter, nachvollziehbarer Herkunft beziehen.",
+        "Lieferkette absichern: Signaturen, Provenienz, Modell-SBOM.",
+        "Verhaltenstests mit ungewöhnlichen Auslösern in die Abnahme aufnehmen."
+      ],
+      "verwandte": [
+        "rag-poisoning",
+        "tool-poisoning-mcp"
+      ],
+      "owasp": "LLM04",
+      "quelle_url": "https://arxiv.org/abs/2401.05566",
+      "belegt": true
+    },
+    {
+      "slug": "hackaprompt-kombinationsangriff",
+      "url": "https://promptinjections.de/techniken/hackaprompt-kombinationsangriff/",
+      "name_de": "Kombinationsangriffe",
+      "name_en": "Compound / Combined Attacks",
+      "kategorie": "jailbreak",
+      "kurzdefinition": "Die praktisch wirksamsten Angriffe kombinieren mehrere Techniken — etwa Rollenspiel plus Kodierung plus Verweigerungs-Unterdrückung — und übersteigen dadurch die Wirkung jeder Einzeltechnik.",
+      "funktionsweise": [
+        "Jede Schicht adressiert eine andere Schutzmaßnahme.",
+        "Filter, die einzelne Muster kennen, greifen bei der Kombination nicht mehr.",
+        "Die HackAPrompt-Auswertung über 600.000 eingereichte Prompts zeigt Kombinationen als dominante Erfolgsstrategie."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Verteidigung in mehreren, unabhängigen Schichten aufbauen.",
+        "Nie auf einen einzelnen Filter oder eine einzelne Signatur setzen.",
+        "Red-Teaming mit kombinierten Angriffsketten statt Einzeltests."
+      ],
+      "verwandte": [
+        "refusal-suppression",
+        "base64-kodierung",
+        "rollenspiel-persona"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2311.16119",
+      "belegt": true
+    },
+    {
+      "slug": "goal-hijacking",
+      "url": "https://promptinjections.de/techniken/goal-hijacking/",
+      "name_de": "Zielentführung",
+      "name_en": "Goal Hijacking",
+      "kategorie": "direkte-injection",
+      "kurzdefinition": "Der Angreifer ersetzt nicht die Regeln, sondern das Ziel der Anwendung: Ein Übersetzungsdienst schreibt plötzlich Werbetexte, ein Support-Bot gibt Rabatte — die Anwendung arbeitet weiter, nur für den Falschen.",
+      "funktionsweise": [
+        "Die Injektion definiert eine neue Aufgabe im selben Kontext.",
+        "Das Modell folgt der zuletzt genannten, konkretesten Aufgabenbeschreibung.",
+        "Wirtschaftlicher Schaden entsteht ohne jeden Regelverstoß im engeren Sinn."
+      ],
+      "risiko": "hoch",
+      "schutz": [
+        "Ausgabeformat strikt schematisch erzwingen und validieren.",
+        "Aufgabenspezifisches Feintuning statt generischer Prompt-Steuerung (Jatmo).",
+        "Plausibilitätsprüfung der Antwort gegen die erwartete Aufgabe."
+      ],
+      "verwandte": [
+        "ignore-previous-instructions",
+        "prompt-leaking",
+        "hackaprompt-kombinationsangriff"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://arxiv.org/abs/2306.05499",
+      "belegt": true
+    }
+  ]
+}

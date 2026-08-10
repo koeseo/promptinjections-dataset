@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/glossar.schema.json",
+  "title": "Glossar der LLM-Sicherheit",
+  "description": "Glossary of LLM security terms. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "begriff": {
+            "type": "string",
+            "description": "Deutscher Ansetzungsbegriff, ggf. mit englischem Fachbegriff in Klammern"
+          },
+          "definition_2_saetze": {
+            "type": "string"
+          },
+          "kontext": {
+            "type": "string"
+          },
+          "beispiel": {
+            "type": "string"
+          },
+          "verwandte": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs anderer Glossar-Einträge"
+          },
+          "quelle_url": {
+            "type": "string",
+            "description": "Primärquelle: Paper, Hersteller-Advisory oder Standarddokument"
+          },
+          "belegt": {
+            "type": "boolean",
+            "description": "true = Primärquelle verlinkt"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

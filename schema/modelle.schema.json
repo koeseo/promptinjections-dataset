@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/modelle.schema.json",
+  "title": "Sprachmodelle und bekannte Schwächen",
+  "description": "Language models and known weaknesses. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL-Segment unter /modelle/"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "anbieter": {
+            "type": "string"
+          },
+          "modell": {
+            "type": "string"
+          },
+          "familie": {
+            "type": "string"
+          },
+          "bekannte_schwaechen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Öffentlich dokumentierte Befunde mit Quelle — keine eigenen Messungen dieses Portals"
+          },
+          "verwandte_techniken": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quelle_url": {
+            "type": "string",
+            "description": "Primärquelle: Paper, Hersteller-Advisory oder Standarddokument"
+          },
+          "belegt": {
+            "type": "boolean",
+            "description": "true = Primärquelle (Paper, Herstellerangabe, Sicherheitsforschungs-Publikation) verlinkt"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

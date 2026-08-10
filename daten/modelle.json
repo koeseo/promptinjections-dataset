@@ -1,0 +1,324 @@
+{
+  "meta": {
+    "titel": "Sprachmodelle und bekannte Schwächen",
+    "title_en": "Language models and known weaknesses",
+    "version": "1.0.0",
+    "stand": "2026-08-03",
+    "sprache": "de",
+    "anzahl": 16,
+    "herausgeber": "Gökhan Köse, koeseo",
+    "quelle": "https://promptinjections.de/modelle/",
+    "lizenz": "CC-BY-4.0",
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
+    "hinweis": "Momentaufnahme: Die aufgeführten Schwächen beziehen sich auf den jeweils genannten Untersuchungszeitpunkt. Anbieter bessern laufend nach — ein hier dokumentierter Befund muss für die heutige Modellversion nicht mehr gelten. Prompt Injection gilt bislang bei keinem Modell als grundsätzlich gelöst."
+  },
+  "eintraege": [
+    {
+      "slug": "gpt-5",
+      "url": "https://promptinjections.de/modelle/gpt-5/",
+      "anbieter": "OpenAI",
+      "modell": "GPT-5",
+      "familie": "GPT",
+      "bekannte_schwaechen": [
+        "NeuralTrust demonstrierte innerhalb von Stunden nach der Veröffentlichung einen erfolgreichen Jailbreak aus Echo Chamber und erzählerischer Einbettung.",
+        "Der Angriff nannte das Ziel nie explizit, sondern baute den schädlichen Kontext über mehrere Turns auf — Einzelturn-Filter greifen dabei nicht.",
+        "Zeigt exemplarisch: Fortschritte beim Alignment eines Einzelturns lösen mehrstufige Kontextvergiftung nicht."
+      ],
+      "verwandte_techniken": [
+        "echo-chamber",
+        "crescendo"
+      ],
+      "quelle_url": "https://neuraltrust.ai/blog/gpt-5-jailbreak-with-echo-chamber-and-storytelling",
+      "belegt": true
+    },
+    {
+      "slug": "gpt-4o",
+      "url": "https://promptinjections.de/modelle/gpt-4o/",
+      "anbieter": "OpenAI",
+      "modell": "GPT-4o / GPT-4o mini / GPT-4.1",
+      "familie": "GPT",
+      "bekannte_schwaechen": [
+        "HiddenLayer führt GPT-4o, GPT-4o mini und GPT-4.1 unter den Modellen, gegen die die Policy-Puppetry-Vorlage wirkte.",
+        "Die Vorlage war modellfamilien-übergreifend übertragbar und musste nicht je Modell angepasst werden.",
+        "Multimodale Eingaben erweitern die Angriffsfläche um Bild- und Audio-Kanäle.",
+        "Die Vorlage setzte an der Ebene der Systemanweisung selbst an statt an einzelnen Inhaltsregeln — das erklärt, warum sie über Modellgrenzen hinweg wirkte."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "bild-injection-multimodal"
+      ],
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "gpt-4",
+      "url": "https://promptinjections.de/modelle/gpt-4/",
+      "anbieter": "OpenAI",
+      "modell": "GPT-4",
+      "familie": "GPT",
+      "bekannte_schwaechen": [
+        "Anthropic konnte GPT-4 im Rahmen der Many-Shot-Jailbreaking-Studie durch massenhafte fingierte Dialogbeispiele zu unerwünschten Ausgaben bringen.",
+        "Die Crescendo-Arbeit weist für GPT-4 deutliche Erfolgssteigerungen gegenüber vorherigen Verfahren aus.",
+        "Die Studie „GPT-4 Is Too Smart To Be Safe\" zeigt, dass gerade die hohe Fähigkeit zur Chiffre-Entschlüsselung ausgenutzt werden kann."
+      ],
+      "verwandte_techniken": [
+        "many-shot-jailbreaking",
+        "crescendo",
+        "rot13-chiffre"
+      ],
+      "quelle_url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "belegt": true
+    },
+    {
+      "slug": "gpt-3-5-turbo",
+      "url": "https://promptinjections.de/modelle/gpt-3-5-turbo/",
+      "anbieter": "OpenAI",
+      "modell": "GPT-3.5 Turbo",
+      "familie": "GPT",
+      "bekannte_schwaechen": [
+        "In der Many-Shot-Studie erfolgreich über lange Kontexte mit fingierten Beispieldialogen ausgehebelt.",
+        "Die DecodingTrust-Bewertung dokumentiert Anfälligkeiten in mehreren Vertrauenswürdigkeits-Dimensionen.",
+        "Weit verbreitet in älteren Produktivsystemen, oft ohne nachgerüstete Guardrails.",
+        "Modelle dieser Generation wurden ohne trainierte Instruktions-Hierarchie ausgeliefert: Anweisungen aus abgerufenen Daten und aus dem System-Prompt haben für sie dasselbe Gewicht.",
+        "Wer eine Altanwendung darauf betreibt, sollte den Sicherheitsstand nicht aus aktuellen Anbieterangaben ableiten, sondern am eingesetzten Modell selbst messen."
+      ],
+      "verwandte_techniken": [
+        "many-shot-jailbreaking",
+        "dan-do-anything-now"
+      ],
+      "quelle_url": "https://arxiv.org/abs/2306.11698",
+      "belegt": true
+    },
+    {
+      "slug": "o1",
+      "url": "https://promptinjections.de/modelle/o1/",
+      "anbieter": "OpenAI",
+      "modell": "o1 / o1-preview",
+      "familie": "Reasoning",
+      "bekannte_schwaechen": [
+        "Cisco maß für o1-preview eine Blockrate von 74 Prozent gegen den verwendeten HarmBench-Satz — deutlich besser als andere getestete Reasoning-Modelle, aber kein vollständiger Schutz.",
+        "Rund ein Viertel der Angriffe kam durch; auch reasoning-starke Modelle sind kein Ersatz für externe Guardrails.",
+        "Längere Argumentationsketten bieten zusätzliche Ansatzpunkte für mehrstufige Kontextvergiftung."
+      ],
+      "verwandte_techniken": [
+        "crescendo",
+        "echo-chamber"
+      ],
+      "quelle_url": "https://blogs.cisco.com/security/evaluating-security-risk-in-deepseek-and-other-frontier-reasoning-models",
+      "belegt": true
+    },
+    {
+      "slug": "claude-3-7-sonnet",
+      "url": "https://promptinjections.de/modelle/claude-3-7-sonnet/",
+      "anbieter": "Anthropic",
+      "modell": "Claude 3.5 Sonnet / Claude 3.7 Sonnet",
+      "familie": "Claude",
+      "bekannte_schwaechen": [
+        "HiddenLayer führt Claude 3.5 und 3.7 unter den Modellen, gegen die Policy Puppetry wirkte.",
+        "Über ASCII Smuggling ließen sich für Nutzer unsichtbare Anweisungen einschleusen.",
+        "Anthropic setzt mit Constitutional Classifiers eine externe Prüfschicht dagegen — ein Beleg dafür, dass Alignment allein nicht ausreicht."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "ascii-smuggling"
+      ],
+      "quelle_url": "https://embracethered.com/blog/posts/2024/claude-hidden-prompt-injection-ascii-smuggling/",
+      "belegt": true
+    },
+    {
+      "slug": "claude-2",
+      "url": "https://promptinjections.de/modelle/claude-2/",
+      "anbieter": "Anthropic",
+      "modell": "Claude 2.0",
+      "familie": "Claude",
+      "bekannte_schwaechen": [
+        "In Anthropics eigener Many-Shot-Studie erfolgreich über das große Kontextfenster ausgehebelt.",
+        "Die Wirksamkeit stieg systematisch mit der Anzahl der eingefügten Beispieldialoge.",
+        "Anthropic veröffentlichte den Befund bewusst, um branchenweite Gegenmaßnahmen zu beschleunigen.",
+        "Anthropic beschreibt den Zusammenhang als Potenzgesetz: Mit steigender Beispielzahl nimmt die Wirksamkeit weiter zu, statt in eine Sättigung zu laufen.",
+        "Der Befund betrifft die Eigenschaft langer Kontextfenster als solche und nicht eine Einzelschwäche dieser Modellversion."
+      ],
+      "verwandte_techniken": [
+        "many-shot-jailbreaking",
+        "kontext-ueberlauf"
+      ],
+      "quelle_url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "belegt": true
+    },
+    {
+      "slug": "gemini-2-5",
+      "url": "https://promptinjections.de/modelle/gemini-2-5/",
+      "anbieter": "Google",
+      "modell": "Gemini 2.0 / Gemini 2.5",
+      "familie": "Gemini",
+      "bekannte_schwaechen": [
+        "Google beschreibt in einem eigenen Papier die laufende Verteidigung von Gemini gegen indirekte Prompt Injection und räumt adaptive Angreifer als offenes Problem ein.",
+        "HiddenLayer führt Gemini 2.0 und 2.5 unter den von Policy Puppetry betroffenen Modellen.",
+        "SafeBreach demonstrierte Injektionen über Kalendereinladungen bis in angebundene Gerätesteuerung."
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "kalender-injection",
+        "policy-puppetry"
+      ],
+      "quelle_url": "https://arxiv.org/abs/2505.14534",
+      "belegt": true
+    },
+    {
+      "slug": "gemini-1-5",
+      "url": "https://promptinjections.de/modelle/gemini-1-5/",
+      "anbieter": "Google",
+      "modell": "Gemini 1.5",
+      "familie": "Gemini",
+      "bekannte_schwaechen": [
+        "Von HiddenLayer als anfällig für die Policy-Puppetry-Vorlage geführt.",
+        "Sehr großes Kontextfenster erhöht die Angriffsfläche für Many-Shot-Verfahren.",
+        "Breite Anbindung an Dokumente und Postfächer macht indirekte Injektion zum Hauptrisiko.",
+        "Ältere Modellversionen erhalten Verbesserungen neuerer Generationen nicht rückwirkend — wer aus Stabilitätsgründen auf einer festen Version bleibt, bleibt auch auf deren Sicherheitsstand."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "many-shot-jailbreaking",
+        "dokumenten-injection"
+      ],
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "gemini-cli",
+      "url": "https://promptinjections.de/modelle/gemini-cli/",
+      "anbieter": "Google",
+      "modell": "Gemini CLI",
+      "familie": "Gemini",
+      "bekannte_schwaechen": [
+        "Cyera Research Labs meldete Command- und Prompt-Injection-Schwachstellen im Gemini CLI.",
+        "Agentische Kommandozeilenwerkzeuge verbinden Dateizugriff, Codeausführung und externe Inhalte — die klassische Risikokombination.",
+        "Projektdateien im Arbeitsverzeichnis können als Injektionsvektor dienen.",
+        "Agentische Kommandozeilenwerkzeuge laufen typischerweise mit den Rechten des angemeldeten Nutzers; eine erfolgreiche Injektion erbt damit dessen Datei- und Ausführungsrechte im Entwicklungsumfeld."
+      ],
+      "verwandte_techniken": [
+        "tool-missbrauch",
+        "code-injection-via-llm",
+        "indirekte-prompt-injection"
+      ],
+      "quelle_url": "https://www.cyera.com/research/cyera-research-labs-discloses-command-prompt-injection-vulnerabilities-in-gemini-cli",
+      "belegt": true
+    },
+    {
+      "slug": "llama-3",
+      "url": "https://promptinjections.de/modelle/llama-3/",
+      "anbieter": "Meta",
+      "modell": "Llama 3",
+      "familie": "Llama",
+      "bekannte_schwaechen": [
+        "Von HiddenLayer als anfällig für Policy Puppetry geführt.",
+        "Offene Gewichte ermöglichen gradientenbasierte Angriffe wie GCG und PGD im White-Box-Zugriff.",
+        "Beim Selbsthosting fehlen die Guardrails der Anbieter-Plattformen — Meta stellt dafür PurpleLlama bereit.",
+        "Bei White-Box-Zugriff lassen sich Angriffssuffixe direkt am Modell optimieren; die Ergebnisse sind anschließend auch gegen geschlossene Modelle anderer Anbieter übertragbar."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "gcg-suffix",
+        "pgd-angriff"
+      ],
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "llama-4",
+      "url": "https://promptinjections.de/modelle/llama-4/",
+      "anbieter": "Meta",
+      "modell": "Llama 4",
+      "familie": "Llama",
+      "bekannte_schwaechen": [
+        "Von HiddenLayer als anfällig für die modellübergreifende Policy-Puppetry-Vorlage geführt.",
+        "Multimodale Fähigkeiten erweitern die Angriffsfläche um Bildinhalte.",
+        "Meta liefert mit LlamaFirewall und Prompt Guard ausdrücklich externe Schutzschichten mit.",
+        "Weil die Gewichte offen bereitstehen, lassen sich Sicherheitsanpassungen durch eigenes Feintuning wieder entfernen; die mitgelieferten Schutzkomponenten sind optional und nicht Teil des Modells."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "bild-injection-multimodal"
+      ],
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "deepseek-r1",
+      "url": "https://promptinjections.de/modelle/deepseek-r1/",
+      "anbieter": "DeepSeek",
+      "modell": "DeepSeek-R1",
+      "familie": "DeepSeek",
+      "bekannte_schwaechen": [
+        "Cisco berichtet für den eingesetzten HarmBench-Satz eine Angriffserfolgsquote von 100 Prozent — kein einziger Angriff wurde blockiert.",
+        "Unit 42 dokumentierte mehrere unabhängig wirksame Jailbreak-Techniken gegen das Modell.",
+        "Wird häufig selbst gehostet — ohne zusätzliche Guardrails bleibt das Modell ungeschützt."
+      ],
+      "verwandte_techniken": [
+        "deceptive-delight",
+        "bad-likert-judge",
+        "dan-do-anything-now"
+      ],
+      "quelle_url": "https://blogs.cisco.com/security/evaluating-security-risk-in-deepseek-and-other-frontier-reasoning-models",
+      "belegt": true
+    },
+    {
+      "slug": "deepseek-v3",
+      "url": "https://promptinjections.de/modelle/deepseek-v3/",
+      "anbieter": "DeepSeek",
+      "modell": "DeepSeek-V3",
+      "familie": "DeepSeek",
+      "bekannte_schwaechen": [
+        "Von HiddenLayer als anfällig für Policy Puppetry geführt.",
+        "Offene Gewichte erlauben White-Box-Angriffe und das Entfernen von Sicherheits-Feintuning.",
+        "Sicherheitsniveau hängt vollständig vom Betreiber ab.",
+        "Beim Selbsthosten entfallen zugleich Missbrauchserkennung und Ratenbegrenzung der Anbieter-Plattformen, die bei gehosteten Modellen einen Teil der Angriffsversuche abfangen.",
+        "Eingabeprüfung, Ausgabekontrolle und Rechtebegrenzung müssen daher vollständig in der eigenen Anwendung entstehen."
+      ],
+      "verwandte_techniken": [
+        "policy-puppetry",
+        "gcg-suffix"
+      ],
+      "quelle_url": "https://hiddenlayer.com/innovation-hub/novel-universal-bypass-for-all-major-llms/",
+      "belegt": true
+    },
+    {
+      "slug": "mistral-7b",
+      "url": "https://promptinjections.de/modelle/mistral-7b/",
+      "anbieter": "Mistral AI",
+      "modell": "Mistral 7B",
+      "familie": "Mistral",
+      "bekannte_schwaechen": [
+        "In Anthropics Many-Shot-Studie erfolgreich ausgehebelt.",
+        "Kleinere Modelle mit geringerem Sicherheitstraining sind besonders anfällig für einfache Rollenspiel-Jailbreaks.",
+        "Beliebt für lokale Deployments, bei denen externe Guardrails häufig fehlen.",
+        "Für lokale Deployments bringt das Modell keine eigene Guardrail-Schicht mit; Eingabeprüfung und Ausgabekontrolle müssen über Fremdkomponenten ergänzt werden."
+      ],
+      "verwandte_techniken": [
+        "many-shot-jailbreaking",
+        "rollenspiel-persona"
+      ],
+      "quelle_url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "belegt": true
+    },
+    {
+      "slug": "microsoft-365-copilot",
+      "url": "https://promptinjections.de/modelle/microsoft-365-copilot/",
+      "anbieter": "Microsoft",
+      "modell": "Microsoft 365 Copilot",
+      "familie": "Copilot",
+      "bekannte_schwaechen": [
+        "EchoLeak (CVE-2025-32711) gilt als erster dokumentierter Zero-Click-Prompt-Injection-Angriff auf ein produktives KI-System.",
+        "Eine einzige präparierte E-Mail genügte, um Daten aus dem Kontext des Assistenten abfließen zu lassen — ohne Interaktion des Opfers.",
+        "Der Zugriff auf Postfächer, Dateien und Chats macht jede angebundene Quelle zum potenziellen Injektionsvektor."
+      ],
+      "verwandte_techniken": [
+        "zero-click-injection",
+        "email-injection",
+        "datenexfiltration-markdown-bild"
+      ],
+      "quelle_url": "https://arxiv.org/abs/2509.10540",
+      "belegt": true
+    }
+  ]
+}

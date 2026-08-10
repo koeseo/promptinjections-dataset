@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/owasp-llm-top10.schema.json",
+  "title": "OWASP Top 10 für LLM-Anwendungen, deutsche Einordnung",
+  "description": "OWASP Top 10 for LLM Applications, German commentary. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "titel_de": {
+            "type": "string"
+          },
+          "titel_en": {
+            "type": "string"
+          },
+          "kurzdefinition": {
+            "type": "string"
+          },
+          "warum_kritisch": {
+            "type": "string"
+          },
+          "typische_auspraegungen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gegenmassnahmen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verwandte_techniken": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quelle_url": {
+            "type": "string",
+            "description": "Primärquelle: Paper, Hersteller-Advisory oder Standarddokument"
+          },
+          "belegt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

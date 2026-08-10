@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz"
+message: "Wenn Sie diesen Datensatz verwenden, zitieren Sie ihn bitte wie folgt."
+type: dataset
+authors:
+  - family-names: "Köse"
+    given-names: "Gökhan"
+    affiliation: "koeseo"
+    city: "Bochum"
+    country: "DE"
+repository-code: "https://github.com/koeseo/promptinjections-dataset"
+url: "https://promptinjections.de/daten/"
+abstract: >-
+  Offener, quellenbelegter Datensatz zu Prompt Injection und der Sicherheit von
+  Anwendungen mit großen Sprachmodellen, in deutscher Sprache. Enthält 51
+  Angriffstechniken, 82 Glossarbegriffe, 32 defensive Werkzeuge, 16 Sprachmodelle
+  mit dokumentierten Schwächen, die 10 OWASP-Risiken für LLM-Anwendungen und 7
+  dokumentierte Vorfälle. Jeder Eintrag verweist auf eine Primärquelle.
+keywords:
+  - prompt injection
+  - LLM security
+  - AI security
+  - OWASP LLM Top 10
+  - Sprachmodelle
+  - IT-Sicherheit
+license: CC-BY-4.0
+version: 1.0.0
+date-released: "2026-08-10"

@@ -1,0 +1,80 @@
+{
+  "name": "promptinjections.de — Datensatz zu Prompt Injection und LLM-Sicherheit",
+  "version": "1.0.0",
+  "stand": "2026-08-03",
+  "sprache": "de",
+  "herausgeber": {
+    "name": "Gökhan Köse",
+    "unternehmen": "koeseo",
+    "url": "https://promptinjections.de"
+  },
+  "lizenz": "CC-BY-4.0",
+  "lizenz_ausnahme": {
+    "datei": "owasp-llm-top10.json",
+    "lizenz": "CC-BY-SA-4.0",
+    "grund": "Bezieht sich auf das OWASP Top 10 for LLM Applications (OWASP Foundation, CC BY-SA 4.0). Die deutschen Formulierungen sind eigene Texte, keine autorisierte Übersetzung."
+  },
+  "datensaetze": [
+    {
+      "datei": "techniken",
+      "titel": "Techniken der Prompt Injection",
+      "anzahl": 51,
+      "belegt": 51,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/techniken.json",
+      "csv": "csv/techniken.csv",
+      "schema": "schema/techniken.schema.json"
+    },
+    {
+      "datei": "glossar",
+      "titel": "Glossar der LLM-Sicherheit",
+      "anzahl": 82,
+      "belegt": 82,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/glossar.json",
+      "csv": "csv/glossar.csv",
+      "schema": "schema/glossar.schema.json"
+    },
+    {
+      "datei": "vorfaelle",
+      "titel": "Dokumentierte Vorfälle",
+      "anzahl": 7,
+      "belegt": 7,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/vorfaelle.json",
+      "csv": "csv/vorfaelle.csv",
+      "schema": "schema/vorfaelle.schema.json"
+    },
+    {
+      "datei": "werkzeuge",
+      "titel": "Werkzeuge zur Abwehr",
+      "anzahl": 32,
+      "belegt": 32,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/werkzeuge.json",
+      "csv": "csv/werkzeuge.csv",
+      "schema": "schema/werkzeuge.schema.json"
+    },
+    {
+      "datei": "modelle",
+      "titel": "Sprachmodelle und bekannte Schwächen",
+      "anzahl": 16,
+      "belegt": 16,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/modelle.json",
+      "csv": "csv/modelle.csv",
+      "schema": "schema/modelle.schema.json"
+    },
+    {
+      "datei": "owasp-llm-top10",
+      "titel": "OWASP Top 10 für LLM-Anwendungen, deutsche Einordnung",
+      "anzahl": 10,
+      "belegt": 10,
+      "lizenz": "CC-BY-SA-4.0",
+      "json": "daten/owasp-llm-top10.json",
+      "csv": "csv/owasp-llm-top10.csv",
+      "schema": "schema/owasp-llm-top10.schema.json"
+    }
+  ],
+  "gesamt": 198
+}

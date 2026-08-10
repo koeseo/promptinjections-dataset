@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/techniken.schema.json",
+  "title": "Techniken der Prompt Injection",
+  "description": "Prompt injection techniques. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL-Segment unter /techniken/"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "name_de": {
+            "type": "string"
+          },
+          "name_en": {
+            "type": "string"
+          },
+          "kategorie": {
+            "type": "string",
+            "description": "direkte-injection | indirekte-injection | jailbreak | obfuskation | multi-turn | automatisiert | multimodal | agenten-angriff | daten-vergiftung | exfiltration"
+          },
+          "kurzdefinition": {
+            "type": "string"
+          },
+          "funktionsweise": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "risiko": {
+            "type": "string",
+            "description": "hoch | mittel | niedrig — Einschätzung der praktischen Gefährdung produktiver Systeme"
+          },
+          "schutz": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verwandte": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owasp": {
+            "type": "string"
+          },
+          "quelle_url": {
+            "type": "string",
+            "description": "Primärquelle: Paper, Hersteller-Advisory oder Standarddokument"
+          },
+          "sameAs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Externe Referenzen derselben Entität (MITRE ATLAS, arXiv, Wikipedia)"
+          },
+          "belegt": {
+            "type": "boolean",
+            "description": "true = Primärquelle (Paper, Hersteller-Advisory, OWASP) verlinkt; false = Sachverhalt nicht primärbelegt"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

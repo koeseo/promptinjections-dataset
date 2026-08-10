@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/vorfaelle.schema.json",
+  "title": "Dokumentierte Vorfälle",
+  "description": "Documented incidents. Datensatz von promptinjections.de, Version 1.0.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slug",
+          "url"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Kanonische Seite dieses Eintrags auf promptinjections.de"
+          },
+          "titel": {
+            "type": "string"
+          },
+          "zeitpunkt": {
+            "type": "string",
+            "description": "Zeitpunkt des Vorfalls oder der Veröffentlichung — so genau, wie die Primärquelle es hergibt"
+          },
+          "datum": {
+            "type": "string",
+            "description": "Veröffentlichungsdatum dieser Portalseite (Schema.org datePublished)"
+          },
+          "system": {
+            "type": "string"
+          },
+          "wirkung": {
+            "type": "string"
+          },
+          "kennung": {
+            "type": "string"
+          },
+          "behebung": {
+            "type": "string"
+          },
+          "zusammenfassung": {
+            "type": "string"
+          },
+          "lehren": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verwandte_techniken": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quellen": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "belegt": {
+            "type": "boolean",
+            "description": "true = Primärquelle verlinkt"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

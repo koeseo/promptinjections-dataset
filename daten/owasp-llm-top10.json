@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "titel": "OWASP Top 10 für LLM-Anwendungen, deutsche Einordnung",
+    "title_en": "OWASP Top 10 for LLM Applications, German commentary",
+    "version": "1.0.0",
+    "stand": "2026-08-03",
+    "sprache": "de",
+    "anzahl": 10,
+    "herausgeber": "Gökhan Köse, koeseo",
+    "quelle": "https://promptinjections.de/owasp-llm-top-10/",
+    "lizenz": "CC-BY-SA-4.0",
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
+    "lizenz_hinweis": "Die OWASP-Inhalte stehen unter Creative-Commons-Lizenz. Die deutschen Zusammenfassungen auf diesem Portal sind eigene Formulierungen, keine autorisierte Übersetzung."
+  },
+  "eintraege": [
+    {
+      "id": "LLM01",
+      "slug": "llm01-prompt-injection",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm01-prompt-injection/",
+      "titel_de": "Prompt Injection",
+      "titel_en": "Prompt Injection",
+      "kurzdefinition": "Eingaben verändern das Verhalten des Modells auf eine vom Betreiber nicht vorgesehene Weise — unabhängig davon, ob der Text für Menschen sichtbar ist oder nicht.",
+      "warum_kritisch": "Es gibt keine technische Trennung zwischen Anweisung und Daten im Kontextfenster. Das Risiko ist strukturell und bislang nicht abschließend gelöst.",
+      "typische_auspraegungen": [
+        "Direkte Injektion über die Nutzereingabe",
+        "Indirekte Injektion über abgerufene Inhalte wie Webseiten, Dokumente oder E-Mails",
+        "Multimodale Injektion über Bilder und Audio"
+      ],
+      "gegenmassnahmen": [
+        "Verhalten des Modells eng eingrenzen und Rollen klar definieren",
+        "Erwartete Ausgabeformate durchsetzen und validieren",
+        "Ein- und Ausgabefilterung sowie Rechtekontrolle außerhalb des Modells",
+        "Menschliche Freigabe für Aktionen mit hoher Tragweite"
+      ],
+      "verwandte_techniken": [
+        "ignore-previous-instructions",
+        "indirekte-prompt-injection",
+        "gespeicherte-prompt-injection"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "belegt": true
+    },
+    {
+      "id": "LLM02",
+      "slug": "llm02-sensitive-information-disclosure",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm02-sensitive-information-disclosure/",
+      "titel_de": "Offenlegung sensibler Informationen",
+      "titel_en": "Sensitive Information Disclosure",
+      "kurzdefinition": "Das Modell gibt personenbezogene Daten, Geschäftsgeheimnisse, Zugangsdaten oder interne Details preis — aus Trainingsdaten, aus dem Kontext oder aus angebundenen Systemen.",
+      "warum_kritisch": "Der Abfluss geschieht im normalen Betrieb und ohne klassischen Systemeinbruch; er fällt oft erst spät auf.",
+      "typische_auspraegungen": [
+        "Preisgabe von Kontextdaten anderer Nutzer",
+        "Wiedergabe auswendig gelernter Trainingsdaten",
+        "Exfiltration über präparierte Links oder Bild-URLs"
+      ],
+      "gegenmassnahmen": [
+        "Datenminimierung: nur bereitstellen, was die Aufgabe erfordert",
+        "Bereinigung von Trainings- und Kontextdaten",
+        "Ausgabefilter für Muster wie Schlüssel, Kontonummern oder Personendaten",
+        "Zugriffsrechte auch auf Dokument- und Chunk-Ebene durchsetzen"
+      ],
+      "verwandte_techniken": [
+        "datenexfiltration-link",
+        "datenexfiltration-markdown-bild",
+        "prompt-leaking"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "belegt": true
+    },
+    {
+      "id": "LLM03",
+      "slug": "llm03-supply-chain",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm03-supply-chain/",
+      "titel_de": "Lieferkette",
+      "titel_en": "Supply Chain",
+      "kurzdefinition": "Risiken aus fremden Modellen, Feintunings, Datensätzen, Bibliotheken und Werkzeug-Servern, die in die eigene Anwendung eingebunden werden.",
+      "warum_kritisch": "Ein kompromittiertes Modell oder eine manipulierte Tool-Beschreibung wirkt auf jede Anfrage — und ist von außen kaum sichtbar.",
+      "typische_auspraegungen": [
+        "Manipulierte Modelle oder Adapter aus offenen Repositorien",
+        "Tool-Poisoning über MCP-Server",
+        "Verwundbare Abhängigkeiten im LLM-Framework"
+      ],
+      "gegenmassnahmen": [
+        "Herkunft prüfen, Signaturen und Modell-SBOM führen",
+        "Modellversionen pinnen statt automatisch aktualisieren",
+        "Tool-Definitionen und deren Änderungen überwachen"
+      ],
+      "verwandte_techniken": [
+        "tool-poisoning-mcp",
+        "sleeper-agent-backdoor"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm032025-supply-chain/",
+      "belegt": true
+    },
+    {
+      "id": "LLM04",
+      "slug": "llm04-data-and-model-poisoning",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm04-data-and-model-poisoning/",
+      "titel_de": "Daten- und Modellvergiftung",
+      "titel_en": "Data and Model Poisoning",
+      "kurzdefinition": "Manipulation von Trainings-, Feintuning- oder Einbettungsdaten, um Hintertüren, Verzerrungen oder gezielte Fehlverhalten in das Modell einzubauen.",
+      "warum_kritisch": "Die Manipulation steckt im Modell selbst und übersteht Filter, Prompts und Neustarts.",
+      "typische_auspraegungen": [
+        "Backdoors mit seltenem Auslöser (Sleeper Agents)",
+        "Vergiftete Dokumente in Wissensbasen",
+        "Manipulierte öffentliche Trainingsdatensätze"
+      ],
+      "gegenmassnahmen": [
+        "Datenherkunft dokumentieren und Datensätze validieren",
+        "Verhaltenstests mit ungewöhnlichen Auslösern in die Abnahme aufnehmen",
+        "Feintuning-Pipelines gegen unbefugte Änderungen absichern"
+      ],
+      "verwandte_techniken": [
+        "sleeper-agent-backdoor",
+        "rag-poisoning"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/",
+      "belegt": true
+    },
+    {
+      "id": "LLM05",
+      "slug": "llm05-improper-output-handling",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm05-improper-output-handling/",
+      "titel_de": "Unsichere Verarbeitung von Ausgaben",
+      "titel_en": "Improper Output Handling",
+      "kurzdefinition": "Ausgaben des Modells werden ungeprüft an nachgelagerte Systeme weitergereicht — als HTML gerendert, als Datenbankabfrage abgesetzt oder als Befehl ausgeführt.",
+      "warum_kritisch": "Damit wird eine Prompt Injection zu einer klassischen Schwachstelle: XSS, SQL-Injection oder Codeausführung.",
+      "typische_auspraegungen": [
+        "Markdown- oder HTML-Ausgabe ohne Escaping",
+        "Direkt ausgeführte SQL- oder Shell-Befehle",
+        "Ungeprüfter Code in Entwicklungsassistenten"
+      ],
+      "gegenmassnahmen": [
+        "Modellausgaben wie Nutzereingaben behandeln: validieren, escapen, parametrisieren",
+        "Strenge Schema-Validierung vor jeder Weiterverarbeitung",
+        "Ausführung ausschließlich in Sandbox-Umgebungen"
+      ],
+      "verwandte_techniken": [
+        "code-injection-via-llm",
+        "datenexfiltration-markdown-bild"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "belegt": true
+    },
+    {
+      "id": "LLM06",
+      "slug": "llm06-excessive-agency",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm06-excessive-agency/",
+      "titel_de": "Übermäßige Handlungsvollmacht",
+      "titel_en": "Excessive Agency",
+      "kurzdefinition": "Das System darf mehr, als es für seine Aufgabe müsste — zu viele Werkzeuge, zu weite Rechte, zu viel Autonomie ohne menschliche Kontrolle.",
+      "warum_kritisch": "Erst die Handlungsvollmacht macht aus einer Injektion einen realen Schaden: gesendete Mails, gelöschte Daten, ausgelöste Zahlungen.",
+      "typische_auspraegungen": [
+        "Werkzeuge mit weit gefassten Schreibrechten",
+        "Automatische Ausführung ohne Freigabe",
+        "Agent handelt mit den vollen Rechten des Nutzers"
+      ],
+      "gegenmassnahmen": [
+        "Werkzeuge und Rechte auf das Notwendige beschränken",
+        "Menschliche Freigabe für folgenschwere Aktionen",
+        "Deterministische Policy-Prüfung außerhalb des Modells"
+      ],
+      "verwandte_techniken": [
+        "confused-deputy-agent",
+        "tool-missbrauch"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "belegt": true
+    },
+    {
+      "id": "LLM07",
+      "slug": "llm07-system-prompt-leakage",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm07-system-prompt-leakage/",
+      "titel_de": "Preisgabe des System-Prompts",
+      "titel_en": "System Prompt Leakage",
+      "kurzdefinition": "Der System-Prompt wird offengelegt — problematisch vor allem dann, wenn er Zugangsdaten, interne Regeln oder Geschäftslogik enthält, die als Sicherheitsmechanismus gedacht waren.",
+      "warum_kritisch": "Der System-Prompt ist kein sicherer Speicher. Wer ihn kennt, umgeht die Anwendungslogik gezielt.",
+      "typische_auspraegungen": [
+        "Direkte Aufforderung zur Wiedergabe der Anweisungen",
+        "Umwegabfrage über Übersetzung oder Formatwechsel",
+        "Schrittweise Rekonstruktion über mehrere Anfragen"
+      ],
+      "gegenmassnahmen": [
+        "Keine Geheimnisse im System-Prompt speichern",
+        "Zugriffskontrolle außerhalb des Modells durchsetzen",
+        "System-Prompt als vertraulich, aber nicht als Schutzmaßnahme behandeln"
+      ],
+      "verwandte_techniken": [
+        "prompt-leaking",
+        "ignore-previous-instructions"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/",
+      "belegt": true
+    },
+    {
+      "id": "LLM08",
+      "slug": "llm08-vector-and-embedding-weaknesses",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm08-vector-and-embedding-weaknesses/",
+      "titel_de": "Schwächen in Vektoren und Einbettungen",
+      "titel_en": "Vector and Embedding Weaknesses",
+      "kurzdefinition": "Risiken aus RAG-Architekturen: manipulierte Einbettungen, fehlende Mandantentrennung in Vektordatenbanken und Rückschlüsse auf indexierte Inhalte.",
+      "warum_kritisch": "Die Vektordatenbank ist ein Anweisungskanal in den Modellkontext — mit oft schwächeren Rechteprüfungen als das Quellsystem.",
+      "typische_auspraegungen": [
+        "Vergiftete Dokumente, die gezielt zu bestimmten Fragen abgerufen werden",
+        "Fehlende Mandanten- und Rechtetrennung im Index",
+        "Rückschlüsse auf vertrauliche Inhalte über Ähnlichkeitsabfragen"
+      ],
+      "gegenmassnahmen": [
+        "Zugriffsrechte bis auf Chunk-Ebene durchsetzen",
+        "Nur kuratierte Quellen indexieren, Herkunft mitführen",
+        "Abgerufene Passagen vor der Übergabe an das Modell prüfen"
+      ],
+      "verwandte_techniken": [
+        "rag-poisoning",
+        "gespeicherte-prompt-injection"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "belegt": true
+    },
+    {
+      "id": "LLM09",
+      "slug": "llm09-misinformation",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm09-misinformation/",
+      "titel_de": "Fehlinformation",
+      "titel_en": "Misinformation",
+      "kurzdefinition": "Das Modell erzeugt falsche, erfundene oder irreführende Aussagen, die im nachgelagerten Prozess als zutreffend behandelt werden.",
+      "warum_kritisch": "Falsche Ausgaben wirken sprachlich souverän. In Beratung, Medizin, Recht oder Finanzen entsteht daraus unmittelbarer Schaden.",
+      "typische_auspraegungen": [
+        "Erfundene Quellen, Urteile oder Produktangaben",
+        "Halluzinierte Paketnamen, die zu Lieferketten-Angriffen einladen",
+        "Übermäßiges Vertrauen der Nutzer in die Ausgabe"
+      ],
+      "gegenmassnahmen": [
+        "Belegpflicht über RAG mit geprüften Quellen",
+        "Menschliche Prüfung in kritischen Fachdomänen",
+        "Unsicherheiten in der Oberfläche sichtbar machen"
+      ],
+      "verwandte_techniken": [
+        "rag-poisoning"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "belegt": true
+    },
+    {
+      "id": "LLM10",
+      "slug": "llm10-unbounded-consumption",
+      "url": "https://promptinjections.de/owasp-llm-top-10/llm10-unbounded-consumption/",
+      "titel_de": "Unbegrenzter Ressourcenverbrauch",
+      "titel_en": "Unbounded Consumption",
+      "kurzdefinition": "Unkontrollierte Nutzung führt zu Überlastung, ausufernden Kosten oder ermöglicht das schrittweise Nachbilden des Modells über massenhafte Abfragen.",
+      "warum_kritisch": "Anders als klassische Denial-of-Service-Angriffe entsteht hier direkter finanzieller Schaden pro Anfrage.",
+      "typische_auspraegungen": [
+        "Kostenexplosion durch massenhafte oder sehr lange Anfragen",
+        "Modell-Extraktion über systematische Abfragen",
+        "Endlosschleifen in agentischen Systemen"
+      ],
+      "gegenmassnahmen": [
+        "Rate-Limits, Kontingente und Kostenobergrenzen je Konto",
+        "Eingabelänge und Antwortlänge begrenzen",
+        "Schrittbudgets und Abbruchbedingungen für Agenten"
+      ],
+      "verwandte_techniken": [
+        "best-of-n-jailbreaking",
+        "kontext-ueberlauf"
+      ],
+      "quelle_url": "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/",
+      "belegt": true
+    }
+  ]
+}
