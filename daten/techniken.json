@@ -2,15 +2,14 @@
   "meta": {
     "titel": "Techniken der Prompt Injection",
     "title_en": "Prompt injection techniques",
-    "version": "1.0.0",
-    "stand": "2026-08-03",
+    "version": "2.0.0",
+    "stand": "2026-09-01",
     "sprache": "de",
-    "anzahl": 51,
+    "anzahl": 52,
     "herausgeber": "Gökhan Köse, koeseo",
-    "quelle": "https://promptinjections.de/techniken/",
+    "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
-    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
-    "ethik_hinweis": "Alle Einträge sind defensiv und erklärend gehalten. Sie beschreiben das Prinzip einer Technik, damit Betreiber ihre Systeme schützen können — sie enthalten keine einsatzfertigen Payloads gegen konkrete Live-Systeme."
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de"
   },
   "eintraege": [
     {
@@ -38,11 +37,68 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://simonwillison.net/2022/Sep/12/prompt-injection/",
-      "sameAs": [
-        "https://simonwillison.net/2022/Sep/12/prompt-injection/",
-        "https://en.wikipedia.org/wiki/Prompt_injection"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Ignore-Previous-Instructions Attack"
+        ],
+        [
+          "Kategorie",
+          "[Direkte Prompt Injection](/techniken/#direkte-injection)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Erstmals öffentlich demonstriert",
+          "11. September 2022 — [Riley Goodside](https://x.com/goodside/status/1569128808308957185)"
+        ],
+        [
+          "Begriff geprägt",
+          "12. September 2022 durch [Simon Willison](https://simonwillison.net/2022/Sep/12/prompt-injection/)"
+        ],
+        [
+          "Vorherige Nennung",
+          "Mai 2022 durch Jonathan Cefalu (Preamble, intern)"
+        ],
+        [
+          "Ziel-Effekt",
+          "Die Systemanweisung zugunsten der Nutzereingabe verwerfen"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "[Instruktions-Hierarchie](/schutz/instruktions-hierarchie/) + [Spotlighting](/schutz/spotlighting/) + Output-Validierung"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — trivial umzusetzen, funktioniert bis heute gegen ungeschützte Systeme"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Anweisungen-ignorieren-Angriff",
+        "alternateName": [
+          "Ignore Previous Instructions",
+          "Ignore Directive Attack"
+        ],
+        "description": "Der klassische Einstieg in die Prompt Injection: Der Angreifer schreibt in die Nutzereingabe eine Anweisung, die dem Modell befiehlt, seine bisherigen Vorgaben zu verwerfen und stattdessen der neuen Anweisung zu folgen. Erstmals öffentlich demonstriert von Riley Goodside am 11. September 2022; der Begriff Prompt Injection wurde von Simon Willison am 12. September 2022 geprägt.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://simonwillison.net/2022/Sep/12/prompt-injection/",
+          "https://en.wikipedia.org/wiki/Prompt_injection"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Ursprung und Personen",
+          "text": "Wer die Geschichte hinter dieser Technik verstehen will, findet Details bei [Simon Willison](/personen/simon-willison/), der den Begriff prägte, und im Ursprungs-Tweet von Riley Goodside."
+        },
+        {
+          "titel": "Pillar-Node",
+          "text": "Die Grundursache — die fehlende Trennung von Anweisung und Daten — ist im Pillar [Was ist Prompt Injection?](/was-ist-prompt-injection/) erklärt."
+        }
+      ]
     },
     {
       "slug": "prompt-leaking",
@@ -66,7 +122,7 @@
         "ignore-previous-instructions",
         "rollenspiel-persona"
       ],
-      "owasp": "LLM07",
+      "owasp": "LLM08",
       "quelle_url": "https://arxiv.org/abs/2505.23817",
       "belegt": true
     },
@@ -95,7 +151,13 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2308.03825",
-      "belegt": true
+      "belegt": true,
+      "bridges": [
+        {
+          "titel": "Kurzdefinition",
+          "text": "Die knappe Begriffsbestimmung des Musters steht im Glossar unter [Rollenspiel-Jailbreak](/glossar/rollenspiel/)."
+        }
+      ]
     },
     {
       "slug": "dan-do-anything-now",
@@ -122,10 +184,72 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2308.03825",
-      "sameAs": [
-        "https://en.wikipedia.org/wiki/Prompt_injection"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "DAN — „Do Anything Now“"
+        ],
+        [
+          "Kategorie",
+          "[Direkte Injektion / Jailbreak (Rollenspiel)](/techniken/#jailbreak)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Ursprung",
+          "Dezember 2022, Reddit r/ChatGPT (User: walkerspider)"
+        ],
+        [
+          "Grundmechanismus",
+          "Aufforderung an das Modell, eine „regelfreie“ Persona anzunehmen, die frei von Anbieter-Policies operiert"
+        ],
+        [
+          "Bekannte Versionen",
+          "DAN 1.0 (Dez 2022) → DAN 5.0 (Feb 2023) → DAN 12.0+ (späteres Community-Prompt-Engineering)"
+        ],
+        [
+          "Ziel-Effekt",
+          "Umgehung von Content-Policies durch Rollenspiel-Framing"
+        ],
+        [
+          "Abgrenzung",
+          "DAN ist ein spezifischer Jailbreak-Prompt, nicht die gesamte Kategorie"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "[Konstitutionelle Klassifikatoren](/glossar/constitutional-classifiers/) + Output-Klassifikator vor der Auslieferung"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Mittel — moderne Modelle robust, ältere und ungefilterte anfällig"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "DAN (Do Anything Now)",
+        "alternateName": "DAN Jailbreak",
+        "description": "Bekannter Jailbreak-Prompt für ChatGPT, der das Modell auffordert, eine „DAN“ genannte Persona anzunehmen, die alle Anbieter-Restriktionen ignoriert. Erstmals im Dezember 2022 auf Reddit vorgestellt; die Community hat seither zahlreiche Versionen entwickelt.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://en.wikipedia.org/wiki/Prompt_injection"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Rollenspiel als Framing",
+          "text": "DAN ist der bekannteste Vertreter der Rollenspiel-Persona-Technik — siehe [Rollenspiel- und Persona-Angriff](/techniken/rollenspiel-persona/) für die allgemeine Angriffsklasse."
+        },
+        {
+          "titel": "Jailbreak oder Prompt Injection?",
+          "text": "DAN ist ein Jailbreak (Umgehung der Betreiber-Policy durch den Nutzer), nicht klassische Prompt Injection. Die Abgrenzung steht unter [Prompt Injection vs. Jailbreak](/arten/prompt-injection-vs-jailbreak/)."
+        },
+        {
+          "titel": "Kurzdefinition",
+          "text": "Eine kompakte Einordnung des Begriffs steht im Glossar unter [DAN](/glossar/dan/)."
+        }
+      ]
     },
     {
       "slug": "skeleton-key",
@@ -258,10 +382,64 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2307.02483",
-      "sameAs": [
-        "https://arxiv.org/abs/2307.02483"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Base64-Encoded Prompt Injection"
+        ],
+        [
+          "Kategorie",
+          "[Obfuskation / Filter-Bypass](/techniken/#obfuskation)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Kernmechanismus",
+          "Die Anweisung wird in Base64 (oder Hex, ROT13, anderen Kodierungen) verschleiert — der Filter sieht einen harmlosen String, das Modell dekodiert selbstständig und führt aus"
+        ],
+        [
+          "Voraussetzung",
+          "Das Zielmodell muss Base64 selbstständig dekodieren können — das trifft auf alle modernen LLMs zu"
+        ],
+        [
+          "Wirkung",
+          "Umgehung von Keyword-Blocklisten und einfachen Content-Filtern"
+        ],
+        [
+          "Typische Kombination",
+          "Als Payload-Schicht in mehrstufigen Angriffen ([Payload-Splitting](/techniken/payload-splitting/), [ArtPrompt / ASCII-Art](/techniken/artprompt-ascii-art/))"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "Semantische Analyse (nicht nur String-Matching) + [Perplexitäts-Filter](/glossar/perplexitaets-filter/) + Ausgabe-Prüfung"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Mittel — gut dokumentiert, moderne Guardrails erkennen die Muster"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Base64-Kodierung als Prompt Injection",
+        "alternateName": "Encoded Prompt Injection",
+        "description": "Obfuskationstechnik, bei der eine bösartige Anweisung in Base64 (oder ähnlichen Kodierungen) verschleiert wird. Filter erkennen den harmlos aussehenden Base64-String nicht als Anweisung — das Modell dekodiert und führt sie dennoch aus.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://arxiv.org/abs/2307.02483"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Obfuskation",
+          "text": "Verwandte Kodierungs-Varianten sind [ROT13](/techniken/rot13-chiffre/) und [ASCII-Smuggling](/techniken/ascii-smuggling/)."
+        },
+        {
+          "titel": "Verteidigung",
+          "text": "Reine String-Filter versagen hier vollständig — die richtige Antwort steht unter [Eingabeprüfung und Normalisierung](/schutz/eingabepruefung/)."
+        }
+      ]
     },
     {
       "slug": "rot13-chiffre",
@@ -311,14 +489,76 @@
       "verwandte": [
         "token-schmuggel-homoglyphen",
         "hidden-text-html",
-        "indirekte-prompt-injection"
+        "indirekte-prompt-injection",
+        "typoglykaemie"
       ],
       "owasp": "LLM01",
       "quelle_url": "https://embracethered.com/blog/posts/2024/hiding-and-finding-text-with-unicode-tags/",
-      "sameAs": [
-        "https://embracethered.com/blog/posts/2024/hiding-and-finding-text-with-unicode-tags/"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "ASCII Smuggling / Unicode Tag Smuggling"
+        ],
+        [
+          "Kategorie",
+          "[Obfuskation / Token-Schmuggel](/techniken/#obfuskation)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Kernmechanismus",
+          "Nutzung des Unicode-Tag-Blocks (U+E0000–U+E007F), der von LLMs als Text interpretiert wird, für Menschen und viele Filter aber unsichtbar bleibt"
+        ],
+        [
+          "Erstmals systematisch beschrieben",
+          "Januar 2024 durch [Johann Rehberger](https://embracethered.com/)"
+        ],
+        [
+          "Sichtbarkeit für Menschen",
+          "Null — keine Glyphen, keine Breite in den meisten Fonts"
+        ],
+        [
+          "Sichtbarkeit für Modelle",
+          "Voll — moderne Tokenizer erkennen die Zeichen als reguläre Codepoints"
+        ],
+        [
+          "Typische Nutzung",
+          "Verstecken von Anweisungen oder Exfiltrationsdaten in scheinbar leerem Text"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "Unicode-Normalisierung + Whitelist erlaubter Codepoint-Blöcke bei der [Eingabeprüfung](/schutz/eingabepruefung/)"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — von naiven Filtern nicht erkennbar"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "ASCII-Smuggling",
+        "alternateName": [
+          "Unicode Tag Smuggling",
+          "Invisible Prompt Injection"
+        ],
+        "description": "Obfuskationstechnik, die den Unicode-Tag-Block (U+E0000 bis U+E007F) nutzt, um Anweisungen oder Daten in scheinbar leerem Text zu verstecken. Für Menschen unsichtbar, für Sprachmodelle voll lesbar. Systematisch beschrieben von Johann Rehberger 2024.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://embracethered.com/blog/posts/2024/hiding-and-finding-text-with-unicode-tags/"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Person",
+          "text": "[Johann Rehberger](/personen/johann-rehberger/) hat die Technik systematisiert und mehrere reale Ausnutzungen dokumentiert."
+        },
+        {
+          "titel": "Obfuskation",
+          "text": "Verwandt mit [Homoglyph-Angriffen](/techniken/token-schmuggel-homoglyphen/) und [Base64-Kodierung](/techniken/base64-kodierung/) — Varianten, die auf der Diskrepanz zwischen menschlicher und maschineller Zeichen-Interpretation beruhen."
+        }
+      ]
     },
     {
       "slug": "token-schmuggel-homoglyphen",
@@ -340,11 +580,46 @@
       ],
       "verwandte": [
         "ascii-smuggling",
-        "base64-kodierung"
+        "base64-kodierung",
+        "typoglykaemie"
       ],
       "owasp": "LLM01",
       "quelle_url": "https://blogs.cisco.com/ai/understanding-and-mitigating-unicode-tag-prompt-injection",
       "belegt": true
+    },
+    {
+      "slug": "typoglykaemie",
+      "url": "https://promptinjections.de/techniken/typoglykaemie/",
+      "name_de": "Typoglykämie-Angriff (Buchstabendreher)",
+      "name_en": "Typoglycemia-Based Attack",
+      "kategorie": "obfuskation",
+      "kurzdefinition": "Schlüsselwörter werden mit vertauschten Binnenbuchstaben geschrieben — erster und letzter Buchstabe bleiben stehen. Wortlisten-Filter greifen nicht mehr, das Sprachmodell rekonstruiert die Bedeutung trotzdem.",
+      "funktionsweise": [
+        "Nur die inneren Buchstaben eines Wortes werden vertauscht, Anfangs- und Endbuchstabe bleiben unverändert: aus „ignore\" wird „ignroe\", aus „reveal\" wird „revael\".",
+        "Ein Filter, der auf exakte Zeichenketten oder Sperrlisten prüft, findet das Schlüsselwort nicht mehr.",
+        "Das Sprachmodell stellt die gemeinte Bedeutung dennoch her und befolgt die Anweisung.",
+        "Betroffen sind vor allem die Wörter, auf die Sperrlisten typischerweise achten — ignore, bypass, override, reveal, delete, system, prompt, instructions."
+      ],
+      "risiko": "mittel",
+      "schutz": [
+        "Nicht auf exakten Wortlisten prüfen, sondern semantisch klassifizieren.",
+        "Eingaben vor der Prüfung normalisieren und gegen Buchstabendreher-Varianten der Schlüsselwörter abgleichen.",
+        "Rechtebegrenzung und Freigaben stellen sicher, dass ein durchgerutschter Prompt keinen Schaden auslöst — Filter sind Kostenfaktor, nicht Grenze."
+      ],
+      "verwandte": [
+        "token-schmuggel-homoglyphen",
+        "ascii-smuggling",
+        "rot13-chiffre"
+      ],
+      "owasp": "LLM01",
+      "quelle_url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html#typoglycemia-based-attacks",
+      "belegt": true,
+      "bridges": [
+        {
+          "titel": "Warum das Modell es trotzdem liest",
+          "text": "Dass Sprachmodelle Wörter mit vertauschten Binnenbuchstaben rekonstruieren, ist eigenständig untersucht: Yu et al. übertragen das aus der Psychologie stammende Typoglykämie-Phänomen in [Mind Scramble](https://arxiv.org/abs/2410.01677) auf LLMs. Die Arbeit beschreibt die Fähigkeit, nicht den Angriff — sie erklärt also die Voraussetzung, auf der das Angriffsmuster aufsetzt."
+        }
+      ]
     },
     {
       "slug": "artprompt-ascii-art",
@@ -640,7 +915,13 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2307.15043",
-      "belegt": true
+      "belegt": true,
+      "bridges": [
+        {
+          "titel": "Kurzdefinition",
+          "text": "Eine kompakte Begriffsklärung — was ein GCG-Suffix ist und wie es sich von natürlicher Sprache unterscheidet — steht im Glossar unter [GCG-Suffix](/glossar/gcg/)."
+        }
+      ]
     },
     {
       "slug": "autodan",
@@ -854,12 +1135,74 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2302.12173",
-      "sameAs": [
-        "https://atlas.mitre.org/techniques/AML.T0051.001",
-        "https://arxiv.org/abs/2302.12173",
-        "https://en.wikipedia.org/wiki/Prompt_injection"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Indirect Prompt Injection"
+        ],
+        [
+          "Kategorie",
+          "[Indirekte Injektion](/techniken/#indirekte-injection)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "MITRE ATLAS",
+          "[AML.T0051.001 (Indirect)](https://atlas.mitre.org/techniques/AML.T0051.001)"
+        ],
+        [
+          "Erstmals dokumentiert",
+          "Februar 2023 · arXiv:2302.12173"
+        ],
+        [
+          "Primärpublikation",
+          "Greshake et al., „Not what you’ve signed up for“ · [arXiv](https://arxiv.org/abs/2302.12173)"
+        ],
+        [
+          "Primäre Angriffsvektoren",
+          "RAG-Retrieval, E-Mail-Zusammenfassung, Web-Browsing-Tools, Dokumenten-Uploads"
+        ],
+        [
+          "Bekanntester Praxis-Vorfall",
+          "[EchoLeak (CVE-2025-32711) — Microsoft 365 Copilot, Juni 2025](/vorfaelle/echoleak/)"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "[Dual-LLM / CaMeL](/schutz/dual-llm-und-camel/) · [Spotlighting](/schutz/spotlighting/)"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — voller Systemzugriff möglich ohne Nutzerinteraktion"
+        ]
       ],
-      "belegt": true
+      "bridges": [
+        {
+          "titel": "Kontextfenster ohne technische Grenze",
+          "text": "Diese Technik nutzt aus, was [Was ist Prompt Injection?](/was-ist-prompt-injection/) als Grundursache benennt: Systemanweisung und Fremdtext teilen sich denselben Kontext — das Modell kann sie nicht trennen."
+        },
+        {
+          "titel": "Retrieval als Angriffsoberfläche",
+          "text": "RAG-Systeme sind der häufigste Träger dieser Technik. Zur Absicherung der Abrufkette: [RAG-Pipelines absichern](/schutz/rag-absichern/)."
+        },
+        {
+          "titel": "Erstpublikation",
+          "text": "Diese Angriffsklasse wurde 2023 von [Kai Greshake](/personen/kai-greshake/) et al. akademisch definiert — die Primärquelle dieses Eintrags."
+        }
+      ],
+      "definedterm": {
+        "name": "Indirekte Prompt Injection",
+        "alternateName": "Indirect Prompt Injection",
+        "description": "Angriffstechnik, bei der eine Anweisung nicht direkt vom Nutzer, sondern aus externen Inhalten stammt, die das LLM verarbeitet (Webseite, E-Mail, Dokument). Der Angreifer interagiert nie direkt mit der Anwendung.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://atlas.mitre.org/techniques/AML.T0051.001",
+          "https://arxiv.org/abs/2302.12173",
+          "https://en.wikipedia.org/wiki/Prompt_injection"
+        ]
+      }
     },
     {
       "slug": "gespeicherte-prompt-injection",
@@ -885,11 +1228,72 @@
         "memory-injection"
       ],
       "owasp": "LLM01",
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
-      "sameAs": [
-        "https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/"
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Stored / Persistent Prompt Injection"
+        ],
+        [
+          "Kategorie",
+          "[Indirekte Injektion (persistent)](/techniken/#indirekte-injection)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Erstmals prominent dokumentiert",
+          "Mai 2024 — Rehberger meldet Memory-Injection in ChatGPT"
+        ],
+        [
+          "Speicher-Ort der Payload",
+          "Vektordatenbank, Wissensbasis, Profilfeld, LLM-Memory-Feature"
+        ],
+        [
+          "Wirkung",
+          "Die Anweisung bleibt über Sessions hinweg aktiv — auch bei anderen Nutzern"
+        ],
+        [
+          "Bekanntester Praxis-Vorfall",
+          "[SpAIware — ChatGPT macOS-App, September 2024](/vorfaelle/spaiware/)"
+        ],
+        [
+          "Behoben durch",
+          "OpenAI-Update ChatGPT v1.2024.247, September 2024"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "Provenienz-Tracking + Klassifikation aller Memory-Writes + [Human-in-the-Loop](/glossar/human-in-the-loop/) für Schreibvorgänge"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — persistente Wirkung, betrifft zukünftige Sessions"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Gespeicherte Prompt Injection",
+        "alternateName": [
+          "Stored Prompt Injection",
+          "Persistent Prompt Injection"
+        ],
+        "description": "Prompt-Injection-Variante, bei der die bösartige Anweisung dauerhaft in einem Datenspeicher abgelegt wird und bei jedem künftigen Abruf erneut wirkt.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Persistenz",
+          "text": "Was bei [RAG-Vergiftung](/techniken/rag-poisoning/) den Retrieval-Index kompromittiert, greift hier das Memory-Feature an. Beide teilen dieselbe Wurzel: unbeschränkter Schreibzugriff auf einen Speicher, der später als Kontext gelesen wird."
+        },
+        {
+          "titel": "Praxis-Vorfall",
+          "text": "[SpAIware — die Injektion, die im Gedächtnis bleibt](/vorfaelle/spaiware/) zeigt die Technik am realen Beispiel ChatGPT macOS."
+        }
+      ]
     },
     {
       "slug": "rag-poisoning",
@@ -914,12 +1318,73 @@
         "indirekte-prompt-injection",
         "suchmaschinen-vergiftung"
       ],
-      "owasp": "LLM08",
+      "owasp": "LLM09",
       "quelle_url": "https://arxiv.org/abs/2402.07867",
-      "sameAs": [
-        "https://arxiv.org/abs/2402.07867"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "RAG Poisoning / Retrieval-Augmented Generation Poisoning"
+        ],
+        [
+          "Kategorie",
+          "[Datenvergiftung / Indirekte Injektion](/techniken/#daten-vergiftung)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01](/owasp-llm-top-10/prompt-injection/) · [LLM04 Data and Model Poisoning](/owasp-llm-top-10/data-and-model-poisoning/) · [LLM08 Vector and Embedding Weaknesses](/owasp-llm-top-10/vector-and-embedding-weaknesses/)"
+        ],
+        [
+          "Angriffsziel",
+          "Die Vektorsuche einer RAG-Pipeline"
+        ],
+        [
+          "Präparations-Methode",
+          "Dokumente mit hoher Embedding-Ähnlichkeit zu erwarteten Nutzerfragen, versehen mit eingebetteten Anweisungen"
+        ],
+        [
+          "Wirkung",
+          "Präparierte Dokumente landen in den Top-K-Treffern und spielen ihre Anweisung im Kontext aus"
+        ],
+        [
+          "Angriffsoberfläche",
+          "Öffentliche Wissensbasen (Wiki, Confluence, SharePoint mit External Sharing), Support-Ticket-Import, User-Uploads"
+        ],
+        [
+          "Verwandte Technik",
+          "[Suchmaschinen-Vergiftung](/techniken/suchmaschinen-vergiftung/) · [Gespeicherte Prompt Injection](/techniken/gespeicherte-prompt-injection/)"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "Provenienz-Tracking pro Chunk + Trust-Tiers je Datenquelle + [Spotlighting](/schutz/spotlighting/) beim Einfügen in den Kontext"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — trifft unbestimmt viele Nutzer, skaliert mit dem Index"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "RAG-Vergiftung",
+        "alternateName": [
+          "RAG Poisoning",
+          "Retrieval-Augmented Generation Poisoning"
+        ],
+        "description": "Angriffstechnik, bei der ein Angreifer Dokumente so präpariert, dass sie für bestimmte Nutzerfragen zuverlässig in die Top-Treffer einer RAG-Vektorsuche gelangen und dort eingebettete Anweisungen ausführen.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://arxiv.org/abs/2402.07867"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Provenienz",
+          "text": "Ohne verlässliche Herkunftsangabe pro Chunk lässt sich RAG-Vergiftung nicht abwehren — mehr dazu im Glossar-Eintrag [Provenienz](/glossar/provenienz/)."
+        },
+        {
+          "titel": "Schutz-Cluster",
+          "text": "[RAG-Pipelines absichern](/schutz/rag-absichern/) fasst die kombinierten Maßnahmen zusammen."
+        }
+      ]
     },
     {
       "slug": "memory-injection",
@@ -1107,10 +1572,71 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2307.10490",
-      "sameAs": [
-        "https://arxiv.org/abs/2307.10490"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Visual / Multimodal Prompt Injection"
+        ],
+        [
+          "Kategorie",
+          "[Multimodale Injektion](/techniken/#multimodal)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01 — Prompt Injection](/owasp-llm-top-10/prompt-injection/)"
+        ],
+        [
+          "Kernmechanismus",
+          "Anweisungen werden in Bildinhalt eingebettet — als sichtbarer Text, in schwachem Kontrast, in EXIF-Metadaten oder als adversariale Pixel-Störung"
+        ],
+        [
+          "Voraussetzung",
+          "Ein multimodales Modell (GPT-4o, Gemini, Claude 3.5+) verarbeitet Bild-Input"
+        ],
+        [
+          "Erstmals demonstriert",
+          "Frühjahr 2023 — GPT-4V-Prompt-Injection-Demos von Riley Goodside"
+        ],
+        [
+          "Angriffsoberfläche",
+          "Screenshots im Chat, Dokument-Uploads mit Bildern, Webseiten mit Bildern (via Vision-fähiges Browsing)"
+        ],
+        [
+          "Trending-Vektor 2026",
+          "Steganografische Injektionen — unsichtbar für Menschen, lesbar für Vision-Modelle"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "OCR-Prüfung des Bildes VOR dem LLM-Aufruf + [Spotlighting](/schutz/spotlighting/) mit expliziter Markierung „Bild-Inhalt = nicht vertrauenswürdig“"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — von Text-only-Filtern nicht erfassbar, Angriffsfläche wächst mit Multimodal-Adoption"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Multimodale Bild-Injection",
+        "alternateName": [
+          "Visual Prompt Injection",
+          "Multimodal Prompt Injection"
+        ],
+        "description": "Prompt-Injection-Variante gegen multimodale Modelle, bei der die Anweisung im Bildinhalt versteckt wird — als sichtbarer Text, in schwachem Kontrast, in Metadaten oder als adversariale Pixel-Störung. Von Text-Filtern nicht erfassbar.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://arxiv.org/abs/2307.10490"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Multimodalität",
+          "text": "Das Kontextfenster wird über die Text-Grenze hinaus erweitert — Grundlagen dazu im Glossar-Eintrag [Multimodal](/glossar/multimodal/)."
+        },
+        {
+          "titel": "Angriffsvektor",
+          "text": "[Angriffsvektor: Bild](/angriffsvektoren/bild/) systematisiert alle bildbasierten Eintrittspfade in ein LLM-System."
+        }
+      ]
     },
     {
       "slug": "tool-poisoning-mcp",
@@ -1135,13 +1661,74 @@
         "tool-missbrauch",
         "confused-deputy-agent"
       ],
-      "owasp": "LLM03",
+      "owasp": "LLM04",
       "quelle_url": "https://arxiv.org/abs/2504.03767",
-      "sameAs": [
-        "https://arxiv.org/abs/2510.14300",
-        "https://www.anthropic.com/news/model-context-protocol"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Tool Poisoning Attack (MCP)"
+        ],
+        [
+          "Kategorie",
+          "[Indirekte Injektion / Angriff auf Agenten](/techniken/#agenten-angriff)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01](/owasp-llm-top-10/prompt-injection/) · [LLM03 Supply Chain](/owasp-llm-top-10/supply-chain/)"
+        ],
+        [
+          "Bezogenes Protokoll",
+          "[Model Context Protocol (MCP)](/glossar/mcp/) von Anthropic, veröffentlicht November 2024"
+        ],
+        [
+          "Wirkprinzip",
+          "Die Werkzeug-Beschreibung (Tool Description) enthält versteckte Anweisungen, die der Agent beim Auflisten der Tools einliest — noch vor jedem Tool-Aufruf"
+        ],
+        [
+          "Angriffs-Zeitpunkt",
+          "Beim Auflisten der verfügbaren Tools durch den Agenten"
+        ],
+        [
+          "Voraussetzung",
+          "Der Agent verbindet sich mit einem nicht vertrauenswürdigen oder kompromittierten MCP-Server"
+        ],
+        [
+          "Erstmals dokumentiert",
+          "Anfang 2025 nach breiter MCP-Adoption; systematisiert im MCPTox-Benchmark 2025"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "MCP-Server-Whitelist + Content-Scanning der Tool-Descriptions ([mcp-scan](/tools/mcp-scan/)) + [Least Privilege](/schutz/least-privilege/) pro Tool"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Hoch — trifft alle Nutzer, die den kompromittierten Server verbinden"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Tool-Poisoning (MCP)",
+        "alternateName": [
+          "MCP Tool Poisoning",
+          "Tool Description Injection"
+        ],
+        "description": "Angriff auf Agenten-Systeme, bei dem die Beschreibung eines Werkzeugs (etwa eines MCP-Servers) versteckte Anweisungen enthält. Der Agent liest diese beim Auflisten der verfügbaren Tools, noch bevor er das Werkzeug überhaupt aufruft.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://arxiv.org/abs/2510.14300",
+          "https://www.anthropic.com/news/model-context-protocol"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Supply Chain im Agenten-Ökosystem",
+          "text": "Wo bei klassischer Software Package-Registries das Ziel sind, ist es hier das MCP-Server-Ökosystem. Siehe [Lieferkette](/glossar/lieferkette/)."
+        },
+        {
+          "titel": "Schutz-Tool",
+          "text": "[mcp-scan](/tools/mcp-scan/) prüft MCP-Server-Descriptions auf injizierte Anweisungen — die praxisnächste Sofortmaßnahme."
+        }
+      ]
     },
     {
       "slug": "prompt-infection-multiagent",
@@ -1193,8 +1780,8 @@
         "prompt-infection-multiagent",
         "datenexfiltration-link"
       ],
-      "owasp": "LLM06",
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "owasp": "LLM03",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1220,7 +1807,7 @@
         "code-injection-via-llm",
         "tool-poisoning-mcp"
       ],
-      "owasp": "LLM06",
+      "owasp": "LLM03",
       "quelle_url": "https://arxiv.org/abs/2403.02691",
       "belegt": true
     },
@@ -1303,10 +1890,79 @@
       ],
       "owasp": "LLM01",
       "quelle_url": "https://arxiv.org/abs/2509.10540",
-      "sameAs": [
-        "https://nvd.nist.gov/vuln/detail/cve-2025-32711"
+      "belegt": true,
+      "steckbrief": [
+        [
+          "Fachbegriff (EN)",
+          "Zero-Click AI Injection / Zero-Interaction Prompt Injection"
+        ],
+        [
+          "Kategorie",
+          "[Indirekte Injektion (fortgeschritten)](/techniken/#agenten-angriff)"
+        ],
+        [
+          "OWASP-Klassifikation",
+          "[LLM01](/owasp-llm-top-10/prompt-injection/) · [LLM02 Sensitive Information Disclosure](/owasp-llm-top-10/sensitive-information-disclosure/)"
+        ],
+        [
+          "Kernmerkmal",
+          "Der Angriff wirkt ohne Klick, ohne Öffnen und ohne bewusste Interaktion des Opfers"
+        ],
+        [
+          "Erste dokumentierte reale Ausnutzung",
+          "Juni 2025 — [EchoLeak (CVE-2025-32711)](/vorfaelle/echoleak/), Microsoft 365 Copilot"
+        ],
+        [
+          "Entdeckt und offengelegt von",
+          "Aim Security (Aim Labs)"
+        ],
+        [
+          "CVSS-Score",
+          "9.3 (Kritisch, CVSS v3.1) — laut NVD"
+        ],
+        [
+          "Auslösemechanismus",
+          "Eine präparierte E-Mail im Postfach genügt — Copilot indexiert automatisch"
+        ],
+        [
+          "Wirkung",
+          "Exfiltration sensibler M365-Daten (Mails, Dokumente, Teams-Nachrichten)"
+        ],
+        [
+          "Behoben durch",
+          "Microsoft-Serverside-Fix im Juni 2025 (keine Kundenaktion nötig)"
+        ],
+        [
+          "Wirksamste Gegenmaßnahme",
+          "[Die tödliche Trias vermeiden](/schutz/toedliche-trias/): sensible Daten, externe Inputs und Exfiltrationskanal nie im selben Agenten"
+        ],
+        [
+          "Risiko-Einstufung",
+          "@severity Höchste Gefährdungsstufe — kein Nutzer-Fehler nötig, der Angriff läuft im Hintergrund"
+        ]
       ],
-      "belegt": true
+      "definedterm": {
+        "name": "Zero-Click-Injektion",
+        "alternateName": [
+          "Zero-Click AI Injection",
+          "Zero-Interaction Prompt Injection"
+        ],
+        "description": "Prompt-Injection-Angriffsklasse, die ohne jede Interaktion des Opfers wirkt. Bereits das Zustellen eines Inhalts in ein vom Assistenten durchsuchtes System (E-Mail, Kalender, RAG-Quelle) genügt zur Auslösung. Erstmals real bei EchoLeak (CVE-2025-32711) gegen Microsoft 365 Copilot demonstriert.",
+        "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+        "sameAs": [
+          "https://nvd.nist.gov/vuln/detail/cve-2025-32711"
+        ]
+      },
+      "bridges": [
+        {
+          "titel": "Die tödliche Trias",
+          "text": "Zero-Click funktioniert nur, wenn drei Bedingungen gleichzeitig erfüllt sind — beschrieben in [Die tödliche Trias vermeiden](/schutz/toedliche-trias/)."
+        },
+        {
+          "titel": "Vorfall",
+          "text": "[EchoLeak — Datenabfluss aus Microsoft 365 Copilot](/vorfaelle/echoleak/) ist der erste dokumentierte Fall dieser Klasse in freier Wildbahn."
+        }
+      ]
     },
     {
       "slug": "code-injection-via-llm",
@@ -1330,8 +1986,8 @@
         "tool-missbrauch",
         "confused-deputy-agent"
       ],
-      "owasp": "LLM05",
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "owasp": "LLM10",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1356,7 +2012,7 @@
         "rag-poisoning",
         "tool-poisoning-mcp"
       ],
-      "owasp": "LLM04",
+      "owasp": "LLM05",
       "quelle_url": "https://arxiv.org/abs/2401.05566",
       "belegt": true
     },

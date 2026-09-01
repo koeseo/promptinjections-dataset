@@ -1,7 +1,7 @@
 {
   "name": "promptinjections.de — Datensatz zu Prompt Injection und LLM-Sicherheit",
-  "version": "1.0.0",
-  "stand": "2026-08-03",
+  "version": "2.0.0",
+  "stand": "2026-09-01",
   "sprache": "de",
   "herausgeber": {
     "name": "Gökhan Köse",
@@ -18,8 +18,8 @@
     {
       "datei": "techniken",
       "titel": "Techniken der Prompt Injection",
-      "anzahl": 51,
-      "belegt": 51,
+      "anzahl": 52,
+      "belegt": 52,
       "lizenz": "CC-BY-4.0",
       "json": "daten/techniken.json",
       "csv": "csv/techniken.csv",
@@ -47,7 +47,7 @@
     },
     {
       "datei": "werkzeuge",
-      "titel": "Werkzeuge zur Abwehr",
+      "titel": "Werkzeuge gegen Prompt Injection",
       "anzahl": 32,
       "belegt": 32,
       "lizenz": "CC-BY-4.0",
@@ -57,7 +57,7 @@
     },
     {
       "datei": "modelle",
-      "titel": "Sprachmodelle und bekannte Schwächen",
+      "titel": "Dokumentierte Befunde je Modell",
       "anzahl": 16,
       "belegt": 16,
       "lizenz": "CC-BY-4.0",
@@ -67,7 +67,7 @@
     },
     {
       "datei": "owasp-llm-top10",
-      "titel": "OWASP Top 10 für LLM-Anwendungen, deutsche Einordnung",
+      "titel": "OWASP Top 10 für LLM-Anwendungen 2026, deutsche Einordnung",
       "anzahl": 10,
       "belegt": 10,
       "lizenz": "CC-BY-SA-4.0",
@@ -76,5 +76,5 @@
       "schema": "schema/owasp-llm-top10.schema.json"
     }
   ],
-  "gesamt": 198
+  "gesamt": 199
 }

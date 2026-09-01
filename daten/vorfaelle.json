@@ -2,21 +2,21 @@
   "meta": {
     "titel": "Dokumentierte Vorfälle",
     "title_en": "Documented incidents",
-    "version": "1.0.0",
-    "stand": "2026-08-03",
+    "version": "2.0.0",
+    "stand": "2026-09-01",
     "sprache": "de",
     "anzahl": 7,
     "herausgeber": "Gökhan Köse, koeseo",
-    "quelle": "https://promptinjections.de/vorfaelle/",
+    "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
-    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
-    "hinweis": "Aufgenommen wird nur, was öffentlich dokumentiert ist. Jeder Eintrag nennt Zeitpunkt, betroffenes System, Wirkung und Behebungsstand und verweist auf die Primärquelle. Die Darstellung ist erklärend und enthält keine Reproduktionsanleitung."
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de"
   },
   "eintraege": [
     {
       "slug": "echoleak",
       "url": "https://promptinjections.de/vorfaelle/echoleak/",
       "titel": "EchoLeak: Zero-Click-Datenabfluss aus Microsoft 365 Copilot (CVE-2025-32711)",
+      "kurztitel": "EchoLeak (CVE-2025-32711)",
       "zeitpunkt": "Juni 2025",
       "datum": "2026-08-03",
       "system": "Microsoft 365 Copilot",
@@ -24,6 +24,12 @@
       "kennung": "CVE-2025-32711, CVSS-Basiswert 9.3 (kritisch)",
       "behebung": "Serverseitig durch Microsoft behoben",
       "zusammenfassung": "EchoLeak gilt als erster öffentlich dokumentierter Zero-Click-Prompt-Injection-Angriff auf ein produktives KI-System: Eine einzige präparierte E-Mail genügte, damit Microsoft 365 Copilot bei einer späteren, völlig normalen Nutzeranfrage Inhalte aus dem Kontext des Opfers nach außen gab — ohne dass jemand die Mail öffnen oder auf etwas klicken musste.",
+      "hergang": [
+        "Die Schwachstelle wurde vom Forschungsteam von Aim Security veröffentlicht und in der National Vulnerability Database als CVE-2025-32711 mit einem CVSS-Basiswert von 9.3 als kritisch geführt.",
+        "Der Angriffsweg ist der klassische indirekte: Die Anweisung steckt nicht in der Nutzereingabe, sondern in Fremddaten, die der Assistent im Auftrag des Nutzers verarbeitet — hier in einer E-Mail im angebundenen Postfach.",
+        "Der veröffentlichten Analyse zufolge wurden dabei mehrere Schutzschichten nacheinander umgangen, darunter ein Klassifikator für Injektionsversuche und die Bereinigung ausgehender Links.",
+        "Microsoft behob die Lücke serverseitig; ein Eingriff durch Kunden war nicht erforderlich."
+      ],
       "lehren": [
         "Zero-Click bedeutet: Es gibt kein Nutzerverhalten, das den Angriff verhindert hätte. Sensibilisierung von Mitarbeitenden greift hier nicht.",
         "Je mehr Quellen ein Assistent lesen darf — Postfächer, Dateien, Chats —, desto mehr Kanäle stehen als Injektionsvektor offen.",
@@ -33,6 +39,16 @@
         "zero-click-injection",
         "email-injection",
         "datenexfiltration-link"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/email/",
+          "label": "Angriffsvektor E-Mail und Postfach-Assistenten"
+        },
+        {
+          "url": "/modelle/microsoft-365-copilot/",
+          "label": "Microsoft 365 Copilot: dokumentierte Befunde"
+        }
       ],
       "quellen": [
         {
@@ -50,12 +66,20 @@
       "slug": "spaiware",
       "url": "https://promptinjections.de/vorfaelle/spaiware/",
       "titel": "SpAIware: Prompt Injection schreibt sich in das Langzeitgedächtnis von ChatGPT",
+      "kurztitel": "SpAIware",
       "zeitpunkt": "20. September 2024",
       "datum": "2026-08-03",
       "system": "ChatGPT (macOS-App) mit Langzeitgedächtnis",
       "wirkung": "Dauerhafte Anweisungen im Gedächtnis, die in neuen Unterhaltungen fortwirkten und Inhalte an einen fremden Server ausleiteten",
+      "kennung": null,
       "behebung": "Von OpenAI in der macOS-App mit Version 1.2024.247 adressiert",
       "zusammenfassung": "Der Sicherheitsforscher Johann Rehberger zeigte, wie eine über eine manipulierte Webseite ausgelöste Prompt Injection dauerhafte Anweisungen in das Langzeitgedächtnis von ChatGPT schrieb. Diese wirkten anschließend in neuen Unterhaltungen weiter und leiteten Inhalte an einen fremden Server aus — der anschaulichste öffentliche Fall für gespeicherte Prompt Injection.",
+      "hergang": [
+        "Ausgangspunkt war eine indirekte Injektion: Der Assistent verarbeitete Inhalte einer vom Angreifer kontrollierten Webseite.",
+        "Statt nur die laufende Antwort zu manipulieren, veranlasste die eingeschleuste Anweisung das System, einen Eintrag in den persistenten Speicher zu schreiben.",
+        "Damit überdauerte die Anweisung die Sitzung: Sie wurde bei späteren Gesprächen erneut in den Kontext geladen und wirkte dort fort.",
+        "OpenAI schloss die Lücke in der macOS-App mit Version 1.2024.247; die Gegenmaßnahme setzte nach Darstellung des Forschers an der Exfiltration an."
+      ],
       "lehren": [
         "Persistente Speicher verschieben die Sicherheitsfrage: Es geht nicht mehr nur darum, eine Eingabe zu filtern, sondern welche Autorität gespeicherte Inhalte beim Wiedereinlesen erhalten.",
         "Ein einmal erfolgreicher Angriff kann ohne erneuten Zugriff weiterwirken — die Wirkung ist zeitlich entkoppelt vom Angriffszeitpunkt.",
@@ -65,6 +89,16 @@
         "memory-injection",
         "gespeicherte-prompt-injection",
         "datenexfiltration-markdown-bild"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/arten/gespeicherte-prompt-injection/",
+          "label": "Gespeicherte Prompt Injection"
+        },
+        {
+          "url": "/angriffsvektoren/web/",
+          "label": "Angriffsvektor Webinhalte"
+        }
       ],
       "quellen": [
         {
@@ -82,12 +116,20 @@
       "slug": "slack-ai-exfiltration",
       "url": "https://promptinjections.de/vorfaelle/slack-ai-exfiltration/",
       "titel": "Datenabfluss aus privaten Slack-Kanälen über indirekte Prompt Injection",
+      "kurztitel": "Slack AI",
       "zeitpunkt": "August 2024",
       "datum": "2026-08-03",
       "system": "Slack AI",
       "wirkung": "Inhalte aus privaten Kanälen konnten über einen präparierten Link an Dritte gelangen",
+      "kennung": null,
       "behebung": "Von Slack nach der Meldung adressiert",
       "zusammenfassung": "Das Sicherheitsunternehmen PromptArmor beschrieb, wie sich über eine in einem zugänglichen Kanal platzierte Anweisung Inhalte aus privaten Slack-Kanälen abgreifen ließen. Der Abfluss erfolgte nicht direkt, sondern über einen scheinbar hilfreichen Link in der Antwort des Assistenten — ein Klick genügte.",
+      "hergang": [
+        "Der Angreifer benötigte keinen Zugriff auf den privaten Kanal, sondern nur die Möglichkeit, Text in einem Bereich zu platzieren, den die Suchfunktion des Assistenten später einbezieht.",
+        "Fasst der Assistent Inhalte zusammen, gelangt die eingeschleuste Anweisung in denselben Kontext wie die berechtigten Daten und wird als Anweisung befolgt.",
+        "Die Exfiltration lief über die Ausgabe: Der Assistent formulierte einen Link, in dessen Parametern die abzugreifenden Daten steckten.",
+        "Der Fall zeigt die Kombination aus indirekter Injektion und Datenabfluss über die Antwortdarstellung."
+      ],
       "lehren": [
         "Berechtigungen im Quellsystem schützen nicht, wenn ein Assistent berechtigte und unberechtigte Inhalte im selben Kontext verarbeitet.",
         "Die Ausgabe ist ein Angriffskanal: Links und eingebettete Ressourcen in Modellantworten müssen bereinigt werden.",
@@ -97,6 +139,16 @@
         "datenexfiltration-link",
         "indirekte-prompt-injection",
         "rag-poisoning"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/rag/",
+          "label": "Angriffsvektor RAG-Systeme"
+        },
+        {
+          "url": "/schutz/ausgabepruefung/",
+          "label": "Sichere Verarbeitung von Modellausgaben"
+        }
       ],
       "quellen": [
         {
@@ -110,12 +162,20 @@
       "slug": "gemini-kalender",
       "url": "https://promptinjections.de/vorfaelle/gemini-kalender/",
       "titel": "Kalendereinladungen als Angriffsvektor auf Gemini",
+      "kurztitel": "Gemini und Kalendereinladungen",
       "zeitpunkt": "2025",
       "datum": "2026-08-03",
       "system": "Gemini mit angebundenem Kalender und Gerätesteuerung",
       "wirkung": "Fremdgesteuerte Aktionen bis in angebundene Gerätesteuerung",
+      "kennung": null,
       "behebung": "Von Google nach der Meldung adressiert",
       "zusammenfassung": "Forschende von SafeBreach demonstrierten, dass Anweisungen in Titel oder Beschreibung einer Kalendereinladung wirksam werden, sobald ein Assistent den Kalender liest. Weil ein Kalendereintrag von außen zugestellt werden kann, genügt der Versand einer Einladung, um Inhalte in den Kontext des Assistenten zu bringen.",
+      "hergang": [
+        "Kalendereinträge sind Fremddaten wie jede Webseite oder E-Mail — sie landen ungefiltert im Kontextfenster, sobald der Assistent den Kalender auswertet.",
+        "Die Besonderheit: Eine Einladung erreicht das Postfach des Opfers, ohne dass dieses sie annehmen oder überhaupt öffnen muss.",
+        "In der Demonstration reichte die Wirkung bis in die Steuerung angebundener Geräte, weil der Assistent über entsprechende Werkzeuge verfügte.",
+        "Der Fall verbindet damit indirekte Injektion mit dem Kernproblem agentischer Systeme: Reichweite der Rechte."
+      ],
       "lehren": [
         "Jede von außen befüllbare Datenquelle ist ein Injektionsvektor — auch scheinbar harmlose wie ein Kalender.",
         "Werkzeuge mit physischer Wirkung brauchen eine Freigabe außerhalb des Modells, nicht nur eine gute Systemanweisung.",
@@ -125,6 +185,16 @@
         "kalender-injection",
         "tool-missbrauch",
         "indirekte-prompt-injection"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/agenten/",
+          "label": "Angriffsvektor KI-Agenten"
+        },
+        {
+          "url": "/modelle/gemini-2-5/",
+          "label": "Gemini 2.0 / 2.5: dokumentierte Befunde"
+        }
       ],
       "quellen": [
         {
@@ -138,12 +208,20 @@
       "slug": "agentische-browser",
       "url": "https://promptinjections.de/vorfaelle/agentische-browser/",
       "titel": "Indirekte Injektion in agentischen Browsern",
+      "kurztitel": "Agentische Browser",
       "zeitpunkt": "2025",
       "datum": "2026-08-03",
       "system": "Agentische Browser mit KI-Assistent, untersucht am Beispiel Comet",
       "wirkung": "Der Assistent führt Anweisungen aus der besuchten Seite aus, statt sie als Inhalt zu behandeln",
+      "kennung": null,
       "behebung": "Vom Hersteller nach der Veröffentlichung adressiert",
       "zusammenfassung": "Das Browser-Team von Brave analysierte, wie sich indirekte Prompt Injection gegen agentische Browser richtet: Anweisungen auf einer aufgerufenen Webseite gelangen in den Kontext des Assistenten und werden von ihm befolgt — mit den Rechten der laufenden Browser-Sitzung des Nutzers.",
+      "hergang": [
+        "Ein agentischer Browser liest den Seiteninhalt, um den Nutzer zu unterstützen. Damit übernimmt er zwangsläufig auch alles, was ein Angreifer auf dieser Seite platziert hat.",
+        "Anweisungen lassen sich für Menschen unsichtbar einbetten — als weiße Schrift, in Kommentaren oder in ausgeblendeten Elementen —, bleiben für den Assistenten aber lesbar.",
+        "Kritisch wird es, weil der Assistent in der angemeldeten Sitzung des Nutzers arbeitet und damit auf dessen Konten zugreifen kann.",
+        "Die Analyse ordnet das als strukturelles Problem der Bauform ein, nicht als Fehler einer einzelnen Implementierung."
+      ],
       "lehren": [
         "Ein Assistent mit Sitzungsrechten ist ein verwirrter Stellvertreter, sobald er Fremdinhalte als Anweisung akzeptiert.",
         "Sichtbarkeit für Menschen ist kein Filter: Was unsichtbar ist, wird trotzdem gelesen.",
@@ -153,6 +231,16 @@
         "hidden-text-html",
         "confused-deputy-agent",
         "indirekte-prompt-injection"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/web/",
+          "label": "Angriffsvektor Webinhalte und agentische Browser"
+        },
+        {
+          "url": "/schutz/agenten-absichern/",
+          "label": "KI-Agenten absichern"
+        }
       ],
       "quellen": [
         {
@@ -166,12 +254,20 @@
       "slug": "gemini-cli",
       "url": "https://promptinjections.de/vorfaelle/gemini-cli/",
       "titel": "Command- und Prompt-Injection im Gemini CLI",
+      "kurztitel": "Gemini CLI",
       "zeitpunkt": "2025",
       "datum": "2026-08-03",
       "system": "Gemini CLI (agentisches Kommandozeilenwerkzeug)",
       "wirkung": "Ausführung fremdgesteuerter Befehle im Arbeitsverzeichnis des Entwicklers",
+      "kennung": null,
       "behebung": "Von Google nach der Meldung adressiert",
       "zusammenfassung": "Cyera Research Labs meldete Command- und Prompt-Injection-Schwachstellen im Gemini CLI. Agentische Kommandozeilenwerkzeuge verbinden Dateizugriff, Codeausführung und externe Inhalte — genau die Kombination, die eine eingeschleuste Anweisung besonders gefährlich macht.",
+      "hergang": [
+        "Ein Coding-Agent liest Projektdateien, um Kontext zu gewinnen. Diese Dateien stammen häufig aus fremden Quellen: geklonte Repositories, Abhängigkeiten, generierte Artefakte.",
+        "Enthält eine solche Datei Anweisungen, gelangen sie in denselben Kontext wie der Auftrag des Entwicklers.",
+        "Weil das Werkzeug Befehle ausführen darf, kann aus einer gelesenen Zeile eine ausgeführte Aktion auf dem Entwicklerrechner werden.",
+        "Der Befund reiht sich in die Klasse der Angriffe auf agentische Werkzeuge ein, bei denen Lesen und Handeln nicht getrennt sind."
+      ],
       "lehren": [
         "Der Arbeitsordner eines Coding-Agenten ist eine nicht vertrauenswürdige Datenquelle, keine Konfiguration.",
         "Codeausführung durch Agenten gehört in eine Sandbox mit eingeschränkten Rechten und ohne dauerhafte Zugangsdaten.",
@@ -181,6 +277,16 @@
         "code-injection-via-llm",
         "dokumenten-injection",
         "tool-missbrauch"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/tool-use/",
+          "label": "Angriffsvektor Werkzeuge, Function Calling und MCP"
+        },
+        {
+          "url": "/modelle/gemini-cli/",
+          "label": "Gemini CLI: dokumentierte Befunde"
+        }
       ],
       "quellen": [
         {
@@ -194,12 +300,20 @@
       "slug": "mcp-tool-poisoning",
       "url": "https://promptinjections.de/vorfaelle/mcp-tool-poisoning/",
       "titel": "Tool-Poisoning über MCP-Server",
+      "kurztitel": "MCP-Tool-Poisoning",
       "zeitpunkt": "2025",
       "datum": "2026-08-03",
       "system": "Agenten mit Werkzeugen über das Model Context Protocol (MCP)",
       "wirkung": "Der Agent folgt Anweisungen aus einer Werkzeugbeschreibung, bevor das Werkzeug überhaupt aufgerufen wird",
+      "kennung": null,
       "behebung": "Gegenmaßnahmen auf Ebene von Klienten und Prüfwerkzeugen; strukturell offen",
       "zusammenfassung": "Eine Untersuchung der Sicherheit von MCP-Servern beschreibt Tool-Poisoning: Die Beschreibung eines Werkzeugs enthält versteckte Anweisungen. Der Agent liest sie beim Auflisten der verfügbaren Werkzeuge — also lange bevor ein Aufruf stattfindet — und behandelt sie wie eine legitime Vorgabe.",
+      "hergang": [
+        "Werkzeugbeschreibungen sind Text, der in den Kontext des Modells geladen wird, damit es das Werkzeug versteht.",
+        "Wer einen Werkzeug-Server kontrolliert, kontrolliert diesen Text — und damit einen Kanal, der vor jeder Nutzerinteraktion wirkt.",
+        "Der Angriff braucht keinen Aufruf des präparierten Werkzeugs; das bloße Vorhandensein im Verzeichnis genügt.",
+        "Damit verschiebt sich das Vertrauensproblem in die Lieferkette: Jeder eingebundene Server ist eine Vertrauensentscheidung."
+      ],
       "lehren": [
         "Werkzeugverzeichnisse sind Angriffsfläche, nicht Infrastruktur — sie gehören geprüft und versioniert.",
         "Ein Agent sollte nur Werkzeuge sehen, die er für die aktuelle Aufgabe braucht; ein globaler Katalog vergrößert die Angriffsfläche unnötig.",
@@ -209,6 +323,16 @@
         "tool-poisoning-mcp",
         "prompt-infection-multiagent",
         "confused-deputy-agent"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/angriffsvektoren/tool-use/",
+          "label": "Angriffsvektor Werkzeuge, Function Calling und MCP"
+        },
+        {
+          "url": "/schutz/agenten-absichern/",
+          "label": "KI-Agenten absichern"
+        }
       ],
       "quellen": [
         {

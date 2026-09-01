@@ -1,16 +1,15 @@
 {
   "meta": {
-    "titel": "Sprachmodelle und bekannte Schwächen",
-    "title_en": "Language models and known weaknesses",
-    "version": "1.0.0",
-    "stand": "2026-08-03",
+    "titel": "Dokumentierte Befunde je Modell",
+    "title_en": "Documented findings per model",
+    "version": "2.0.0",
+    "stand": "2026-09-01",
     "sprache": "de",
     "anzahl": 16,
     "herausgeber": "Gökhan Köse, koeseo",
-    "quelle": "https://promptinjections.de/modelle/",
+    "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
-    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
-    "hinweis": "Momentaufnahme: Die aufgeführten Schwächen beziehen sich auf den jeweils genannten Untersuchungszeitpunkt. Anbieter bessern laufend nach — ein hier dokumentierter Befund muss für die heutige Modellversion nicht mehr gelten. Prompt Injection gilt bislang bei keinem Modell als grundsätzlich gelöst."
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de"
   },
   "eintraege": [
     {

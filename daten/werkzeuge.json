@@ -1,16 +1,15 @@
 {
   "meta": {
-    "titel": "Werkzeuge zur Abwehr",
-    "title_en": "Defensive tooling",
-    "version": "1.0.0",
-    "stand": "2026-08-03",
+    "titel": "Werkzeuge gegen Prompt Injection",
+    "title_en": "Tools against prompt injection",
+    "version": "2.0.0",
+    "stand": "2026-09-01",
     "sprache": "de",
     "anzahl": 32,
     "herausgeber": "Gökhan Köse, koeseo",
-    "quelle": "https://promptinjections.de/tools/",
+    "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
-    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
-    "hinweis": "Verzeichnis defensiver Werkzeuge — Guardrails, Scanner, Benchmarks und Schutzmodelle. Keine Angriffswerkzeuge. Funktionsbeschreibungen stammen aus der jeweils verlinkten Primärquelle; es werden keine Wirksamkeitsversprechen der Anbieter übernommen."
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de"
   },
   "eintraege": [
     {

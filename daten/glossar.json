@@ -1,16 +1,15 @@
 {
   "meta": {
     "titel": "Glossar der LLM-Sicherheit",
-    "title_en": "Glossary of LLM security terms",
-    "version": "1.0.0",
-    "stand": "2026-08-03",
+    "title_en": "Glossary of LLM security",
+    "version": "2.0.0",
+    "stand": "2026-09-01",
     "sprache": "de",
     "anzahl": 82,
     "herausgeber": "Gökhan Köse, koeseo",
-    "quelle": "https://promptinjections.de/glossar/",
+    "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
-    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
-    "hinweis": "Kurze, zitierbare Definitionen in je zwei Sätzen. Für Schema.org als DefinedTermSet mit DefinedTerm-Einträgen vorgesehen."
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de"
   },
   "eintraege": [
     {
@@ -26,7 +25,7 @@
         "jailbreak",
         "system-prompt"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -56,7 +55,7 @@
         "instruktions-hierarchie",
         "prompt-injection"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -86,7 +85,7 @@
         "prompt-injection",
         "goal-hijacking"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -116,7 +115,7 @@
         "vektordatenbank",
         "kontextvergiftung"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -191,7 +190,7 @@
         "rag",
         "llm-as-a-judge"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -237,7 +236,7 @@
         "rag",
         "chunking"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -252,7 +251,7 @@
         "rag-vergiftung",
         "retriever"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -267,7 +266,7 @@
         "vektordatenbank",
         "least-privilege"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -401,7 +400,7 @@
         "unicode-tag-zeichen",
         "prompt-injection"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -596,7 +595,7 @@
         "least-privilege",
         "toedliche-trias"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -611,7 +610,7 @@
         "mcp",
         "verwirrter-stellvertreter"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -626,7 +625,7 @@
         "function-calling",
         "mcp"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -716,7 +715,7 @@
         "least-privilege",
         "verwirrter-stellvertreter"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -731,7 +730,7 @@
         "sandbox",
         "toedliche-trias"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -746,7 +745,7 @@
         "sichere-ausgabeverarbeitung",
         "agent"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -761,7 +760,7 @@
         "function-calling",
         "datenexfiltration"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -776,7 +775,7 @@
         "zero-click",
         "sichere-ausgabeverarbeitung"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1016,7 +1015,7 @@
         "rag-vergiftung",
         "lieferkette"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1046,7 +1045,7 @@
         "tool-poisoning",
         "backdoor"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm032025-supply-chain/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1061,7 +1060,7 @@
         "backdoor",
         "vertrauensgrenze"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm032025-supply-chain/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {
@@ -1076,7 +1075,7 @@
         "kontextfenster",
         "spotlighting"
       ],
-      "quelle_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "quelle_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
       "belegt": true
     },
     {

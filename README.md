@@ -1,7 +1,7 @@
 # Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
 
 Offene, belegte Daten zu Angriffen auf Anwendungen mit großen Sprachmodellen.
-**198 Einträge, jeder einzelne mit verlinkter Primärquelle.**
+**199 Einträge, jeder einzelne mit verlinkter Primärquelle.**
 
 Herausgegeben von [promptinjections.de](https://promptinjections.de), dem deutschsprachigen
 Fachportal für Prompt Injection und LLM-Sicherheit. Der Datensatz wird direkt aus dem Portal
@@ -9,7 +9,7 @@ erzeugt und bleibt damit im Gleichstand mit den redaktionell gepflegten Seiten.
 
 | Datensatz | Einträge | Inhalt |
 |---|---:|---|
-| [`techniken`](daten/techniken.json) | 51 | Angriffsverfahren mit Funktionsweise, Risiko-Einstufung und Schutzmaßnahmen |
+| [`techniken`](daten/techniken.json) | 52 | Angriffsverfahren mit Funktionsweise, Risiko-Einstufung und Schutzmaßnahmen |
 | [`glossar`](daten/glossar.json) | 82 | Fachbegriffe der LLM-Sicherheit, je in zwei Sätzen definiert |
 | [`werkzeuge`](daten/werkzeuge.json) | 32 | Guardrails, Scanner, Schutzmodelle und Benchmarks mit Anbieter und Lizenz |
 | [`modelle`](daten/modelle.json) | 16 | Sprachmodelle und öffentlich dokumentierte Schwächen |
@@ -57,7 +57,7 @@ Jede Datei folgt derselben Form:
 
 ```json
 {
-  "meta": { "titel": "…", "version": "1.0.0", "stand": "2026-08-03", "lizenz": "CC-BY-4.0", "anzahl": 51 },
+  "meta": { "titel": "…", "version": "2.0.0", "stand": "2026-09-01", "lizenz": "CC-BY-4.0", "anzahl": 52 },
   "eintraege": [ { "slug": "…", "url": "…", "quelle_url": "…", "belegt": true } ]
 }
 ```
@@ -67,7 +67,7 @@ Zwei Felder trägt jeder Eintrag:
 - **`url`** verweist auf die kanonische Seite dieses Eintrags auf promptinjections.de.
   Dort steht die ausführliche deutschsprachige Darstellung.
 - **`quelle_url`** verweist auf die Primärquelle: ein Paper, ein Hersteller-Advisory,
-  ein Standarddokument. **Alle 198 Einträge tragen eine solche Quelle.**
+  ein Standarddokument. **Alle 199 Einträge tragen eine solche Quelle.**
 
 Das Feld `belegt` unterscheidet belegte Sachverhalte von redaktionellen Einschätzungen.
 Die Risiko-Einstufung einer Technik ist eine Einschätzung und als solche gekennzeichnet;
@@ -130,7 +130,7 @@ eigene Texte und keine autorisierte Übersetzung.
 
 ```
 Köse, G. (2026). Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
-(Version 1.0.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
+(Version 2.0.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
 ```
 
 Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.
@@ -141,7 +141,7 @@ Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.
 
 **An open, source-backed dataset on prompt injection and LLM security, in German.**
 
-198 curated entries, every single one carrying a link to its primary source: 51 attack
+199 curated entries, every single one carrying a link to its primary source: 52 attack
 techniques, 82 glossary terms, 32 defensive tools, 16 language models with documented
 weaknesses, the 10 OWASP risks for LLM applications, and 7 documented real-world incidents.
 
