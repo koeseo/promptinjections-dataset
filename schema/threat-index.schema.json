@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/threat-index.schema.json",
+  "title": "Prompt Injection Threat Index",
+  "description": "Monthly issues; each entry is one month with counted areas and verified items. Datensatz von promptinjections.de, Version 2.1.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "monat",
+          "url",
+          "zeitraum",
+          "stand",
+          "summe",
+          "bereiche",
+          "eintraege"
+        ],
+        "properties": {
+          "monat": {
+            "type": "string",
+            "description": "YYYY-MM, Primärschlüssel"
+          },
+          "titel": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "zeitraum": {
+            "type": "object"
+          },
+          "stand": {
+            "type": "string"
+          },
+          "summe": {
+            "type": "object"
+          },
+          "bereiche": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "eintraege"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "eintraege": {
+                  "type": "integer"
+                },
+                "cves": {
+                  "type": "integer"
+                },
+                "vorfaelle": {
+                  "type": "integer"
+                },
+                "forschung": {
+                  "type": "integer"
+                },
+                "standards": {
+                  "type": "integer"
+                },
+                "max_cvss": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "einordnung": {
+                  "type": "string",
+                  "description": "Redaktionelle Einordnung, keine Messung"
+                }
+              }
+            }
+          },
+          "eintraege": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "datum",
+                "typ",
+                "titel",
+                "bereiche",
+                "quellen"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "datum": {
+                  "type": "string"
+                },
+                "typ": {
+                  "type": "string",
+                  "enum": [
+                    "cve",
+                    "vorfall",
+                    "forschung",
+                    "standard",
+                    "hersteller"
+                  ]
+                },
+                "cve": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "cvss": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "titel": {
+                  "type": "string"
+                },
+                "was": {
+                  "type": "string"
+                },
+                "bereiche": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "quellen": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "titel",
+                      "url"
+                    ]
+                  }
+                },
+                "anknuepfung": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "methode": {
+            "type": "string"
+          },
+          "erfassung": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

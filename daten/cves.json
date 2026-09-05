@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "titel": "CVE-Verzeichnis: Schwachstellen in LLM- und Agenten-Software",
+    "title_en": "CVE directory: vulnerabilities in LLM and agent software",
+    "version": "2.1.0",
+    "stand": "2026-09-05",
+    "sprache": "de",
+    "anzahl": 12,
+    "herausgeber": "Gökhan Köse, koeseo",
+    "quelle": "https://promptinjections.de/",
+    "lizenz": "CC-BY-4.0",
+    "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
+    "pruefung": "Kennung, Datum, CVSS und CWE maschinell gegen die NVD geprüft (scripts/cve-pruefen.mjs)"
+  },
+  "eintraege": [
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-37006-gpt-researcher",
+      "id": "CVE-2026-37006",
+      "slug": "cve-2026-37006-gpt-researcher",
+      "produkt": "gpt-researcher",
+      "produkt_art": "Recherche-Agent",
+      "betroffene_versionen": "0.14.7 und früher",
+      "veroeffentlicht": "2026-08-27",
+      "cvss": 9.8,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-287"
+      ],
+      "titel_de": "Codeausführung über den WebSocket-Endpunkt von gpt-researcher",
+      "kurzbeschreibung": "Der WebSocket-Endpunkt nimmt Konfigurationen für das Model Context Protocol ohne Authentifizierung entgegen. Eine präparierte MCP-Konfiguration führt zur Codeausführung aus der Ferne.",
+      "warum_relevant": "Zeigt, dass die Werkzeug-Anbindung selbst zur Angriffsfläche wird: Nicht der Prompt ist der Einstieg, sondern die Konfiguration, die bestimmt, welche Werkzeuge das Modell überhaupt aufrufen darf.",
+      "owasp": [
+        "LLM03",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "tool-poisoning-mcp",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-37006"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-37003-agno",
+      "id": "CVE-2026-37003",
+      "slug": "cve-2026-37003-agno",
+      "produkt": "Agno",
+      "produkt_art": "Agenten-Framework",
+      "betroffene_versionen": "bis einschließlich 2.5.8",
+      "veroeffentlicht": "2026-08-27",
+      "cvss": 9.8,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-94"
+      ],
+      "titel_de": "Codeausführung in Agno durch Prompt Injection",
+      "kurzbeschreibung": "Die Komponenten PythonTools und ShellTools reichen ungeprüfte, vom Sprachmodell erzeugte Argumente direkt an ausführende Funktionen weiter — unter anderem exec(), runpy.run_path() und subprocess.run(). Wer Anweisungen in Inhalte einbettet, die der Agent verarbeitet, etwa eine Webseite oder ein Dokument, kann darüber beliebigen Code auf dem Host ausführen.",
+      "warum_relevant": "Der Lehrbuchfall: Eine indirekte Prompt Injection wird zur Codeausführung, weil die Modellausgabe ungeprüft in eine ausführende Funktion fließt. Genau die Verbindung, die OWASP zwischen LLM01 und LLM10 beschreibt.",
+      "owasp": [
+        "LLM01",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm",
+        "tool-missbrauch"
+      ],
+      "hinweis": "Die NVD führte für diesen Eintrag bis Anfang September 2026 keinen CVSS-Wert; seit dem Nachtrag steht er, wie CVE-2026-37006, bei 9.8.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-37003"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-77776-headroom",
+      "id": "CVE-2026-77776",
+      "slug": "cve-2026-77776-headroom",
+      "produkt": "Headroom",
+      "produkt_art": "LLM-Proxy mit Gedächtnis",
+      "betroffene_versionen": "vor der Einführung von resolve_memory_identity",
+      "veroeffentlicht": "2026-08-21",
+      "cvss": 9.1,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-639"
+      ],
+      "titel_de": "Fremdes Langzeitgedächtnis lesen und beschreiben bei Headroom",
+      "kurzbeschreibung": "Der Proxy leitet den Eigentümer eines gespeicherten Gedächtnisses aus dem Anfrage-Kopf x-headroom-user-id ab, ohne diesen Wert an den Aufrufer zu binden. Ein Client kann die Kennung einer anderen Person angeben und deren gespeichertes Gedächtnis lesen oder verändern. Die mitgelieferte Compose-Datei bindet zudem an 0.0.0.0, ohne ein Proxy-Token zu verlangen.",
+      "warum_relevant": "Verbindet zwei Risiken: den Abfluss fremder Daten und das Beschreiben eines Gedächtnisses, aus dem spätere Sitzungen lesen — die technische Grundlage der gespeicherten Prompt Injection.",
+      "owasp": [
+        "LLM02",
+        "LLM01"
+      ],
+      "verwandte_techniken": [
+        "gespeicherte-prompt-injection",
+        "memory-injection"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-77776"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-42271-litellm",
+      "id": "CVE-2026-42271",
+      "slug": "cve-2026-42271-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "1.74.2 bis vor 1.83.7",
+      "behoben_in": "1.83.7",
+      "veroeffentlicht": "2026-05-08",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-77",
+        "CWE-78"
+      ],
+      "titel_de": "Beliebige Befehle über die MCP-Testendpunkte von LiteLLM",
+      "kurzbeschreibung": "Zwei Endpunkte zum Vorabtesten eines MCP-Servers nahmen eine vollständige Serverkonfiguration im Anfragekörper entgegen, einschließlich der Felder command, args und env für den stdio-Transport. Beim Verbindungsversuch startete der Proxy den übergebenen Befehl als Unterprozess mit seinen eigenen Rechten. Geschützt waren die Endpunkte nur durch einen gültigen API-Schlüssel, ohne Rollenprüfung.",
+      "warum_relevant": "Ein Gateway, das viele Anwendungen bündelt, ist ein lohnendes Ziel: Eine Schwachstelle darin wirkt auf alle angebundenen Systeme. Zeigt außerdem, dass eine Authentifizierung ohne Rechteprüfung keine Grenze ist.",
+      "owasp": [
+        "LLM03",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "tool-poisoning-mcp",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-42271",
+      "quelle_hersteller": "https://github.com/BerriAI/litellm/releases/tag/v1.83.7-stable"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-75857-codewhale",
+      "id": "CVE-2026-75857",
+      "slug": "cve-2026-75857-codewhale",
+      "produkt": "CodeWhale",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "ab 0.8.41 bis vor 0.8.64",
+      "behoben_in": "0.8.64",
+      "veroeffentlicht": "2026-08-18",
+      "cvss": 7,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-269"
+      ],
+      "titel_de": "Umgangene Freigabepflicht bei CodeWhale",
+      "kurzbeschreibung": "Das Werkzeug exec_shell_interact meldete seinen Freigabebedarf als automatisch und hob damit die sonst verlangte Bestätigung für ausführende Werkzeuge auf. Vom Modell gesteuerte Eingaben landeten so ohne Rückfrage in einer bereits freigegebenen, dauerhaft laufenden Sitzung — etwa einer Python-Konsole, einer Datenbank-Sitzung oder einer Sitzung mit erhöhten Rechten. Wer Anweisungen über abgerufene Seiten, MCP-Antworten oder Dateien im Repository einschleust, lässt Befehle mit den Rechten dieses Prozesses laufen.",
+      "warum_relevant": "Die menschliche Freigabe gilt als eine der wenigen belastbaren Gegenmaßnahmen. Hier wurde sie nicht überwunden, sondern durch eine Fehlkonfiguration im Werkzeug selbst abgeschaltet — eine Erinnerung daran, dass eine Kontrolle nur wirkt, solange sie nicht optional ist.",
+      "owasp": [
+        "LLM03",
+        "LLM01"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch",
+        "confused-deputy-agent"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-75857"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-24301-microsoft-copilot",
+      "id": "CVE-2026-24301",
+      "slug": "cve-2026-24301-microsoft-copilot",
+      "produkt": "Microsoft Copilot",
+      "produkt_art": "Assistent im Produktivsystem",
+      "veroeffentlicht": "2026-08-18",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-77"
+      ],
+      "titel_de": "Befehlseinschleusung in Microsoft Copilot",
+      "kurzbeschreibung": "Unzureichende Neutralisierung von Sonderzeichen in einem Befehl erlaubte einem unbefugten Angreifer, Informationen über das Netz abzugreifen.",
+      "warum_relevant": "Der zweite CVE-geführte Fall in Microsofts Assistenten nach EchoLeak. Er belegt, dass die Angriffsfläche eines Assistenten mit Zugriff auf Unternehmensdaten nicht mit einem einzelnen Patch verschwindet.",
+      "owasp": [
+        "LLM02",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "datenexfiltration-link",
+        "code-injection-via-llm"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/vorfaelle/echoleak/",
+          "label": "EchoLeak: der erste CVE-geführte Fall in Microsoft 365 Copilot"
+        }
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-24301",
+      "quelle_hersteller": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-24301"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-59318-spring-ai",
+      "id": "CVE-2026-59318",
+      "slug": "cve-2026-59318-spring-ai",
+      "produkt": "Spring AI",
+      "produkt_art": "Anwendungsrahmenwerk",
+      "betroffene_versionen": "1.0.0–1.0.9, 1.1.0–1.1.8, 2.0.0",
+      "veroeffentlicht": "2026-08-21",
+      "cvss": 6.5,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-863"
+      ],
+      "titel_de": "Nicht durchgesetzte Werkzeuggrenze in Spring AI",
+      "kurzbeschreibung": "Die je Anfrage zusammengestellte Werkzeugliste wird dem Modell als Grenze angekündigt, beim Ausführen eines Werkzeugaufrufs aber nicht vollständig durchgesetzt. Unter bestimmten Bedingungen ließ sich ein Werkzeug aufrufen, das für die laufende Anfrage gar nicht freigegeben war.",
+      "warum_relevant": "Zeigt den Unterschied zwischen einer angekündigten und einer durchgesetzten Grenze. Wer dem Modell mitteilt, was es darf, hat noch nichts verhindert — die Durchsetzung muss im Anwendungscode liegen.",
+      "owasp": [
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "tool-missbrauch",
+        "confused-deputy-agent"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-59318",
+      "quelle_hersteller": "https://spring.io/security/cve-2026-59318"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-65105-nvidia-nemoclaw",
+      "id": "CVE-2026-65105",
+      "slug": "cve-2026-65105-nvidia-nemoclaw",
+      "produkt": "NVIDIA NemoClaw",
+      "produkt_art": "Bereitstellung lokaler Agenten",
+      "veroeffentlicht": "2026-08-25",
+      "cvss": 8.1,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-306"
+      ],
+      "titel_de": "Inferenzserver von NemoClaw ohne Anmeldung erreichbar",
+      "kurzbeschreibung": "NemoClaw für Linux richtet den Inferenzserver so ein, dass ein entfernter Angreifer den Inferenzdienst ohne Authentifizierung erreicht; die NVD nennt als Folgen Informationsabfluss und Dienstverweigerung. Nach der Analyse von Cyera genügt dafür der Besuch einer präparierten Webseite, und der Angreifer kann Anweisungen dauerhaft in der Modellkonfiguration verankern.",
+      "warum_relevant": "Der Übergang von Prompt Injection zur Vergiftung des eigenen Modells: Nicht der Agent wird überredet, sondern der Server, der ihm antwortet, wird umkonfiguriert. Least Privilege gilt auch für Dienste auf localhost.",
+      "owasp": [
+        "LLM05",
+        "LLM01"
+      ],
+      "verwandte_techniken": [
+        "memory-injection",
+        "indirekte-prompt-injection"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-65105",
+      "quelle_forschung": "https://www.cyera.com/research/nemoclaw-one-website-visit-to-hijack-your-ai-agent"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-82275-qwen-agent",
+      "id": "CVE-2026-82275",
+      "slug": "cve-2026-82275-qwen-agent",
+      "produkt": "Qwen-Agent",
+      "produkt_art": "Agenten-Framework",
+      "betroffene_versionen": "bis 0.0.34",
+      "veroeffentlicht": "2026-08-28",
+      "cvss": 7.5,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-22"
+      ],
+      "titel_de": "Pfaddurchquerung im Dokumenten-Parser von Qwen-Agent",
+      "kurzbeschreibung": "Der Dokumenten-Parser begrenzt den Dateizugriff nicht auf die vorgesehenen Verzeichnisse. Über die nicht authentifizierte Gradio-Oberfläche lassen sich absolute Pfade angeben und beliebige Dateien lesen, auf die der Serverprozess Zugriff hat.",
+      "warum_relevant": "Der Dokumenten-Parser ist der Kanal, über den Fremddaten in den Kontext gelangen. Ist er zugleich ein Leseweg ins Dateisystem, wird aus dem Einlesekanal ein Ausleitkanal.",
+      "owasp": [
+        "LLM02"
+      ],
+      "verwandte_techniken": [
+        "dokumenten-injection"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-82275"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-70331-microsoft-edge-ios",
+      "id": "CVE-2026-70331",
+      "slug": "cve-2026-70331-microsoft-edge-ios",
+      "produkt": "Microsoft Edge für iOS",
+      "produkt_art": "Browser mit Assistent",
+      "veroeffentlicht": "2026-08-28",
+      "cvss": 5.4,
+      "schweregrad": "MEDIUM",
+      "cwe": [],
+      "titel_de": "Täuschung über den Assistenten in Microsoft Edge für iOS",
+      "kurzbeschreibung": "Unzureichende Neutralisierung von Eingaben, die zur Ansteuerung des Sprachmodells verwendet werden, erlaubte einem unbefugten Angreifer eine Täuschung über das Netz.",
+      "warum_relevant": "Einer der wenigen Einträge, in denen die NVD die Ansteuerung eines Sprachmodells ausdrücklich als Schwachstellenklasse benennt. Ein Beleg dafür, dass Prompt Injection in der Schwachstellenverwaltung ankommt — bislang die Ausnahme.",
+      "owasp": [
+        "LLM01",
+        "LLM07"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "hidden-text-html"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-70331",
+      "quelle_hersteller": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70331"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-82640-browser-use-web-ui",
+      "id": "CVE-2026-82640",
+      "slug": "cve-2026-82640-browser-use-web-ui",
+      "produkt": "browser-use web-ui",
+      "produkt_art": "Agenten-Oberfläche",
+      "betroffene_versionen": "2.0.0 bis 3.0.0",
+      "veroeffentlicht": "2026-08-30",
+      "cvss": 5.5,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-312"
+      ],
+      "titel_de": "API-Schlüssel im Klartext bei browser-use web-ui",
+      "kurzbeschreibung": "Die Oberfläche schreibt eingetragene API-Schlüssel unverschlüsselt und ohne Zugriffsbeschränkung in Dateien mit vorhersagbaren Namen im temporären Einstellungsverzeichnis. Wer dieses Verzeichnis lesen kann, erhält die Schlüssel der angebundenen Anbieter.",
+      "warum_relevant": "Ein Agent mit Browserzugriff verarbeitet naturgemäß nicht vertrauenswürdige Inhalte. Liegen daneben Zugangsdaten im Klartext, ist der Weg von der Injektion zum Schlüsseldiebstahl kurz.",
+      "owasp": [
+        "LLM02"
+      ],
+      "verwandte_techniken": [
+        "datenexfiltration-link"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-82640"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2025-33255-nvidia-tensorrt-llm",
+      "id": "CVE-2025-33255",
+      "slug": "cve-2025-33255-nvidia-tensorrt-llm",
+      "produkt": "NVIDIA TensorRT-LLM",
+      "produkt_art": "Inferenz-Infrastruktur",
+      "veroeffentlicht": "2026-05-20",
+      "cvss": 7.5,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-502"
+      ],
+      "titel_de": "Unsichere Deserialisierung im MPI-Server von NVIDIA TensorRT-LLM",
+      "kurzbeschreibung": "Der MPI-Server enthält eine Schwachstelle, über die sich eine unsichere Deserialisierung auslösen lässt. Eine erfolgreiche Ausnutzung kann zu Codeausführung, Dienstverweigerung, Datenmanipulation und Informationsabfluss führen.",
+      "warum_relevant": "Kein Prompt-Injection-Fall, sondern eine klassische Schwachstelle in der Schicht, auf der Modelle ausgeführt werden. Sie steht hier, weil die Lieferkette eines LLM-Systems bei der Inferenz-Infrastruktur beginnt — OWASP führt das seit 2026 als LLM04.",
+      "owasp": [
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2025-33255"
+    }
+  ]
+}

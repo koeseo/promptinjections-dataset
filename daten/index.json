@@ -1,7 +1,7 @@
 {
   "name": "promptinjections.de — Datensatz zu Prompt Injection und LLM-Sicherheit",
-  "version": "2.0.0",
-  "stand": "2026-09-01",
+  "version": "2.1.0",
+  "stand": "2026-09-05",
   "sprache": "de",
   "herausgeber": {
     "name": "Gökhan Köse",
@@ -14,6 +14,7 @@
     "lizenz": "CC-BY-SA-4.0",
     "grund": "Bezieht sich auf das OWASP Top 10 for LLM Applications (OWASP Foundation, CC BY-SA 4.0). Die deutschen Formulierungen sind eigene Texte, keine autorisierte Übersetzung."
   },
+  "api": "https://promptinjections.de/api/v1/",
   "datensaetze": [
     {
       "datei": "techniken",
@@ -23,7 +24,8 @@
       "lizenz": "CC-BY-4.0",
       "json": "daten/techniken.json",
       "csv": "csv/techniken.csv",
-      "schema": "schema/techniken.schema.json"
+      "schema": "schema/techniken.schema.json",
+      "api": "https://promptinjections.de/api/v1/techniken.json"
     },
     {
       "datei": "glossar",
@@ -33,7 +35,8 @@
       "lizenz": "CC-BY-4.0",
       "json": "daten/glossar.json",
       "csv": "csv/glossar.csv",
-      "schema": "schema/glossar.schema.json"
+      "schema": "schema/glossar.schema.json",
+      "api": "https://promptinjections.de/api/v1/glossar.json"
     },
     {
       "datei": "vorfaelle",
@@ -43,7 +46,8 @@
       "lizenz": "CC-BY-4.0",
       "json": "daten/vorfaelle.json",
       "csv": "csv/vorfaelle.csv",
-      "schema": "schema/vorfaelle.schema.json"
+      "schema": "schema/vorfaelle.schema.json",
+      "api": "https://promptinjections.de/api/v1/vorfaelle.json"
     },
     {
       "datei": "werkzeuge",
@@ -53,7 +57,8 @@
       "lizenz": "CC-BY-4.0",
       "json": "daten/werkzeuge.json",
       "csv": "csv/werkzeuge.csv",
-      "schema": "schema/werkzeuge.schema.json"
+      "schema": "schema/werkzeuge.schema.json",
+      "api": "https://promptinjections.de/api/v1/werkzeuge.json"
     },
     {
       "datei": "modelle",
@@ -63,7 +68,8 @@
       "lizenz": "CC-BY-4.0",
       "json": "daten/modelle.json",
       "csv": "csv/modelle.csv",
-      "schema": "schema/modelle.schema.json"
+      "schema": "schema/modelle.schema.json",
+      "api": "https://promptinjections.de/api/v1/modelle.json"
     },
     {
       "datei": "owasp-llm-top10",
@@ -73,8 +79,31 @@
       "lizenz": "CC-BY-SA-4.0",
       "json": "daten/owasp-llm-top10.json",
       "csv": "csv/owasp-llm-top10.csv",
-      "schema": "schema/owasp-llm-top10.schema.json"
+      "schema": "schema/owasp-llm-top10.schema.json",
+      "api": "https://promptinjections.de/api/v1/owasp-llm-top10.json"
+    },
+    {
+      "datei": "cves",
+      "titel": "CVE-Verzeichnis: Schwachstellen in LLM- und Agenten-Software",
+      "anzahl": 12,
+      "belegt": 12,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/cves.json",
+      "csv": "csv/cves.csv",
+      "schema": "schema/cves.schema.json",
+      "api": "https://promptinjections.de/api/v1/cves.json"
+    },
+    {
+      "datei": "threat-index",
+      "titel": "Prompt Injection Threat Index (Monatsausgaben)",
+      "anzahl": 1,
+      "belegt": 1,
+      "lizenz": "CC-BY-4.0",
+      "json": "daten/threat-index.json",
+      "csv": "csv/threat-index.csv",
+      "schema": "schema/threat-index.schema.json",
+      "api": "https://promptinjections.de/api/v1/threat-index.json"
     }
   ],
-  "gesamt": 199
+  "gesamt": 212
 }

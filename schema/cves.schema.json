@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptinjections.de/daten/schema/cves.schema.json",
+  "title": "CVE-Verzeichnis: Schwachstellen in LLM- und Agenten-Software",
+  "description": "CVE directory, every value for id, date, CVSS and CWE checked against the NVD. Datensatz von promptinjections.de, Version 2.1.0.",
+  "type": "object",
+  "required": [
+    "meta",
+    "eintraege"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "eintraege": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "url",
+          "produkt",
+          "veroeffentlicht"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "CVE-Kennung, Primärschlüssel"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Anker im CVE-Verzeichnis auf promptinjections.de"
+          },
+          "produkt": {
+            "type": "string"
+          },
+          "produkt_art": {
+            "type": "string"
+          },
+          "betroffene_versionen": {
+            "type": "string"
+          },
+          "behoben_in": {
+            "type": "string"
+          },
+          "veroeffentlicht": {
+            "type": "string",
+            "description": "Veröffentlichungsdatum laut NVD (YYYY-MM-DD)"
+          },
+          "cvss": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "schweregrad": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cwe": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "titel_de": {
+            "type": "string"
+          },
+          "kurzbeschreibung": {
+            "type": "string"
+          },
+          "warum_relevant": {
+            "type": "string",
+            "description": "Redaktionelle Einordnung"
+          },
+          "owasp": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verwandte_techniken": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hinweis": {
+            "type": "string"
+          },
+          "quelle_nvd": {
+            "type": "string"
+          },
+          "quelle_hersteller": {
+            "type": "string"
+          },
+          "quelle_forschung": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

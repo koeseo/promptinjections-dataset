@@ -15,7 +15,8 @@ abstract: >-
   Anwendungen mit großen Sprachmodellen, in deutscher Sprache. Enthält 51
   Angriffstechniken, 82 Glossarbegriffe, 32 defensive Werkzeuge, 16 Sprachmodelle
   mit dokumentierten Schwächen, die 10 OWASP-Risiken für LLM-Anwendungen und 7
-  dokumentierte Vorfälle. Jeder Eintrag verweist auf eine Primärquelle.
+  dokumentierte Vorfälle, 12 gegen die NVD geprüfte CVE-Einträge und den monatlichen
+  Prompt Injection Threat Index. Jeder Eintrag verweist auf eine Primärquelle.
 keywords:
   - prompt injection
   - LLM security
@@ -24,5 +25,5 @@ keywords:
   - Sprachmodelle
   - IT-Sicherheit
 license: CC-BY-4.0
-version: 2.0.0
-date-released: "2026-09-01"
+version: 2.1.0
+date-released: "2026-09-05"

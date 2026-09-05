@@ -1,7 +1,7 @@
 # Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
 
 Offene, belegte Daten zu Angriffen auf Anwendungen mit großen Sprachmodellen.
-**199 Einträge, jeder einzelne mit verlinkter Primärquelle.**
+**212 Einträge, jeder einzelne mit verlinkter Primärquelle.** Dieselben Daten liegen als API unter [promptinjections.de/api/v1/](https://promptinjections.de/api/).
 
 Herausgegeben von [promptinjections.de](https://promptinjections.de), dem deutschsprachigen
 Fachportal für Prompt Injection und LLM-Sicherheit. Der Datensatz wird direkt aus dem Portal
@@ -15,6 +15,8 @@ erzeugt und bleibt damit im Gleichstand mit den redaktionell gepflegten Seiten.
 | [`modelle`](daten/modelle.json) | 16 | Sprachmodelle und öffentlich dokumentierte Schwächen |
 | [`owasp-llm-top10`](daten/owasp-llm-top10.json) | 10 | Die zehn OWASP-Risiken für LLM-Anwendungen, deutsch eingeordnet |
 | [`vorfaelle`](daten/vorfaelle.json) | 7 | Real dokumentierte Zwischenfälle mit Zeitpunkt, System und Behebungsstand |
+| [`cves`](daten/cves.json) | 12 | Registrierte Schwachstellen in LLM- und Agenten-Software, gegen die NVD geprüft |
+| [`threat-index`](daten/threat-index.json) | 1 Ausgabe | Monatliches Lagebild: 20 geprüfte Einträge im August 2026, je Bereich gezählt |
 
 Jeder Eintrag liegt als JSON, als CSV und mit einem JSON-Schema vor.
 
@@ -51,13 +53,19 @@ Ausführliche Darstellungen zu jedem dieser Punkte stehen auf
 [promptinjections.de](https://promptinjections.de). Dieser Datensatz enthält die
 strukturierten Fakten dahinter, nicht die Aufbereitung.
 
+## Versionen
+
+- **2.1.0** (2026-09-05): CVE-Verzeichnis (12 Einträge, NVD-geprüft) und Prompt Injection Threat Index (Ausgabe August 2026) neu; Export und API (`/api/v1/`) aus derselben Bibliothek.
+- **2.0.0** (2026-09-01): Wechsel auf die OWASP-Fassung 2026.
+- **1.0.0** (2026-08-10): Erstveröffentlichung mit 198 Einträgen.
+
 ## Aufbau
 
 Jede Datei folgt derselben Form:
 
 ```json
 {
-  "meta": { "titel": "…", "version": "2.0.0", "stand": "2026-09-01", "lizenz": "CC-BY-4.0", "anzahl": 52 },
+  "meta": { "titel": "…", "version": "2.1.0", "stand": "2026-09-05", "lizenz": "CC-BY-4.0", "anzahl": 52 },
   "eintraege": [ { "slug": "…", "url": "…", "quelle_url": "…", "belegt": true } ]
 }
 ```
@@ -67,7 +75,7 @@ Zwei Felder trägt jeder Eintrag:
 - **`url`** verweist auf die kanonische Seite dieses Eintrags auf promptinjections.de.
   Dort steht die ausführliche deutschsprachige Darstellung.
 - **`quelle_url`** verweist auf die Primärquelle: ein Paper, ein Hersteller-Advisory,
-  ein Standarddokument. **Alle 199 Einträge tragen eine solche Quelle.**
+  ein Standarddokument. **Alle 212 Einträge tragen eine solche Quelle.**
 
 Das Feld `belegt` unterscheidet belegte Sachverhalte von redaktionellen Einschätzungen.
 Die Risiko-Einstufung einer Technik ist eine Einschätzung und als solche gekennzeichnet;
@@ -130,7 +138,7 @@ eigene Texte und keine autorisierte Übersetzung.
 
 ```
 Köse, G. (2026). Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
-(Version 2.0.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
+(Version 2.1.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
 ```
 
 Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.
@@ -141,7 +149,7 @@ Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.
 
 **An open, source-backed dataset on prompt injection and LLM security, in German.**
 
-199 curated entries, every single one carrying a link to its primary source: 52 attack
+212 curated entries, every single one carrying a link to its primary source: 52 attack
 techniques, 82 glossary terms, 32 defensive tools, 16 language models with documented
 weaknesses, the 10 OWASP risks for LLM applications, and 7 documented real-world incidents.
 

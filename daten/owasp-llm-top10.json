@@ -2,8 +2,8 @@
   "meta": {
     "titel": "OWASP Top 10 für LLM-Anwendungen 2026, deutsche Einordnung",
     "title_en": "OWASP Top 10 for LLM Applications 2026, German commentary",
-    "version": "2.0.0",
-    "stand": "2026-09-01",
+    "version": "2.1.0",
+    "stand": "2026-09-05",
     "sprache": "de",
     "anzahl": 10,
     "herausgeber": "Gökhan Köse, koeseo",

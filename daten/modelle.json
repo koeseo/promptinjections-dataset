@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Dokumentierte Befunde je Modell",
     "title_en": "Documented findings per model",
-    "version": "2.0.0",
-    "stand": "2026-09-01",
+    "version": "2.1.0",
+    "stand": "2026-09-05",
     "sprache": "de",
     "anzahl": 16,
     "herausgeber": "Gökhan Köse, koeseo",
