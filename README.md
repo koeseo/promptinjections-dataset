@@ -1,7 +1,7 @@
 # Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
 
 Offene, belegte Daten zu Angriffen auf Anwendungen mit großen Sprachmodellen.
-**212 Einträge, jeder einzelne mit verlinkter Primärquelle.** Dieselben Daten liegen als API unter [promptinjections.de/api/v1/](https://promptinjections.de/api/).
+**256 Einträge, jeder einzelne mit verlinkter Primärquelle.** Dieselben Daten liegen als API unter [promptinjections.de/api/v1/](https://promptinjections.de/api/).
 
 Herausgegeben von [promptinjections.de](https://promptinjections.de), dem deutschsprachigen
 Fachportal für Prompt Injection und LLM-Sicherheit. Der Datensatz wird direkt aus dem Portal
@@ -14,9 +14,9 @@ erzeugt und bleibt damit im Gleichstand mit den redaktionell gepflegten Seiten.
 | [`werkzeuge`](daten/werkzeuge.json) | 32 | Guardrails, Scanner, Schutzmodelle und Benchmarks mit Anbieter und Lizenz |
 | [`modelle`](daten/modelle.json) | 16 | Sprachmodelle und öffentlich dokumentierte Schwächen |
 | [`owasp-llm-top10`](daten/owasp-llm-top10.json) | 10 | Die zehn OWASP-Risiken für LLM-Anwendungen, deutsch eingeordnet |
-| [`vorfaelle`](daten/vorfaelle.json) | 7 | Real dokumentierte Zwischenfälle mit Zeitpunkt, System und Behebungsstand |
-| [`cves`](daten/cves.json) | 12 | Registrierte Schwachstellen in LLM- und Agenten-Software, gegen die NVD geprüft |
-| [`threat-index`](daten/threat-index.json) | 1 Ausgabe | Monatliches Lagebild: 20 geprüfte Einträge im August 2026, je Bereich gezählt |
+| [`vorfaelle`](daten/vorfaelle.json) | 9 | Real dokumentierte Zwischenfälle mit Zeitpunkt, System und Behebungsstand |
+| [`cves`](daten/cves.json) | 52 | Registrierte Schwachstellen in LLM- und Agenten-Software, gegen die NVD geprüft |
+| [`threat-index`](daten/threat-index.json) | 3 Ausgaben | Monatliches Lagebild: 20, 37 und 52 geprüfte Einträge (August bis Oktober 2026), je Bereich gezählt |
 
 Jeder Eintrag liegt als JSON, als CSV und mit einem JSON-Schema vor.
 
