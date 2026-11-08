@@ -1,6 +1,6 @@
 # Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24054569.svg)](https://doi.org/10.5281/zenodo.24054569)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24054569.svg)](https://doi.org/10.5281/zenodo.24054569) · Spiegel auf [Hugging Face](https://huggingface.co/datasets/goekhankoese/promptinjections-dataset)
 
 Offene, belegte Daten zu Angriffen auf Anwendungen mit großen Sprachmodellen.
 **256 Einträge, jeder einzelne mit verlinkter Primärquelle.** Dieselben Daten liegen als API unter [promptinjections.de/api/v1/](https://promptinjections.de/api/).
