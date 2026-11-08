@@ -2,10 +2,10 @@
   "meta": {
     "titel": "Dokumentierte Vorfälle",
     "title_en": "Documented incidents",
-    "version": "2.1.0",
-    "stand": "2026-09-05",
+    "version": "2.2.0",
+    "stand": "2026-11-06",
     "sprache": "de",
-    "anzahl": 7,
+    "anzahl": 9,
     "herausgeber": "Gökhan Köse, koeseo",
     "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
@@ -338,6 +338,99 @@
         {
           "titel": "Untersuchung zur Sicherheit von MCP-Servern und Tool-Poisoning (arXiv:2504.03767)",
           "url": "https://arxiv.org/abs/2504.03767"
+        }
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "chatgpt-sandbox-kanal",
+      "url": "https://promptinjections.de/vorfaelle/chatgpt-sandbox-kanal/",
+      "titel": "Verdeckter Kanal zwischen ChatGPT-Sandboxes",
+      "kurztitel": "ChatGPT-Sandbox-Kanal",
+      "zeitpunkt": "Juni 2026 (Fund), 8. September 2026 (Veröffentlichung)",
+      "datum": "2026-09-13",
+      "system": "ChatGPT, Code-Ausführungsumgebung (Container) mit verbundenen Apps",
+      "wirkung": "Daten aus dem Gmail-Konto eines Opfers gelangten über die Sandbox an das ChatGPT-Konto eines Angreifers, ohne Spur in der sichtbaren Antwort",
+      "kennung": null,
+      "behebung": "Interner Paketdienst von OpenAI abgeschaltet; Kanal war vor Fertigstellung des Berichts geschlossen",
+      "zusammenfassung": "Check Point Research fand einen verdeckten, bidirektionalen Kanal zwischen den Code-Ausführungscontainern zweier ChatGPT-Konten. Die Container hatten keinen Internetzugang und keinen direkten Kontakt, erreichten aber denselben internen Dienst zur Paketauslieferung. Über ihn ließ sich eine versteckte Anweisung im Kontext des Opfers ausführen und das Ergebnis an den Angreifer zurückreichen.",
+      "hergang": [
+        "Die Anweisung gelangt über einen präparierten Prompt, eine geteilte Konversation oder ein benutzerdefiniertes GPT in den Kontext des Opfers.",
+        "Eine gewöhnliche Nachricht des Opfers löst neben der sichtbaren Aufgabe den Auftrag des Angreifers aus, mit den Werkzeugen und verbundenen Apps der Sitzung.",
+        "Im Proof of Concept las ChatGPT E-Mails aus dem verbundenen Gmail-Konto und legte sie im gemeinsam erreichbaren internen Dienst ab.",
+        "Der Container des Angreifers holte die Daten von dort ab. Gesprächsverlauf und Dateien der Sitzung hätten denselben Weg nehmen können."
+      ],
+      "lehren": [
+        "Die Isolation von Ausführungsumgebungen ist eine Sicherheitsgrenze, nicht ein Betriebsdetail: Jeder gemeinsam erreichbare interne Dienst ist ein möglicher Kanal.",
+        "Das Modell sitzt innerhalb der Vertrauensgrenze und lässt sich per Text steuern. Schutz muss deshalb auch dort greifen, wo das Modell bereits gehorcht hat: am Ausgang.",
+        "Geteilte Konversationen und benutzerdefinierte GPTs sind Einfallstore für Anweisungen, die der Nutzer nie gesehen hat."
+      ],
+      "verwandte_techniken": [
+        "confused-deputy-agent",
+        "tool-missbrauch",
+        "gespeicherte-prompt-injection"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/news/chatgpt-sandbox-datenabfluss-lockdown-mode/",
+          "label": "Analyse: Die Sandbox als Abflusskanal"
+        },
+        {
+          "url": "/schutz/agenten-absichern/",
+          "label": "KI-Agenten absichern"
+        }
+      ],
+      "quellen": [
+        {
+          "titel": "Check Point Research: The Shared Clipboard Inside the Sandbox (8. September 2026)",
+          "url": "https://research.checkpoint.com/2026/the-shared-clipboard-inside-the-sandbox-cross-account-data-leakage-in-chatgpt/"
+        }
+      ],
+      "belegt": true
+    },
+    {
+      "slug": "shadowleak",
+      "url": "https://promptinjections.de/vorfaelle/shadowleak/",
+      "titel": "ShadowLeak: Zero-Click-Abfluss über ChatGPT Deep Research",
+      "kurztitel": "ShadowLeak",
+      "zeitpunkt": "Juni 2025 (Meldung an OpenAI), Anfang August 2025 (Behebung), 18. September 2025 (Veröffentlichung)",
+      "datum": "2026-09-24",
+      "system": "ChatGPT Deep Research mit angebundenem Gmail-Konto und Browsing",
+      "wirkung": "Eine einzige präparierte E-Mail brachte den Agenten dazu, persönliche Daten aus dem Postfach an einen Angreifer-Server zu senden, ohne Nutzeraktion und ohne sichtbare Spur in der Oberfläche",
+      "kennung": null,
+      "behebung": "Von OpenAI Anfang August 2025 behoben, am 3. September 2025 als gelöst bestätigt",
+      "zusammenfassung": "Radware fand eine Zero-Click-Lücke im Deep-Research-Agenten von ChatGPT. Die Anweisung steckte unsichtbar im HTML einer E-Mail. Liest der Agent das Postfach, folgt er ihr und ruft über sein eigenes Werkzeug browser.open() eine Angreifer-URL auf, an die er zuvor Base64-kodierte persönliche Daten gehängt hat. Der Abfluss geht direkt von OpenAIs Servern aus und ist deshalb für Schutzsysteme beim Nutzer oder im Unternehmen unsichtbar.",
+      "hergang": [
+        "Der Angreifer schickt eine E-Mail, deren Anweisungen im HTML versteckt sind: winzige Schrift, weiß auf weiß, Layout-Tricks.",
+        "Der Nutzer beauftragt Deep Research mit einer Recherche über sein Postfach. Der Agent liest dabei auch die präparierte Mail.",
+        "Die Mail gibt sich als legitimer Auftrag aus, behauptet, die Ziel-URL sei öffentlich und sicher, und verlangt, die Daten Base64-kodiert anzuhängen.",
+        "Der Agent ruft die URL mit seinem Werkzeug browser.open() auf. Die Anfrage geht von OpenAIs Infrastruktur aus, nicht vom Gerät des Nutzers."
+      ],
+      "lehren": [
+        "Abfluss, der auf der Anbieterseite passiert, sieht kein Schutzsystem beim Kunden. Die Kontrolle muss dort sitzen, wo der Agent seine Werkzeuge aufruft.",
+        "E-Mail-Bereinigung vor der Verarbeitung (unsichtbares CSS, verschleierte Zeichen) ist nützlich, reicht aber nicht, wenn der Agent als vertrauenswürdiger Innentäter handelt.",
+        "Jede angebundene Datenquelle ist ein Einfallstor. Radware beschreibt das Muster als übertragbar auf weitere Konnektoren wie Google Drive, Outlook oder GitHub."
+      ],
+      "verwandte_techniken": [
+        "email-injection",
+        "hidden-text-html",
+        "zero-click-injection",
+        "datenexfiltration-link"
+      ],
+      "verwandte_seiten": [
+        {
+          "url": "/vorfaelle/echoleak/",
+          "label": "EchoLeak, der Zero-Click-Vorläufer in Microsoft 365 Copilot"
+        },
+        {
+          "url": "/vorfaelle/chatgpt-sandbox-kanal/",
+          "label": "Verdeckter Kanal zwischen ChatGPT-Sandboxes"
+        }
+      ],
+      "quellen": [
+        {
+          "titel": "Radware: ShadowLeak: A Zero-Click, Service-Side Attack Exfiltrating Sensitive Data Using ChatGPT’s Deep Research Agent (18. September 2025)",
+          "url": "https://www.radware.com/blog/threat-intelligence/shadowleak/"
         }
       ],
       "belegt": true

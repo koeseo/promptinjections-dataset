@@ -2,10 +2,10 @@
   "meta": {
     "titel": "CVE-Verzeichnis: Schwachstellen in LLM- und Agenten-Software",
     "title_en": "CVE directory: vulnerabilities in LLM and agent software",
-    "version": "2.1.0",
-    "stand": "2026-09-05",
+    "version": "2.2.0",
+    "stand": "2026-11-06",
     "sprache": "de",
-    "anzahl": 12,
+    "anzahl": 52,
     "herausgeber": "Gökhan Köse, koeseo",
     "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
@@ -224,8 +224,8 @@
       "kurzbeschreibung": "NemoClaw für Linux richtet den Inferenzserver so ein, dass ein entfernter Angreifer den Inferenzdienst ohne Authentifizierung erreicht; die NVD nennt als Folgen Informationsabfluss und Dienstverweigerung. Nach der Analyse von Cyera genügt dafür der Besuch einer präparierten Webseite, und der Angreifer kann Anweisungen dauerhaft in der Modellkonfiguration verankern.",
       "warum_relevant": "Der Übergang von Prompt Injection zur Vergiftung des eigenen Modells: Nicht der Agent wird überredet, sondern der Server, der ihm antwortet, wird umkonfiguriert. Least Privilege gilt auch für Dienste auf localhost.",
       "owasp": [
-        "LLM05",
-        "LLM01"
+        "LLM01",
+        "LLM03"
       ],
       "verwandte_techniken": [
         "memory-injection",
@@ -326,6 +326,1117 @@
       ],
       "verwandte_techniken": [],
       "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2025-33255"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-59822-litellm",
+      "id": "CVE-2026-59822",
+      "slug": "cve-2026-59822-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "vor 1.84.0",
+      "behoben_in": "1.84.0",
+      "veroeffentlicht": "2026-07-08",
+      "cvss": 8.2,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-287",
+        "CWE-306"
+      ],
+      "titel_de": "Anmeldung am MCP-Endpunkt von LiteLLM mit beliebigem Token umgehbar",
+      "kurzbeschreibung": "Der MCP-Endpunkt (Streamable HTTP) nahm einen erfundenen Authorization-Header entgegen und fiel bei gescheiterter Schlüsselprüfung auf einen OAuth2-Durchreichpfad zurück, der die Anfrage mit einem leeren Berechtigungsobjekt weiterlaufen ließ. Anfragen erreichten so die angebundenen MCP-Werkzeuge ohne gültigen Schlüssel.",
+      "warum_relevant": "Der MCP-Endpunkt ist die Stelle, an der ein Gateway Werkzeuge an Modelle weiterreicht. Wer ihn ohne Anmeldung erreicht, erreicht alle Werkzeuge, die dahinter freigeschaltet sind. Wiz hat die Ausnutzung im Honeypot beobachtet; die Lücke steht seit dem 2. September 2026 im CISA-Katalog ausgenutzter Schwachstellen.",
+      "owasp": [
+        "LLM03",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "tool-missbrauch",
+        "tool-poisoning-mcp"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-59822",
+      "quelle_hersteller": "https://github.com/BerriAI/litellm/security/advisories/GHSA-7488-6r32-c95q",
+      "quelle_forschung": "https://www.wiz.io/blog/off-guard-breaking-litellm-from-authentication-bypass-to-cloud-compromise"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-59821-litellm",
+      "id": "CVE-2026-59821",
+      "slug": "cve-2026-59821-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "vor 1.82.0-stable",
+      "behoben_in": "1.82.0-stable",
+      "veroeffentlicht": "2026-07-08",
+      "cvss": 7.2,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-94"
+      ],
+      "titel_de": "Eigener Python-Code über die Guardrail-Funktion von LiteLLM",
+      "kurzbeschreibung": "Die Pfade zum Anlegen und Ändern von Custom-Code-Guardrails wendeten nicht dieselbe Sandbox und Prüfung an wie der Testendpunkt. Ein Nutzer mit dem Recht, Guardrails zu verwalten, konnte eigenen Python-Code übergeben, der in der Umgebung des Proxys lief.",
+      "warum_relevant": "Guardrails sollen das Modell schützen; hier wurden sie zum Weg in den Server. In Kombination mit dem Standard-Master-Key, den nach Wiz-Messung 9,6 Prozent der öffentlichen Instanzen akzeptieren, wird aus der Lücke für Angemeldete eine für jedermann.",
+      "owasp": [
+        "LLM03",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "tool-missbrauch",
+        "code-injection-via-llm"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-59821",
+      "quelle_hersteller": "https://github.com/BerriAI/litellm/security/advisories/GHSA-72m8-9m7m-h278",
+      "quelle_forschung": "https://www.wiz.io/blog/off-guard-breaking-litellm-from-authentication-bypass-to-cloud-compromise"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-71963-hermes-agent",
+      "id": "CVE-2026-71963",
+      "slug": "cve-2026-71963-hermes-agent",
+      "produkt": "Hermes Agent (Nous Research)",
+      "produkt_art": "Agenten-Harness / Coding-Agent",
+      "betroffene_versionen": "0.18.2 bis 0.21.0",
+      "behoben_in": "Commit f6234d0 (PR #101483)",
+      "veroeffentlicht": "2026-09-03",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-78"
+      ],
+      "titel_de": "Befehlsausführung über eine präparierte .git/config in Hermes Agent",
+      "kurzbeschreibung": "Ein Repository mit einer .git/config, die core.fsmonitor auf einen Angreiferbefehl setzt, bringt Hermes Agent zur Ausführung dieses Befehls. Sobald der Nutzer den Ordner öffnet und eine beliebige Nachricht sendet, ruft der Agent git status auf; die Index-Aktualisierung startet den Befehl im Prozesskontext des Nutzers, mit Zugriff auf die gesamte Umgebung einschließlich der hinterlegten API-Schlüssel.",
+      "warum_relevant": "Teil der Schwachstellenklasse GitSpawn, die Manifold Security in sieben Coding-Agenten fand. Der Befehl läuft im Harness, bevor das Modell etwas entscheidet und bevor eine Freigabe abgefragt wird. Eine Kontrolle im Modell greift hier nicht; die Grenze muss das Harness ziehen, das Werkzeuge auf fremden Daten ausführt.",
+      "owasp": [
+        "LLM03",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-71963",
+      "quelle_hersteller": "https://github.com/NousResearch/hermes-agent/commit/f6234d00c5d59450adea1d7edd30ad3859375c79",
+      "quelle_forschung": "https://www.manifold.security/blog/ai-coding-agents-git-hijack"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-0628-google-chrome",
+      "id": "CVE-2026-0628",
+      "slug": "cve-2026-0628-google-chrome",
+      "produkt": "Google Chrome (Gemini in Chrome)",
+      "produkt_art": "Browser mit Assistent",
+      "betroffene_versionen": "vor 143.0.7499.192",
+      "behoben_in": "143.0.7499.192",
+      "veroeffentlicht": "2026-01-07",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-862"
+      ],
+      "titel_de": "Unzureichende Richtliniendurchsetzung im WebView-Tag von Chrome",
+      "kurzbeschreibung": "Eine bösartige Erweiterung konnte Skripte oder HTML in eine privilegierte Seite einschleusen, wenn der Nutzer sie installiert hatte. Die Lücke ist eine der beiden CVEs aus der BragJack-Forschung, mit der sich der eingebaute Browser-Agent kapern ließ.",
+      "warum_relevant": "BragJack zeigt einen Weg in agentische Browser, der ohne klassische Prompt Injection auskommt: Die Erweiterung übernimmt den Kanal zwischen Oberfläche und Agent und schreibt dem Agenten die Eingabe direkt vor. Betroffen waren fünf Browser-Agenten. Behoben im Januar 2026, veröffentlicht als Forschung im September 2026.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-0628",
+      "quelle_hersteller": "https://chromereleases.googleblog.com/2026/01/stable-channel-update-for-desktop.html",
+      "quelle_forschung": "https://forever.security/blog/bragjack-attack-hijacks-every-browser-agent"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-55945-microsoft-edge",
+      "id": "CVE-2026-55945",
+      "slug": "cve-2026-55945-microsoft-edge",
+      "produkt": "Microsoft Edge (Copilot)",
+      "produkt_art": "Browser mit Assistent",
+      "betroffene_versionen": "vor 150.0.4078.48",
+      "behoben_in": "150.0.4078.48",
+      "veroeffentlicht": "2026-07-03",
+      "cvss": 4.2,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-362"
+      ],
+      "titel_de": "Race Condition beim Copilot in Microsoft Edge",
+      "kurzbeschreibung": "Eine Race Condition bei gemeinsam genutzten Ressourcen erlaubte einem berechtigten Angreifer, lokal Informationen abzugreifen. Microsoft vergab die CVE für den Edge-Teil der BragJack-Forschung.",
+      "warum_relevant": "Die zweite CVE aus BragJack. Der niedrige CVSS-Wert beschreibt die Einzellücke, nicht die Kette: Im Zusammenspiel mit einer Erweiterung ließ sich der Edge-Agent übernehmen.",
+      "owasp": [
+        "LLM01",
+        "LLM02"
+      ],
+      "verwandte_techniken": [],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-55945",
+      "quelle_hersteller": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-55945",
+      "quelle_forschung": "https://forever.security/blog/bragjack-attack-hijacks-every-browser-agent"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-91935-flowise",
+      "id": "CVE-2026-91935",
+      "slug": "cve-2026-91935-flowise",
+      "produkt": "Flowise",
+      "produkt_art": "Plattform für LLM-Abläufe",
+      "betroffene_versionen": "vor 3.1.4",
+      "behoben_in": "3.1.4",
+      "veroeffentlicht": "2026-09-15",
+      "cvss": 8.3,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Server-Side Request Forgery und Abfluss von Anbieter-Schlüsseln in Flowise",
+      "kurzbeschreibung": "Acht Chat-Modell-Knoten übernahmen eine frei wählbare Basis-URL des Modellanbieters ungeprüft und umgingen damit Flowises eigenen SSRF-Schutz. Wer Abläufe anlegen oder ändern durfte, konnte Anfragen an interne Hosts oder Cloud-Metadatendienste umleiten und die hinterlegten API-Schlüssel der Modellanbieter mitlesen.",
+      "warum_relevant": "Die Rechte zum Anlegen von Abläufen haben in Flowise gewöhnliche Mitglieder eines Arbeitsbereichs, nicht nur Administratoren. Wie bei LiteLLM ist die Plattform, die Modelle und Werkzeuge verbindet, der Ort, an dem alle Schlüssel zusammenlaufen.",
+      "owasp": [
+        "LLM02",
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-91935",
+      "quelle_hersteller": "https://github.com/FlowiseAI/Flowise/security/advisories/GHSA-hx55-h48h-7rw9"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-103395-lightllm",
+      "id": "CVE-2026-103395",
+      "slug": "cve-2026-103395-lightllm",
+      "produkt": "LightLLM",
+      "produkt_art": "Inferenz-Infrastruktur",
+      "betroffene_versionen": "bis einschließlich 1.2.0, im Betriebsmodus visual_only",
+      "veroeffentlicht": "2026-09-30",
+      "cvss": 9.8,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-502"
+      ],
+      "titel_de": "Codeausführung ohne Anmeldung über den visual_only-Dienst von LightLLM",
+      "kurzbeschreibung": "Im Betriebsmodus visual_only startet LightLLM für die Bildvorverarbeitung einen RPyC-Dienst, der ohne Authentifizierung auf allen Netzschnittstellen lauscht und die Übergabe serialisierter Python-Objekte (allow_pickle) erlaubt. Die Methode remote_infer_images deserialisiert die Argumente des Aufrufers. Wer den Port erreicht, übergibt ein Objekt mit präparierter __reduce__-Methode und führt Code mit den Rechten des Dienstkontos aus.",
+      "warum_relevant": "Kein Prompt-Injection-Fall, sondern eine Lücke in der Schicht, auf der Modelle laufen, wie bei TensorRT-LLM. Betroffen sind gerade die Knoten, die in multimodalen Setups Bilder für das Modell aufbereiten. Wer Modelle selbst betreibt, muss diese internen Dienste wie jeden anderen Netzdienst abschotten; OWASP führt die Inferenz-Infrastruktur als Teil der Lieferkette (LLM04).",
+      "owasp": [
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "verwandte_seiten": [
+        {
+          "url": "/news/abrufwerkzeug-exfiltration-lightllm-rce-countersteer/",
+          "label": "Am Prompt-Filter vorbei: Abrufwerkzeug als Kurier, offene LightLLM-Knoten, Abwehr im Modell"
+        }
+      ],
+      "hinweis": "Stand 10.10.2026 gibt es keinen Patch: Das Issue #1610 ist offen, das letzte Release ist v1.2.0 vom 10.08.2026. Die NVD führt den Eintrag im Status „Deferred“; CVSS 9.8 (v3.1) und 9.3 (v4.0) stammen von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-103395",
+      "quelle_hersteller": "https://github.com/ModelTC/LightLLM/issues/1610",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/lightllm-through-1.2.0-unauthenticated-remote-code-execution-via-visual-only-rpyc-service"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-103040-lightllm",
+      "id": "CVE-2026-103040",
+      "slug": "cve-2026-103040-lightllm",
+      "produkt": "LightLLM",
+      "produkt_art": "Inferenz-Infrastruktur",
+      "betroffene_versionen": "bis einschließlich 1.2.0, bei Start mit --enable_profiling",
+      "veroeffentlicht": "2026-09-29",
+      "cvss": 9.8,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-502"
+      ],
+      "titel_de": "Codeausführung ohne Anmeldung über den Profiler-Dienst von LightLLM",
+      "kurzbeschreibung": "Mit dem Startparameter --enable_profiling öffnet der Router von LightLLM einen RPyC-Dienst ohne Authentifizierung, der auf allen Netzschnittstellen lauscht und serialisierte Python-Objekte annimmt (allow_pickle). Ein präpariertes Objekt in der Profiler-Befehlswarteschlange wird im Inferenzprozess deserialisiert und führt dort beliebigen Code aus. Der Dienst läuft danach unauffällig weiter.",
+      "warum_relevant": "Dieselbe Schwachstellenklasse wie CVE-2026-103395, aber in einem anderen Dienst und unabhängig vom Betriebsmodus. Profiling ist ein gewöhnlicher Zustand bei der Leistungsanalyse; wer es auf einem erreichbaren Knoten einschaltet, öffnet damit den Inferenzprozess, in dem Modell und Anfragen liegen.",
+      "owasp": [
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "hinweis": "Stand 10.10.2026 gibt es keinen Patch: Das Issue #1597 ist offen, das letzte Release ist v1.2.0 vom 10.08.2026. Die NVD führt den Eintrag im Status „Deferred“; CVSS 9.8 (v3.1) und 9.3 (v4.0) stammen von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-103040",
+      "quelle_hersteller": "https://github.com/ModelTC/LightLLM/issues/1597",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/lightllm-through-1.2.0-unauthenticated-remote-code-execution-via-router-profiler-rpyc-service"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-93355-litellm",
+      "id": "CVE-2026-93355",
+      "slug": "cve-2026-93355-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "bis einschließlich 1.102.1",
+      "veroeffentlicht": "2026-09-28",
+      "cvss": 8.1,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-1390"
+      ],
+      "titel_de": "Übernahme fremder Konten über die JWT-Anmeldung von LiteLLM",
+      "kurzbeschreibung": "Findet LiteLLM zu einem gültig signierten JWT keinen Nutzer über dessen Kennung, sucht der Proxy ersatzweise über die E-Mail-Adresse im Token, ohne den Claim email_verified zu prüfen. Wer beim angebundenen Identitätsanbieter ein Token mit der unbestätigten Adresse eines Opfers erhält, meldet sich als dieses Konto an, auch als proxy_admin. Im Hintergrund überschreibt der Proxy zudem die gespeicherte SSO-Bindung des Opfers mit der Kennung des Angreifers, der Zugang bleibt damit dauerhaft.",
+      "warum_relevant": "Der vierte Eintrag zu LiteLLM in diesem Verzeichnis. Ein Administratorkonto am Gateway öffnet die hinterlegten Schlüssel aller angebundenen Modellanbieter und die Nutzerverwaltung. Wie bei CVE-2026-59822 liegt die Lücke in der Anmeldung, nicht im Modell.",
+      "owasp": [
+        "LLM02",
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "hinweis": "OX Security meldete die Lücke am 18.05.2026 und veröffentlichte nach ausbleibender Antwort des Herstellers. Eine Korrektur durch BerriAI ist bis 10.10.2026 nicht belegt; die Release-Notes zu 1.102.2 nennen nur eine Änderung am Format der Sitzungstoken. OX gibt CVSS 8.8 und CWE-290 an, maßgeblich ist hier die Bewertung von VulnCheck in der NVD.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-93355",
+      "quelle_forschung": "https://www.ox.security/blog/litellm-an-ordinary-login-token-can-become-someone-elses-admin-account/"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-112308-crewai-tools",
+      "id": "CVE-2026-112308",
+      "slug": "cve-2026-112308-crewai-tools",
+      "produkt": "crewai-tools",
+      "produkt_art": "Werkzeugsammlung für Agenten-Frameworks",
+      "betroffene_versionen": "bis einschließlich 1.15.28",
+      "veroeffentlicht": "2026-10-19",
+      "cvss": 7.4,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Server-Side Request Forgery über das SeleniumScrapingTool von crewai-tools",
+      "kurzbeschreibung": "Das SeleniumScrapingTool prüft Ziel-URLs nicht gegen private Adressen, obwohl crewai-tools dafür eine Prüffunktion mitbringt. Wer die Eingabe des Werkzeugs per Prompt Injection beeinflusst, lenkt den eingebauten Chrome-Browser auf Loopback, interne Netze oder die Metadaten-Adressen der Cloud und liest dort interne Daten und Cloud-Zugangsdaten aus.",
+      "warum_relevant": "Die NVD-Beschreibung nennt Prompt Injection ausdrücklich als Angriffsweg: Ein Modell, das fremde Inhalte liest, bestimmt die URL, die das Werkzeug abruft. Damit wird eine eingeschleuste Anweisung zum Zugriff auf das interne Netz.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "Eine korrigierte Version nennt die NVD nicht. Eigene Prüfung am 04.11.2026: Die Datei selenium_scraping_tool.py ist in crewai-tools 1.15.35 vom 03.11.2026 bytegleich mit 1.15.28, ein Pull Request mit dem Fix wurde am 17.09.2026 ohne Übernahme geschlossen. CVSS 4.0 laut VulnCheck: 8.3.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-112308",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/crewai-tools-through-1.15.28-ssrf-via-seleniumscrapingtool"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-84377-litellm",
+      "id": "CVE-2026-84377",
+      "slug": "cve-2026-84377-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "vor 1.88.6 bzw. 1.96.2",
+      "behoben_in": "1.88.6 und 1.96.2",
+      "veroeffentlicht": "2026-09-02",
+      "cvss": 6.5,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Umleitung von Anbieteraufrufen und Abfluss der Anbieter-Schlüssel in LiteLLM",
+      "kurzbeschreibung": "Jeder angemeldete Nutzer des LiteLLM-Proxys konnte einen ausgehenden Aufruf an einen Modellanbieter auf ein Ziel seiner Wahl umlenken. Die Prüfung der Anfragen erfasste nicht alle sensiblen Parameter wie api_base, base_url, model_list, fallbacks und litellm_credential_name und übersah gleichwertige Werte in verschachtelten Feldern, Pfadwerten und Formulardaten. Der Proxy schickte dann die hinterlegten Zugangsdaten des Anbieters an dieses Ziel und stellte Anfragen an interne Dienste, die er erreicht.",
+      "warum_relevant": "Das Gateway ist der Ort, an dem die Schlüssel aller angebundenen Modellanbieter zusammenlaufen. Ein gewöhnliches Nutzerkonto genügt, um sie abzuziehen. Wie bei CVE-2026-93355 liegt die Lücke im Gateway, nicht im Modell.",
+      "owasp": [
+        "LLM02",
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "hinweis": "Das GitHub-Advisory erschien am 26.08.2026, der NVD-Eintrag am 02.09.2026; maßgeblich für Verzeichnis und Threat Index ist das NVD-Datum. Korrekturen gibt es laut Advisory für jeden Zweig von 1.88 bis 1.96.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-84377",
+      "quelle_hersteller": "https://github.com/BerriAI/litellm/security/advisories/GHSA-3cv6-jpf6-8222"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-85675-owl",
+      "id": "CVE-2026-85675",
+      "slug": "cve-2026-85675-owl",
+      "produkt": "OWL (CAMEL-AI)",
+      "produkt_art": "Multi-Agenten-Framework",
+      "veroeffentlicht": "2026-09-04",
+      "cvss": 7.5,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Server-Side Request Forgery über das Dokumentenwerkzeug von OWL",
+      "kurzbeschreibung": "Das Werkzeug extract_document_content im DocumentProcessingToolkit ruft übergebene URLs ohne Prüfung von Schema, Host oder IP-Adresse ab. Per Prompt Injection, etwa aus einer Webseite oder einem Suchergebnis, das der Agent liest, lässt sich der Server auf interne Dienste lenken; deren Antwort landet im Kontext des Agenten.",
+      "warum_relevant": "Dieselbe Klasse wie CVE-2026-112308 in crewai-tools: Das Modell bestimmt die Adresse, die ein Werkzeug abruft. Eine eingeschleuste Anweisung wird zum Zugriff auf das interne Netz, und die Antwort kommt bei dem Modell an, das sie weitergeben kann.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "Die NVD nennt weder betroffene Versionen noch eine Korrektur. Das Issue #615 vom 12.06.2026 ist am 06.11.2026 offen. CVSS 4.0 laut VulnCheck: 8.7.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-85675",
+      "quelle_hersteller": "https://github.com/camel-ai/owl/issues/615",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/owl-documentprocessingtoolkit-server-side-request-forgery-via-url-fetching"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-85694-lavague",
+      "id": "CVE-2026-85694",
+      "slug": "cve-2026-85694-lavague",
+      "produkt": "LaVague",
+      "produkt_art": "Framework für Web-Agenten",
+      "betroffene_versionen": "0.2.35",
+      "veroeffentlicht": "2026-09-04",
+      "cvss": 8.1,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-94"
+      ],
+      "titel_de": "Codeausführung in LaVague durch indirekte Prompt Injection aus Webseiten",
+      "kurzbeschreibung": "Die Funktion PythonFromMarkdownExtractor.extract_as_object übergibt die Antwort des Sprachmodells an eval(). Weil diese Antwort aus dem Inhalt der besuchten Webseite abgeleitet ist, kann eine präparierte Seite das Modell per indirekter Prompt Injection dazu bringen, Python-Code auszugeben, den LaVague ohne Prüfung auf dem Rechner des Betreibers ausführt.",
+      "warum_relevant": "Wie bei Agno (CVE-2026-37003) fließt eine Modellausgabe ungeprüft in eine ausführende Funktion. Bei einem Web-Agenten genügt dafür eine Webseite, die er im Auftrag besucht.",
+      "owasp": [
+        "LLM01",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm"
+      ],
+      "hinweis": "Eine Korrektur nennt die NVD nicht. Das Issue #650 vom 12.06.2026 ist am 06.11.2026 offen. CVSS 4.0 laut VulnCheck: 9.2.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-85694",
+      "quelle_hersteller": "https://github.com/lavague-ai/LaVague/issues/650",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/lavague-0.2.35-remote-code-execution-via-eval-extraction"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-53957-contentful-mcp-server",
+      "id": "CVE-2026-53957",
+      "slug": "cve-2026-53957-contentful-mcp-server",
+      "produkt": "Contentful MCP Server",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "@contentful/mcp-server vor 1.7.19, @contentful/mcp-tools vor 0.4.5",
+      "behoben_in": "@contentful/mcp-server 1.7.19, @contentful/mcp-tools 0.4.5",
+      "veroeffentlicht": "2026-09-15",
+      "cvss": 7.7,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Zugangstoken über Werkzeugargumente des Contentful MCP Servers umleitbar",
+      "kurzbeschreibung": "Sind die Migrationswerkzeuge freigeschaltet, reichen export_space und import_space die Netzwerkoptionen host, proxy, rawProxy und insecure aus den vom Modell gesetzten Werkzeugargumenten an den Client der Contentful Management API weiter, zusammen mit dem Zugangstoken des Servers. Per direktem MCP-Aufruf oder per Prompt Injection über präparierte Inhalte in Contentful lassen sich die Anfragen samt Authorization-Header an einen Host oder Proxy des Angreifers umlenken. Mit dem Token erhält er dauerhaft Zugriff auf alle Spaces in dessen Reichweite.",
+      "warum_relevant": "Ein Werkzeug, das dem Modell die Netzwerkoptionen überlässt, überlässt ihm auch, wohin der Schlüssel geht. Die übrigen Werkzeuge des Servers sind nicht betroffen, weil sie den Host aus der Serverkonfiguration festschreiben; genau diese Festlegung fehlte hier.",
+      "owasp": [
+        "LLM01",
+        "LLM02"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "Das GitHub-Advisory stammt vom 12.06.2026, der NVD-Eintrag vom 15.09.2026.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-53957",
+      "quelle_hersteller": "https://github.com/contentful/contentful-mcp-server/security/advisories/GHSA-2xhg-73j7-rrgx"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-59823-litellm",
+      "id": "CVE-2026-59823",
+      "slug": "cve-2026-59823-litellm",
+      "produkt": "LiteLLM",
+      "produkt_art": "KI-Gateway / Proxy",
+      "betroffene_versionen": "bis einschließlich 1.83.8",
+      "behoben_in": "1.83.9",
+      "veroeffentlicht": "2026-09-16",
+      "cvss": 5.3,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Server-Side Request Forgery über das Feld user_config in LiteLLM",
+      "kurzbeschreibung": "Die Prüffunktion is_request_body_safe sperrt api_base und base_url nur auf der obersten Ebene des Anfragekörpers. Ein angemeldeter Aufrufer mit gültigem virtuellem Schlüssel kann api_base in user_config verschachteln; weil user_config den ausgehenden Router aufbaut, schickt der Proxy die Anfrage an ein Ziel nach Wahl des Aufrufers und erreicht so Endpunkte, die diesem sonst verschlossen sind.",
+      "warum_relevant": "Dieselbe Klasse wie CVE-2026-84377: Eine Sperrliste prüft einzelne Felder statt der Ziele, die am Ende angesprochen werden. Wer einen Schlüssel für das Gateway hat, erreicht über den Proxy dessen Netz.",
+      "owasp": [
+        "LLM02",
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "hinweis": "Die NVD führt nur eine Wertung nach CVSS 4.0 (5.3, von GitHub); eine Wertung nach CVSS 3.1 fehlt. Die Korrektur 1.83.9 erschien laut Advisory am 17.04.2026, das Advisory am 26.08.2026, der NVD-Eintrag am 16.09.2026.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-59823",
+      "quelle_hersteller": "https://github.com/BerriAI/litellm/security/advisories/GHSA-hx8v-g79f-8w5f"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-54519-ai-agent-automation",
+      "id": "CVE-2026-54519",
+      "slug": "cve-2026-54519-ai-agent-automation",
+      "produkt": "AI Agent Automation",
+      "produkt_art": "Plattform für Agenten-Abläufe",
+      "betroffene_versionen": "vor 0.9.1",
+      "behoben_in": "0.9.1",
+      "veroeffentlicht": "2026-09-17",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-862"
+      ],
+      "titel_de": "Fremdes Agentengedächtnis lesen und löschen in AI Agent Automation",
+      "kurzbeschreibung": "Die Funktionen listMemories, deleteMemory und clearAgentMemory prüfen nur die Anmeldung, nicht aber, ob der angefragte Agent oder Gedächtniseintrag dem angemeldeten Nutzer gehört. Wer die Kennungen eines anderen Nutzers kennt oder beschafft, liest dessen Agentengedächtnis mit Gesprächsverlauf, Agentenkontext, Aufgabendaten und Embeddings, löscht einzelne Einträge oder leert das Gedächtnis eines fremden Agenten vollständig.",
+      "warum_relevant": "Wie bei Headroom (CVE-2026-77776) ist das Gedächtnis eines Agenten das Ziel: Es enthält Gesprächsverläufe und den Kontext, aus dem spätere Sitzungen schöpfen. Fehlt die Bindung an den Eigentümer, ist die Trennung der Mandanten aufgehoben.",
+      "owasp": [
+        "LLM02",
+        "LLM09"
+      ],
+      "verwandte_techniken": [],
+      "hinweis": "Das GitHub-Advisory und die Korrektur 0.9.1 stammen vom 05.06.2026, der NVD-Eintrag vom 17.09.2026.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-54519",
+      "quelle_hersteller": "https://github.com/vmDeshpande/ai-agent-automation/security/advisories/GHSA-qv97-83w4-ff86"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-97228-rapid7-bulk-export-mcp",
+      "id": "CVE-2026-97228",
+      "slug": "cve-2026-97228-rapid7-bulk-export-mcp",
+      "produkt": "Rapid7 Bulk Export MCP",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "0.2.5 bis 0.6.1",
+      "behoben_in": "0.6.2",
+      "veroeffentlicht": "2026-09-25",
+      "cvss": 2.7,
+      "schweregrad": "LOW",
+      "cwe": [
+        "CWE-943"
+      ],
+      "titel_de": "GraphQL-Injektion über ein Werkzeugargument im Rapid7 Bulk Export MCP",
+      "kurzbeschreibung": "Der Wert export_id, ein ungeprüftes Argument der Werkzeuge check_rapid7_export_status und download_rapid7_export, wird direkt in den Text einer GraphQL-Abfrage eingesetzt. Mit Anführungszeichen und Klammern lässt sich die vorgesehene Abfrage beenden und um eigene Abfragen ergänzen, etwa eine Schema-Introspektion, die mit dem API-Schlüssel des Betreibers an die Export-API von Rapid7 geht.",
+      "warum_relevant": "Für sich genommen gering: Jede eingeschleuste Abfrage bleibt im Berechtigungsrahmen des Betreibers. Die NVD-Beschreibung nennt aber indirekte Prompt Injection als einen der zwei realistischen Angriffswege. Ein Agent, der eine fremde Kennung ungeprüft an das Werkzeug weitergibt, stellt dann Abfragen, die der Betreiber nie vorgesehen hat.",
+      "owasp": [
+        "LLM01",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-97228",
+      "quelle_hersteller": "https://github.com/rapid7/rapid7-bulk-export-mcp/releases/tag/v0.6.2"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-102697-ollama",
+      "id": "CVE-2026-102697",
+      "slug": "cve-2026-102697-ollama",
+      "produkt": "Ollama",
+      "produkt_art": "Lokale Modelllaufzeit mit Agentenmodus",
+      "betroffene_versionen": "ab 0.14.0 bis vor 0.31.2",
+      "behoben_in": "0.31.2",
+      "veroeffentlicht": "2026-09-29",
+      "cvss": 7.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-863"
+      ],
+      "titel_de": "Freigabe für Shell-Befehle im experimentellen Agentenmodus von Ollama umgehbar",
+      "kurzbeschreibung": "Der experimentelle Agentenmodus von Ollama lässt Befehle im Bash-Werkzeug nach einer Freigabe für die Sitzung zu, wertet die Shell-Syntax dabei aber nicht richtig aus. Wer die Modellausgabe per Prompt Injection beeinflusst, hängt an einen freigegebenen Befehl mit Steuerzeichen wie Semikolon oder logischen Operatoren weitere Befehle an, die ohne erneute Freigabe laufen.",
+      "warum_relevant": "Wie bei CodeWhale (CVE-2026-75857) scheitert die menschliche Freigabe nicht am Menschen, sondern an ihrer Umsetzung: Freigegeben wird ein Befehlsanfang, ausgeführt wird die ganze Zeile.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "Die Korrektur 0.31.2 erschien am 06.07.2026, der NVD-Eintrag am 29.09.2026. CVSS 4.0 laut VulnCheck: 8.5.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-102697",
+      "quelle_hersteller": "https://github.com/ollama/ollama/releases/tag/v0.31.2",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/ollama-0.14.0-before-0.31.2-experimental-agent-bash-approval-bypass-via-prefix-based-authorization"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2025-71427-office-powerpoint-mcp",
+      "id": "CVE-2025-71427",
+      "slug": "cve-2025-71427-office-powerpoint-mcp",
+      "produkt": "Office-PowerPoint-MCP-Server",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "bis einschließlich 2.0.7",
+      "veroeffentlicht": "2026-10-01",
+      "cvss": 6.8,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-22"
+      ],
+      "titel_de": "Pfaddurchquerung im Office-PowerPoint-MCP-Server",
+      "kurzbeschreibung": "Der MCP-Server prüft die übergebenen Pfade nicht und erlaubt über absolute Pfade oder ../-Sequenzen das Lesen und Schreiben außerhalb des Arbeitsverzeichnisses. Wer einen Agenten per Prompt Injection steuert, lässt ihn über die Werkzeuge save_presentation, open_presentation oder den Ausgabepfad von manage_image beliebige beschreibbare Dateien überschreiben oder fremde Dateien laden.",
+      "warum_relevant": "Ein Werkzeug-Server, der Modellausgaben in Dateipfade umsetzt, ohne sie einzugrenzen: Die eingeschleuste Anweisung bestimmt, wohin geschrieben wird. Die NVD nennt Prompt Injection ausdrücklich als Angriffsweg.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "CVSS 6.8 (v3.1) und 7.6 (v4.0) von VulnCheck als vergebender Stelle. Die CVE trägt das Präfix 2025, wurde aber am 01.10.2026 veröffentlicht.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2025-71427",
+      "quelle_hersteller": "https://github.com/GongRzhe/Office-PowerPoint-MCP-Server/pull/33",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/office-powerpoint-mcp-server-through-2.0.7-path-traversal-via-save-presentation-and-manage-image"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-96561-ai-engine-wordpress",
+      "id": "CVE-2026-96561",
+      "slug": "cve-2026-96561-ai-engine-wordpress",
+      "produkt": "AI Engine (WordPress-Plugin)",
+      "produkt_art": "KI-Framework und Chatbot-Plugin für WordPress",
+      "betroffene_versionen": "bis einschließlich 3.8.0",
+      "veroeffentlicht": "2026-10-01",
+      "cvss": 7.2,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-79"
+      ],
+      "titel_de": "Gespeichertes Cross-Site Scripting über die ungeprüfte Antwort des Advisor-Modells in AI Engine",
+      "kurzbeschreibung": "Ein Aufruf des Chat-Endpunkts ohne Anmeldung schreibt eine präparierte Zeile in das PHP-Fehlerprotokoll. Die Advisor-Funktion des Plugins hängt diese Zeile unverändert an den Prompt des Modells, speichert dessen JSON-Antwort ohne Prüfung und setzt Titel und Beschreibung ohne Escaping in das Dashboard. Öffnet ein Administrator das Dashboard, läuft das eingeschleuste Skript in seiner Sitzung.",
+      "warum_relevant": "Die NVD führt den Zwischenschritt ausdrücklich als indirekte Prompt Injection (CWE-1427). Die Lücke entsteht, weil die Antwort eines Modells wie vertrauenswürdiger Inhalt behandelt und ungefiltert ausgegeben wird, also genau das Risiko, das OWASP als Improper Output Handling führt.",
+      "owasp": [
+        "LLM01",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection"
+      ],
+      "hinweis": "Die NVD verlinkt den Changeset von Version 3.8.0 auf 3.8.1 im WordPress-Plugin-Verzeichnis; eine korrigierte Version nennt sie nicht ausdrücklich. Gemeldet von whale120 (National Taiwan University) über Wordfence.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-96561",
+      "quelle_forschung": "https://www.wordfence.com/threat-intel/vulnerabilities/id/910e51da-6ee2-45d5-837b-7fea80f79390"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-105192-lmcache",
+      "id": "CVE-2026-105192",
+      "slug": "cve-2026-105192-lmcache",
+      "produkt": "LMCache",
+      "produkt_art": "Inferenz-Infrastruktur",
+      "betroffene_versionen": "v0.3.9 bis einschließlich v0.5.5 sowie die Release-Kandidaten von v0.5.6",
+      "veroeffentlicht": "2026-10-07",
+      "cvss": 9.8,
+      "schweregrad": "CRITICAL",
+      "cwe": [
+        "CWE-306",
+        "CWE-502"
+      ],
+      "titel_de": "Codeausführung ohne Anmeldung über die ZeroMQ-Transportschicht von LMCache",
+      "kurzbeschreibung": "Im Mehrprozessbetrieb (distributed mode) öffnet LMCache einen ZeroMQ-ROUTER ohne Authentifizierung, über den sich Arbeitsprozesse anmelden und KV-Cache-Blöcke austauschen. Die Nachrichten sind msgpack-codiert; der Erweiterungscode 1 reicht die Argumente an pickle.loads weiter, noch bevor der eigentliche Handler läuft. Eine einzelne unauthentifizierte Nachricht an den Transportport (Standard 5555) führt damit Code mit den Rechten des Dienstkontos aus; die offiziellen Container-Images betreiben den Prozess als root.",
+      "warum_relevant": "Kein Prompt-Injection-Fall, sondern eine Deserialisierungslücke in der Schicht, auf der Modelle laufen — wie bei LightLLM und TensorRT-LLM. Der Transport bindet nur dann an eine erreichbare Adresse, wenn der Betreiber für Mehrknoten-Setups --host setzt; gerade die verteilten Installationen, die den Cache zwischen Knoten teilen, sind also betroffen. OWASP führt die Inferenz-Infrastruktur als Teil der Lieferkette (LLM04).",
+      "owasp": [
+        "LLM04"
+      ],
+      "verwandte_techniken": [],
+      "behoben_in": "v0.5.6",
+      "hinweis": "CVSS 9.8 (v3.1) von JFrog als vergebender Stelle; die NVD führt den Eintrag im Status „Deferred“. Version v0.5.6 vom 14.10.2026 entfernt pickle.loads aus diesem Pfad.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-105192",
+      "quelle_hersteller": "https://github.com/LMCache/LMCache/security/advisories/GHSA-w5f2-9q9c-ff4h",
+      "quelle_forschung": "https://research.jfrog.com/vulnerabilities/lmcache-is-vulnerable-to-unauthenticated-remote-code-execution-via-pickle-deserialization-on-the-multiprocess-zmq-transport-cve-2026-105192-jfsa-2026-001694382/"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-108583-zotero-mcp",
+      "id": "CVE-2026-108583",
+      "slug": "cve-2026-108583-zotero-mcp",
+      "produkt": "zotero-mcp",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "0.10.0 bis einschließlich 0.14.1",
+      "veroeffentlicht": "2026-10-10",
+      "cvss": 4.2,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-918"
+      ],
+      "titel_de": "Server-Side Request Forgery im zotero-mcp über das Werkzeug zotero_add_by_url",
+      "kurzbeschreibung": "Die Funktion _fetch_embedded_metadata ruft URLs ohne Zielprüfung ab. Wer den Agenten per Prompt Injection dazu bringt, zotero_add_by_url aufzurufen, lenkt die Abrufe — direkt oder über Weiterleitungen — auf Loopback-, private oder Link-local-Adressen und liest dort Metadaten und Fehlermeldungen aus.",
+      "warum_relevant": "Dieselbe Klasse wie bei crewai-tools: Ein MCP-Server ruft eine vom Modell bestimmte URL ab, ohne interne Adressen auszuschließen. Die eingeschleuste Anweisung wird zum Zugriff auf interne Dienste.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "CVSS 4.2 (v3.1) und 2.3 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-108583",
+      "quelle_hersteller": "https://github.com/54yyyu/zotero-mcp/issues/326",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/zotero-mcp-0.10.0-through-0.14.1-ssrf-via-zotero-add-by-url-tool"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-108592-mini-swe-agent",
+      "id": "CVE-2026-108592",
+      "slug": "cve-2026-108592-mini-swe-agent",
+      "produkt": "mini-swe-agent",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "1.10.0 bis einschließlich 2.4.6",
+      "veroeffentlicht": "2026-10-10",
+      "cvss": 5.3,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-526"
+      ],
+      "titel_de": "Offenlegung von Umgebungsvariablen in der Bubblewrap-Sandbox von mini-swe-agent",
+      "kurzbeschreibung": "In der BubblewrapEnvironment fehlt der Aufruf --clearenv, sodass abgeschottete Befehle die Umgebung des Hosts erben. Wer über die verarbeitete Aufgabe eine Prompt Injection einschleust, lässt den Agenten API-Schlüssel aus der Umgebung lesen und über das gemeinsame Netz ausleiten.",
+      "warum_relevant": "Ein Coding-Agent, der fremde Aufgabeninhalte liest und zugleich die Host-Umgebung sieht, reicht Zugangsdaten nach außen, sobald die Isolation unvollständig ist. Die Lücke liegt in der Sandbox-Konfiguration, nicht im Modell.",
+      "owasp": [
+        "LLM01",
+        "LLM02"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "CVSS 5.3 (v3.1) und 6.0 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-108592",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/mini-swe-agent-1.10.0-through-2.4.6-environment-exposure-via-bubblewrapenvironment"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-108599-phi",
+      "id": "CVE-2026-108599",
+      "slug": "cve-2026-108599-phi",
+      "produkt": "phi",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "0.1.1 bis einschließlich 0.28.4",
+      "veroeffentlicht": "2026-10-10",
+      "cvss": 4.7,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-59"
+      ],
+      "titel_de": "Umgehung der Schreibbeschränkung in phi über Symlinks",
+      "kurzbeschreibung": "Die Rechteprüfung workspace_only_writes vergleicht nur Pfadzeichenketten. Ein bösartiges Repository legt einen Symlink an, der aus dem Arbeitsbereich hinausweist; per Prompt Injection schreibt das Werkzeug dann vom Angreifer beeinflussten Inhalt ohne Freigabe in fremde Dateien.",
+      "warum_relevant": "Die Schranke, die den Agenten im Arbeitsbereich halten soll, lässt sich mit einem Symlink aushebeln. Ein Coding-Agent, der nicht vertrauenswürdige Repositorys verarbeitet, schreibt damit außerhalb seines Sandkastens.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "CVSS 4.7 (v3.1) und 5.7 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-108599",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/phi-0.1.1-through-0.28.4-symlink-workspace-write-restriction-bypass"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-108600-open-multi-agent",
+      "id": "CVE-2026-108600",
+      "slug": "cve-2026-108600-open-multi-agent",
+      "produkt": "open-multi-agent",
+      "produkt_art": "Agenten-Laufzeitumgebung",
+      "betroffene_versionen": "@open-multi-agent/core 1.5.0 bis einschließlich 1.21.2",
+      "veroeffentlicht": "2026-10-10",
+      "cvss": 4.7,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-59"
+      ],
+      "titel_de": "Ausbruch aus der Sandbox von open-multi-agent über hängende Symlinks",
+      "kurzbeschreibung": "Das Werkzeug file_write lässt sich über einen hängenden Symlink im Arbeitsbereich dazu bringen, Dateien außerhalb der Arbeitswurzel anzulegen. Per Prompt Injection gesteuert, schreibt der Agent vom Angreifer beeinflussten Inhalt überall dorthin, wo sein Prozess schreiben darf.",
+      "warum_relevant": "Wie bei phi: Die Pfadprüfung des Schreibwerkzeugs erkennt einen präparierten Symlink nicht, und die eingeschleuste Anweisung lenkt den Schreibzugriff aus dem Arbeitsbereich heraus.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "hinweis": "CVSS 4.7 (v3.1) und 5.7 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-108600",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/open-multi-agent-1.5.0-through-1.21.2-sandbox-escape-via-file-write-dangling-symlink"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-108756-trinity",
+      "id": "CVE-2026-108756",
+      "slug": "cve-2026-108756-trinity",
+      "produkt": "Abilityai Trinity",
+      "produkt_art": "Agenten-Plattform",
+      "betroffene_versionen": "bis einschließlich 0.9.5",
+      "veroeffentlicht": "2026-10-11",
+      "cvss": 5.4,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-862"
+      ],
+      "titel_de": "Fehlende Autorisierung im Telegram-Router von Abilityai Trinity",
+      "kurzbeschreibung": "Im Telegram-Router dürfen agentengebundene MCP-API-Schlüssel Bindevorgänge ausführen, die nur dem Menschen vorbehalten sein sollten. Wer einen Agenten kontrolliert — typischerweise per Prompt Injection —, sendet über das Bot-Token des Besitzers Nachrichten, ersetzt die Bindung durch sein eigenes Token oder löscht sie.",
+      "warum_relevant": "Ein verwirrter Stellvertreter: Der Agent handelt mit den Rechten des Besitzers, weil die Trennung zwischen Agenten- und Menschenberechtigung fehlt. Eine eingeschleuste Anweisung übernimmt damit den Kanal.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "confused-deputy-agent"
+      ],
+      "hinweis": "CVSS 5.4 (v3.1) und 5.3 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-108756",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/abilityai-trinity-through-0.9.5-missing-authorization-in-telegram-binding-routes"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-84317-nginx-ui",
+      "id": "CVE-2026-84317",
+      "slug": "cve-2026-84317-nginx-ui",
+      "produkt": "Nginx UI",
+      "produkt_art": "Web-Oberfläche mit MCP-Server",
+      "betroffene_versionen": "vor 2.4.1",
+      "veroeffentlicht": "2026-10-12",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-20",
+        "CWE-693"
+      ],
+      "titel_de": "Umgehung der Direktiven-Prüfung im MCP-Werkzeug von Nginx UI",
+      "kurzbeschreibung": "Die Prüffunktion ValidateConfigFile blockiert gefährliche nginx-Direktiven (js_*, perl_*, das Laden der njs-/perl-Module, user root) auf drei von vier Schreibpfaden. Der vierte — das MCP-Werkzeug nginx_config_add — ruft sie nicht auf, sondern schreibt den übergebenen Inhalt direkt auf die Platte und lädt nginx neu. Ein angemeldeter MCP-Aufrufer oder ein per Prompt Injection verleiteter MCP-Agent schleust so genau die Direktiven ein, die die Prüfung verhindern soll, und führt auf Installationen mit verfügbarem njs-/perl-Modul Code aus.",
+      "warum_relevant": "Eine Sicherheitsprüfung, die auf einem von vier Wegen fehlt, hebt den Schutz auf. Über den MCP-Pfad genügt eine eingeschleuste Anweisung, um die geblockten Direktiven doch zu setzen — mit Codeausführung in nginx als Folge.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "behoben_in": "2.4.1",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-84317",
+      "quelle_hersteller": "https://github.com/0xJacky/nginx-ui/security/advisories/GHSA-76pm-mq2q-9gcr"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-110202-roo-code",
+      "id": "CVE-2026-110202",
+      "slug": "cve-2026-110202-roo-code",
+      "produkt": "Roo Code",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 3.54.0",
+      "veroeffentlicht": "2026-10-13",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-436"
+      ],
+      "titel_de": "Umgehung der Befehlsfreigabe in Roo Code über den Umleitungsoperator",
+      "kurzbeschreibung": "In getCommandDecision() lässt sich ein abgelehnter Shell-Befehl automatisch freigeben, indem man ihm eine bloße >&-Umleitung voranstellt. Per indirekter Prompt Injection bringt der Angreifer die Positivliste dazu, auf ein erlaubtes Umleitungsziel wie echo zu passen, während die Shell den abgelehnten Befehl auf dem Entwicklerrechner ausführt.",
+      "warum_relevant": "Eine von fünf parallel registrierten Lücken, mit denen sich die Autofreigabe des Coding-Agenten aushebeln lässt. Die Positivliste prüft die Befehlszeile anders, als die Shell sie ausführt; eine indirekte Prompt Injection nutzt diese Lücke, um abgelehnte Befehle auf dem Entwicklerrechner laufen zu lassen.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-110202",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-redirect-operator-stripping"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-110203-roo-code",
+      "id": "CVE-2026-110203",
+      "slug": "cve-2026-110203-roo-code",
+      "produkt": "Roo Code",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 3.54.0",
+      "veroeffentlicht": "2026-10-13",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-436"
+      ],
+      "titel_de": "Umgehung der Befehlsfreigabe in Roo Code über Anführungszeichen-Maskierung",
+      "kurzbeschreibung": "Eine Schwäche in parseCommandLine() beim Verdecken von Anführungszeichen erlaubt die Autofreigabe abgelehnter Befehle. Per indirekter Prompt Injection verstecken maskierte oder einfach gequotete doppelte Anführungszeichen die Befehlstrenner hinter erlaubten Präfixen wie echo, sodass Befehle ohne Nutzerfreigabe laufen.",
+      "warum_relevant": "Eine von fünf parallel registrierten Lücken, mit denen sich die Autofreigabe des Coding-Agenten aushebeln lässt. Die Positivliste prüft die Befehlszeile anders, als die Shell sie ausführt; eine indirekte Prompt Injection nutzt diese Lücke, um abgelehnte Befehle auf dem Entwicklerrechner laufen zu lassen.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-110203",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-quote-masking-desynchronization"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-110204-roo-code",
+      "id": "CVE-2026-110204",
+      "slug": "cve-2026-110204-roo-code",
+      "produkt": "Roo Code",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 3.54.0",
+      "veroeffentlicht": "2026-10-13",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-436"
+      ],
+      "titel_de": "Umgehung der Befehlsfreigabe in Roo Code über Funktions-Substitution",
+      "kurzbeschreibung": "parseCommandLine() behandelt ${ befehl; }-Substitutionen als Parametererweiterung. Per indirekter Prompt Injection bettet der Angreifer abgelehnte Befehle in einen erlaubten Befehl wie echo ein und führt sie auf bash 5.3+ oder ksh93 ohne Nutzerfreigabe aus.",
+      "warum_relevant": "Eine von fünf parallel registrierten Lücken, mit denen sich die Autofreigabe des Coding-Agenten aushebeln lässt. Die Positivliste prüft die Befehlszeile anders, als die Shell sie ausführt; eine indirekte Prompt Injection nutzt diese Lücke, um abgelehnte Befehle auf dem Entwicklerrechner laufen zu lassen.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-110204",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-funsub-command-substitution"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-110205-roo-code",
+      "id": "CVE-2026-110205",
+      "slug": "cve-2026-110205-roo-code",
+      "produkt": "Roo Code",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 3.54.0",
+      "veroeffentlicht": "2026-10-13",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-184"
+      ],
+      "titel_de": "Umgehung der Befehlsfreigabe in Roo Code über Glob-Zeichen",
+      "kurzbeschreibung": "parseCommandLine() verwirft Befehls-Substitutionen, die neben einem *- oder ?-Glob stehen. Per indirekter Prompt Injection bauen Befehle wie echo *$(...), die auf erlaubte Präfixe passen, abgelehnte Befehle aus, die bei eingeschalteter Autofreigabe ohne Zustimmung laufen.",
+      "warum_relevant": "Eine von fünf parallel registrierten Lücken, mit denen sich die Autofreigabe des Coding-Agenten aushebeln lässt. Die Positivliste prüft die Befehlszeile anders, als die Shell sie ausführt; eine indirekte Prompt Injection nutzt diese Lücke, um abgelehnte Befehle auf dem Entwicklerrechner laufen zu lassen.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-110205",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-glob-token-discarding-command-substitution"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-110206-roo-code",
+      "id": "CVE-2026-110206",
+      "slug": "cve-2026-110206-roo-code",
+      "produkt": "Roo Code",
+      "produkt_art": "Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 3.54.0",
+      "veroeffentlicht": "2026-10-13",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-436"
+      ],
+      "titel_de": "Umgehung der Befehlsfreigabe in Roo Code über Befehls-Substitution in Befehlsposition",
+      "kurzbeschreibung": "In parseCommandLine() lässt sich jeder Shell-Befehl autofreigeben, indem eine Befehls-Substitution in Befehlsposition steht. Per indirekter Prompt Injection passieren Eingaben wie $(echo touch /tmp/x) die echo-Positivliste, und die Shell führt die Ausgabe ohne Nutzerfreigabe aus.",
+      "warum_relevant": "Eine von fünf parallel registrierten Lücken, mit denen sich die Autofreigabe des Coding-Agenten aushebeln lässt. Die Positivliste prüft die Befehlszeile anders, als die Shell sie ausführt; eine indirekte Prompt Injection nutzt diese Lücke, um abgelehnte Befehle auf dem Entwicklerrechner laufen zu lassen.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-110206",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-command-substitution-at-command-position"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-76066-intentkit",
+      "id": "CVE-2026-76066",
+      "slug": "cve-2026-76066-intentkit",
+      "produkt": "IntentKit",
+      "produkt_art": "Agenten-Plattform",
+      "betroffene_versionen": "bis einschließlich 2.6.3",
+      "veroeffentlicht": "2026-10-15",
+      "cvss": 7.5,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-862"
+      ],
+      "titel_de": "Umgehung der Werkzeug-Autorisierung in IntentKit",
+      "kurzbeschreibung": "Der Executor prüft Werkzeugaufrufe gegen die vollständige Werkzeugliste statt gegen die pro Anfrage eingeschränkte Auswahl der ToolBindingMiddleware. Dadurch laufen besitzergebundene, zustandsändernde Werkzeuge — Wallet-Überweisung, Veröffentlichen, Gedächtnis-Schreiben, Agentenaufruf — ohne Freigabe. Ein öffentlicher Aufrufer im Web-, API-, Twitter- oder Telegram-Kontext nutzt das per indirekter Prompt Injection oder durch Wiedereinspielen von Checkpoint- und Verlaufsdaten.",
+      "warum_relevant": "Die pro Anfrage eingeschränkte Werkzeugauswahl wird nicht durchgesetzt; der Agent erreicht Werkzeuge, die nur dem Besitzer zustehen. Bei einem Agenten, der Gelder bewegen kann, wiegt das besonders schwer.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "confused-deputy-agent"
+      ],
+      "behoben_in": "Commit 5b91da5",
+      "hinweis": "CVSS 7.5 (v3.1) und 8.7 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066",
+      "quelle_hersteller": "https://github.com/crestalnetwork/intentkit/commit/5b91da5734d1ac16cd656fa66a86caf8f15cd671",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/intentkit-executor-tool-authorization-bypass-via-toolnode"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-95183-deepseek-harness",
+      "id": "CVE-2026-95183",
+      "slug": "cve-2026-95183-deepseek-harness",
+      "produkt": "DeepSeek Harness (dsh)",
+      "produkt_art": "Coding-Agent (Entwicklervorschau)",
+      "betroffene_versionen": "Entwicklervorschau, geprüft bis Commit c291e796",
+      "veroeffentlicht": "2026-10-16",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-94"
+      ],
+      "titel_de": "Fortbestand einer Prompt Injection über die Kontext-Verdichtung von DeepSeek Harness",
+      "kurzbeschreibung": "Die Kontext-Verdichtung ersetzt den Gesprächsverlauf durch eine vom Modell erzeugte Zusammenfassung, die zum gesamten Kontext der fortgesetzten Sitzung wird. Da die Verdichtungsanweisung das Modell zum wörtlichen Übernehmen von Auftrag und offenen Aufgaben anhält und nicht vertrauenswürdige Werkzeugausgaben keine Herkunftsmarkierung tragen, überdauern in fremde Inhalte eingebettete Anweisungen die Verdichtung und werden in der fortgesetzten Sitzung als feststehender Auftrag übernommen.",
+      "warum_relevant": "Ein Beispiel für dauerhafte, gespeicherte Prompt Injection: Die Anweisung übersteht die Verdichtungsgrenze und bleibt über Sitzungen hinweg erhalten. In der Prüfung verweigerte das fortgesetzte Modell die Ausführung — ein wahrscheinlichkeitsbasierter Schutz auf Modellebene, nicht erzwungen; die Nutzlast selbst blieb deterministisch bestehen.",
+      "owasp": [
+        "LLM01",
+        "LLM08"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "gespeicherte-prompt-injection"
+      ],
+      "hinweis": "CVSS 8.8 (v3.1) von MITRE als vergebender Stelle. Das Produkt ist eine Entwicklervorschau; eine Versionsangabe nennt die NVD nicht.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-95183",
+      "quelle_forschung": "https://gist.github.com/lkloliver/c54c0cc91e1ec4f16b538e0d8a1411b6"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-109440-langalpha",
+      "id": "CVE-2026-109440",
+      "slug": "cve-2026-109440-langalpha",
+      "produkt": "LangAlpha",
+      "produkt_art": "Finanz-Coding-Agent",
+      "betroffene_versionen": "bis einschließlich 2026.09.07",
+      "veroeffentlicht": "2026-10-20",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [],
+      "titel_de": "Codeausführung in LangAlpha über indirekte Prompt Injection",
+      "kurzbeschreibung": "Ein entfernter Angreifer führt Shell-Befehle oder Python aus, indem er Anweisungen in Webinhalte einbettet, die der Agent abruft. Weil die Werkzeuge Bash und ExecuteCode weder eine Positivliste noch eine menschliche Freigabe kennen, läuft der Code in der Arbeits-Sandbox und liest Vault-Geheimnisse aus _internal/.vault_secrets.json aus.",
+      "warum_relevant": "Der Lehrbuchfall: Eine indirekte Prompt Injection wird zur Codeausführung, weil der Agent ungeprüft Befehle ausführen darf. Bei einem Agenten für Finanzmärkte sind die ausgelesenen Geheimnisse besonders heikel.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm"
+      ],
+      "hinweis": "CVSS 8.8 (v3.1, Primary) und 8.7 (v4.0) von VulnCheck. Die NVD führt keine CWE.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-109440",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/langalpha-through-2026.09.07-indirect-prompt-injection-rce-via-bash-and-executecode"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-114107-vibe-trading",
+      "id": "CVE-2026-114107",
+      "slug": "cve-2026-114107-vibe-trading",
+      "produkt": "Vibe-Trading",
+      "produkt_art": "Handels-Agent",
+      "betroffene_versionen": "0.1.0 bis vor 0.1.7",
+      "veroeffentlicht": "2026-10-21",
+      "cvss": 8.8,
+      "schweregrad": "HIGH",
+      "cwe": [],
+      "titel_de": "Codeausführung als root in HKUDS Vibe-Trading über indirekte Prompt Injection",
+      "kurzbeschreibung": "Ein entfernter Angreifer führt Shell-Befehle als root aus, indem er Anweisungen in Dokumente oder Webseiten einbettet, die der Agent verarbeitet. BashTool und BackgroundRunTool reichen vom Modell erzeugte Befehle mit shell=True ohne Positivliste und ohne Freigabe an subprocess.run; read_url ruft beliebige URLs ab und ermöglicht zusätzlich Server-Side Request Forgery.",
+      "warum_relevant": "Derselbe Fehler wie bei LangAlpha, nur mit root-Rechten: Der Handels-Agent führt Modellbefehle ungeprüft aus, und eine eingeschleuste Anweisung übernimmt den Server.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm"
+      ],
+      "behoben_in": "0.1.7",
+      "hinweis": "CVSS 8.8 (v3.1) und 8.7 (v4.0) von VulnCheck. Die NVD führt keine CWE.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-114107",
+      "quelle_hersteller": "https://github.com/HKUDS/Vibe-Trading/security/advisories/GHSA-jqmf-mx4f-hfr6",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/hkuds-vibe-trading-0.1.0-before-0.1.7-indirect-prompt-injection-rce-via-bashtool-and-backgroundruntool"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-117567-esp-mcp",
+      "id": "CVE-2026-117567",
+      "slug": "cve-2026-117567-esp-mcp",
+      "produkt": "esp-mcp",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "bis einschließlich Commit 28afddf",
+      "veroeffentlicht": "2026-10-27",
+      "cvss": 7.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-78"
+      ],
+      "titel_de": "OS-Befehlsinjektion im esp-mcp über MCP-Werkzeugparameter",
+      "kurzbeschreibung": "Shell-Metazeichen in den MCP-Werkzeugparametern target, port, project_path oder project_name gelangen über asyncio.create_subprocess_shell zur Ausführung. Wer die Werkzeugaufrufe des Agenten per Prompt Injection beeinflusst, schleust Metazeichen ein und führt Befehle mit den Rechten des MCP-Server-Kontos aus.",
+      "warum_relevant": "Ein MCP-Server reicht vom Modell bestimmte Parameter ungeprüft in eine Shell. Die eingeschleuste Anweisung bestimmt den Parameter und damit den ausgeführten Befehl.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm"
+      ],
+      "hinweis": "CVSS 7.8 (v3.1) und 8.5 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-117567",
+      "quelle_hersteller": "https://github.com/horw/esp-mcp/issues/49",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/esp-mcp-through-commit-28afddf-os-command-injection-via-mcp-tool-parameters"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-59176-functype",
+      "id": "CVE-2026-59176",
+      "slug": "cve-2026-59176-functype",
+      "produkt": "Functype (functype-mcp-server)",
+      "produkt_art": "MCP-Server",
+      "betroffene_versionen": "vor 1.4.4",
+      "veroeffentlicht": "2026-10-28",
+      "cvss": 7.8,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-829"
+      ],
+      "titel_de": "Installation beliebiger Pakete im functype-mcp-server mit Codeausführung",
+      "kurzbeschreibung": "Das MCP-Werkzeug set_functype_version prüft die Versionszeichenkette nur mit z.string() und setzt sie in functype@<version> für pnpm add ein. Alias-Formen wie file:, npm:, URLs oder Pfade installieren ein beliebiges Paket als functype; der anschließende dynamische Import führt den Code mit den Rechten des MCP-Server-Prozesses aus. Das Werkzeug ist im stdio-Modus ohne Authentifizierung aktiv, und ein für indirekte Prompt Injection anfälliger Assistent lässt sich zum Aufruf verleiten.",
+      "warum_relevant": "Eine Lieferketten-Lücke über ein MCP-Werkzeug: Die unbeschränkte Versionsangabe wird zur Paketinstallation und damit zur Codeausführung. Eine eingeschleuste Anweisung genügt als Auslöser.",
+      "owasp": [
+        "LLM01",
+        "LLM04"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-poisoning-mcp"
+      ],
+      "behoben_in": "1.4.4",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-59176",
+      "quelle_hersteller": "https://github.com/jordanburke/functype/security/advisories/GHSA-wcjj-9m6g-2fr2"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-119050-agno",
+      "id": "CVE-2026-119050",
+      "slug": "cve-2026-119050-agno",
+      "produkt": "Agno",
+      "produkt_art": "Agenten-Framework",
+      "betroffene_versionen": "bis einschließlich 3.1.11",
+      "veroeffentlicht": "2026-10-29",
+      "cvss": 8.1,
+      "schweregrad": "HIGH",
+      "cwe": [
+        "CWE-470"
+      ],
+      "titel_de": "Codeausführung in den PandasTools von Agno über unsichere Reflexion",
+      "kurzbeschreibung": "Die PandasTools reichen vom Modell bestimmte Funktionsnamen an getattr() weiter und rufen so beliebige pandas-Funktionen auf. Per Prompt Injection lässt sich der Agent zu pandas.read_pickle auf einen vom Angreifer kontrollierten Pfad bewegen (Codeausführung) oder zu anderen Lesefunktionen, die lokale Dateien öffnen.",
+      "warum_relevant": "Zweite Agno-Lücke nach CVE-2026-37003: Erneut fließt eine Modellausgabe ungeprüft in eine ausführende Funktion. Der Aufruf von read_pickle macht aus einer Injektion eine Codeausführung.",
+      "owasp": [
+        "LLM01",
+        "LLM10"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "code-injection-via-llm"
+      ],
+      "hinweis": "CVSS 8.1 (v3.1) und 9.2 (v4.0) von VulnCheck als vergebender Stelle.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-119050",
+      "quelle_hersteller": "https://github.com/agno-agi/agno/issues/8699",
+      "quelle_forschung": "https://www.vulncheck.com/advisories/agno-through-3.1.11-code-execution-via-pandastools-unsafe-reflection"
+    },
+    {
+      "url": "https://promptinjections.de/cve-verzeichnis/#cve-2026-61789-dbhub",
+      "id": "CVE-2026-61789",
+      "slug": "cve-2026-61789-dbhub",
+      "produkt": "DBHub",
+      "produkt_art": "Datenbank-MCP-Server",
+      "betroffene_versionen": "vor 0.22.6",
+      "veroeffentlicht": "2026-10-30",
+      "cvss": 6.1,
+      "schweregrad": "MEDIUM",
+      "cwe": [
+        "CWE-436",
+        "CWE-863"
+      ],
+      "titel_de": "Umgehung des Nur-Lese-Modus im DBHub-MCP-Server bei MySQL und MariaDB",
+      "kurzbeschreibung": "Die Nur-Lese-Prüfung behandelt jeden doppelten Bindestrich als Kommentaranfang, während MySQL und MariaDB dafür ein Leerzeichen, ein Steuerzeichen oder das Zeilenende verlangen. Weil die Konnektoren die ursprüngliche Zeichenkette mit aktiviertem multipleStatements ausführen, verbirgt ein doppelter Bindestrich mit folgendem Nicht-Leerzeichen eine nachgestellte Schreib- oder DDL-Anweisung vor der Prüfung. Wer die SQL des Assistenten beeinflusst — auch per Prompt Injection in gelesenen Inhalten —, umgeht den Nur-Lese-Modus. PostgreSQL ist nicht betroffen.",
+      "warum_relevant": "Der Nur-Lese-Schutz, der einen gekaperten Datenbank-Agenten einhegen soll, lässt sich bei MySQL und MariaDB durch eine Zerlegungs-Diskrepanz aushebeln. Eine eingeschleuste Anweisung ändert oder löscht dann Daten im Rahmen der Rechte des Datenbankkontos.",
+      "owasp": [
+        "LLM01",
+        "LLM03"
+      ],
+      "verwandte_techniken": [
+        "indirekte-prompt-injection",
+        "tool-missbrauch"
+      ],
+      "behoben_in": "0.22.6",
+      "hinweis": "Die NVD führt nur einen CVSS-v4.0-Wert (6.1) von GitHub als vergebender Stelle; ein v3.1-Wert fehlt.",
+      "quelle_nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-61789",
+      "quelle_hersteller": "https://github.com/bytebase/dbhub/security/advisories/GHSA-j656-3hf2-fvjc"
     }
   ]
 }

@@ -2,10 +2,10 @@
   "meta": {
     "titel": "Prompt Injection Threat Index",
     "title_en": "Prompt injection threat index, monthly issues",
-    "version": "2.1.0",
-    "stand": "2026-09-05",
+    "version": "2.2.0",
+    "stand": "2026-11-06",
     "sprache": "de",
-    "anzahl": 1,
+    "anzahl": 3,
     "herausgeber": "Gökhan Köse, koeseo",
     "quelle": "https://promptinjections.de/",
     "lizenz": "CC-BY-4.0",
@@ -634,6 +634,2491 @@
           "Ereignisse außerhalb des Berichtsmonats, die im August erneut zirkulierten (Word-Wurm vom 29.07., OWASP-Leitfaden für MCP-Server vom Februar, OWASP Agentic Top 10 vom Dezember 2025, LiteLLM-Kompromittierung vom März)",
           "Meldungen, für die keine Primärquelle auffindbar oder erreichbar war",
           "Meinungsbeiträge und Herstellertexte ohne neue Daten"
+        ]
+      }
+    },
+    {
+      "monat": "2026-09",
+      "titel": "Prompt Injection Threat Index — September 2026",
+      "url": "https://promptinjections.de/threat-index/2026-09/",
+      "zeitraum": {
+        "von": "2026-09-01",
+        "bis": "2026-09-30"
+      },
+      "stand": "2026-11-06",
+      "summe": {
+        "eintraege": 37,
+        "cve": 13,
+        "cve_kritisch": 2,
+        "vorfall": 2,
+        "forschung": 16,
+        "standard": 4,
+        "hersteller": 2
+      },
+      "bereiche": [
+        {
+          "id": "agenten-frameworks",
+          "name": "Agenten-Frameworks und Werkzeug-Server",
+          "url": "https://promptinjections.de/angriffsvektoren/agenten/",
+          "eintraege": 6,
+          "cves": 4,
+          "vorfaelle": 0,
+          "forschung": 2,
+          "standards": 0,
+          "max_cvss": 8.3,
+          "einordnung": "Sechs Einträge, darunter vier registrierte Schwachstellen; drei davon stecken in Werkzeugen, deren Argumente das Modell setzt: Ein Dokumentenwerkzeug ruft beliebige Adressen ab, ein MCP-Server schickt sein Zugangstoken an einen fremden Host, ein anderer setzt eine Kennung ungeprüft in eine Abfrage ein. GTIG zählt für 2026 bis August 782 Meldungen zu Orchestrierungs- und Agenten-Frameworks."
+        },
+        {
+          "id": "browser-lokal",
+          "name": "Browser-Agenten und lokale Agenten",
+          "url": "https://promptinjections.de/angriffsvektoren/web/",
+          "eintraege": 3,
+          "cves": 2,
+          "vorfaelle": 0,
+          "forschung": 1,
+          "standards": 0,
+          "max_cvss": 8.1,
+          "einordnung": "Drei Einträge. BragJack greift eingebaute Browser-Agenten über eine gewöhnliche Erweiterung an, LaVague führt Code aus, den eine besuchte Webseite dem Modell eingibt, und im Agentenmodus von Ollama gilt die Freigabe eines Befehls auch für alles, was dahinter angehängt wird."
+        },
+        {
+          "id": "produktiv-assistenten",
+          "name": "Assistenten im Produktivsystem (E-Mail, Office)",
+          "url": "https://promptinjections.de/angriffsvektoren/email/",
+          "eintraege": 3,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 3,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Drei Einträge mit demselben Muster: Was ein Assistent liest, bestimmt, was er tut oder berichtet. Bei Forcepoint genügt ein gefälschter Kopfblock ohne jede Anweisung, bei Check Point eine versteckte Aufgabe, deren Ergebnis über einen gemeinsam erreichbaren Dienst zum Angreifer läuft."
+        },
+        {
+          "id": "coding-agenten",
+          "name": "Coding-Agenten",
+          "url": "https://promptinjections.de/angriffsvektoren/tool-use/",
+          "eintraege": 2,
+          "cves": 1,
+          "vorfaelle": 0,
+          "forschung": 1,
+          "standards": 0,
+          "max_cvss": 8.8,
+          "einordnung": "Zwei Einträge zur selben Klasse: GitSpawn zeigt, dass Coding-Agenten Git-Befehle ausführen, deren Verhalten das Repository bestimmt, bevor Modell oder Nutzer etwas entscheiden; die Lücke in Hermes Agent ist ein registrierter Fall davon. Die Grenze muss das Harness ziehen, nicht das Modell."
+        },
+        {
+          "id": "proxy-memory",
+          "name": "LLM-Proxys und Gedächtnis",
+          "url": "https://promptinjections.de/arten/gespeicherte-prompt-injection/",
+          "eintraege": 8,
+          "cves": 6,
+          "vorfaelle": 1,
+          "forschung": 1,
+          "standards": 0,
+          "max_cvss": 9.8,
+          "einordnung": "Acht Einträge statt einem im August, fünf davon zu LiteLLM. CISA belegt die Ausnutzung von CVE-2026-59822, Wiz findet fast jede zehnte öffentliche Instanz mit Standardschlüssel oder ohne Anmeldung, und die beiden kritischen Lücken des Monats (CVSS 9,8) liegen in LightLLM. Keiner dieser Einträge setzt Prompt Injection voraus; der Bereich zählt die Infrastruktur, in der Schlüssel und Gesprächsdaten zusammenlaufen."
+        },
+        {
+          "id": "evaluation",
+          "name": "Autonome Modelle in Evaluationsumgebungen",
+          "url": "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+          "eintraege": 4,
+          "cves": 0,
+          "vorfaelle": 1,
+          "forschung": 3,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Vier Einträge, drei davon von OpenAI: ein Rahmen für die Offenlegung von Fehlverhalten, Prompt Injections mit Wurmverhalten aus dem eigenen Red-Team-Training und der unerlaubte Zugriff eines internen Modells auf australische Behördensysteme. AgentLSD zeigt, dass Köder in der Aufgabenumgebung Sicherheits-Agenten ablenken."
+        },
+        {
+          "id": "dokumente-rag",
+          "name": "Dokumente und RAG",
+          "url": "https://promptinjections.de/angriffsvektoren/rag/",
+          "eintraege": 0,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 0,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Kein Eintrag im September, nach zwei im August."
+        },
+        {
+          "id": "abwehr",
+          "name": "Abwehr und Architektur",
+          "url": "https://promptinjections.de/schutz/",
+          "eintraege": 11,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 9,
+          "standards": 2,
+          "max_cvss": null,
+          "einordnung": "Elf Einträge statt drei im August, der dichteste Bereich des Monats. Mehrere Arbeiten setzen unterhalb des Prompts an: an den Steuer-Token des Tokenizers, an den Aktivierungen im Modell, an einer Autorisierungsschicht außerhalb des Modells. PuzzleMask, ClaimMirage und die Messung an Jev zeigen zugleich, wie leicht sich vorgeschaltete Prüfmodelle beeinflussen lassen."
+        },
+        {
+          "id": "standards",
+          "name": "Standards und Leitlinien",
+          "url": "https://promptinjections.de/owasp-llm-top-10/",
+          "eintraege": 4,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 0,
+          "standards": 4,
+          "max_cvss": null,
+          "einordnung": "Vier Einträge: Der Cyber Resilience Act verpflichtet seit dem 11.09. zur Meldung aktiv ausgenutzter Schwachstellen, OWASP übernimmt einen Standard für Laufzeitkontrollen von Agenten, das ASD legt Leitlinien für Agenten-Harnesses vor, und der ENISA-Lagebericht nennt indirekte Prompt Injection."
+        }
+      ],
+      "eintraege": [
+        {
+          "id": "2026-09-gitspawn",
+          "datum": "2026-09-01",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "GitSpawn: Git-Befehle im Hintergrund führen fremden Code in Coding-Agenten aus",
+          "was": "Manifold Security zeigt, dass Coding-Agenten zur Kontexterfassung Git-Befehle im Hintergrund ausführen, teils bevor der Nutzer etwas eingibt und vor der Vertrauensabfrage für den Arbeitsordner. Was diese Befehle ausführen, bestimmt das Repository. Acht Befunde in sieben Agenten, vier davon bei Veröffentlichung nicht behoben.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Manifold Security: GitSpawn (01.09.2026)",
+              "url": "https://www.manifold.security/blog/ai-coding-agents-git-hijack"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/tool-use/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-09-owasp-agent-control-standard",
+          "datum": "2026-09-02",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "OWASP GenAI Security Project übernimmt den Agent Control Standard",
+          "was": "Das OWASP GenAI Security Project nimmt den ihm gespendeten Agent Control Standard (ACS) auf. Er ergänzt die bestehenden Leitfäden zu Risiken, Identität, Governance und Tests von Agenten um die Durchsetzung von Kontrollen zur Laufzeit.",
+          "bereiche": [
+            "standards",
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "OWASP GenAI Security Project: Pressemitteilung (02.09.2026)",
+              "url": "https://genai.owasp.org/2026/09/01/owasp-genai-security-project-unveils-2026-top-10-for-llm-applications-new-agent-control-standard-and-sponsors-as-community-tops-30000-members/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-09-cisa-kev-litellm",
+          "datum": "2026-09-02",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "CISA nimmt die LiteLLM-Lücke CVE-2026-59822 in den Katalog ausgenutzter Schwachstellen auf",
+          "was": "Die US-Behörde CISA führt die Umgehung der Anmeldung am MCP-Endpunkt von LiteLLM seit dem 02.09.2026 im Katalog Known Exploited Vulnerabilities, die Frist zur Behebung endete am 16.09. Aufgenommen werden dort nur Schwachstellen mit belegter Ausnutzung. Registriert ist die Lücke seit dem 08.07.2026.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "CISA: Known Exploited Vulnerabilities Catalog",
+              "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+            },
+            {
+              "titel": "CISA: KEV-Datenfeed, Eintrag CVE-2026-59822 (dateAdded 2026-09-02)",
+              "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/",
+            "https://promptinjections.de/schutz/least-privilege/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-84377",
+          "datum": "2026-09-02",
+          "typ": "cve",
+          "cve": "CVE-2026-84377",
+          "cvss": 6.5,
+          "titel": "CVE-2026-84377: Umleitung von Anbieteraufrufen und Abfluss der Anbieter-Schlüssel in LiteLLM",
+          "was": "Jeder angemeldete Nutzer des LiteLLM-Proxys konnte einen ausgehenden Aufruf an einen Modellanbieter auf ein Ziel seiner Wahl umlenken. Die Prüfung der Anfragen erfasste nicht alle sensiblen Parameter wie api_base, base_url, model_list, fallbacks und litellm_credential_name und übersah gleichwertige Werte in verschachtelten Feldern, Pfadwerten und Formulardaten. Der Proxy schickte dann die hinterlegten Zugangsdaten des Anbieters an dieses Ziel und stellte Anfragen an interne Dienste, die er erreicht.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-84377",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84377"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/BerriAI/litellm/security/advisories/GHSA-3cv6-jpf6-8222"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-84377-litellm"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-71963",
+          "datum": "2026-09-03",
+          "typ": "cve",
+          "cve": "CVE-2026-71963",
+          "cvss": 8.8,
+          "titel": "CVE-2026-71963: Befehlsausführung über eine präparierte .git/config in Hermes Agent",
+          "was": "Ein Repository mit einer .git/config, die core.fsmonitor auf einen Angreiferbefehl setzt, bringt Hermes Agent zur Ausführung dieses Befehls. Sobald der Nutzer den Ordner öffnet und eine beliebige Nachricht sendet, ruft der Agent git status auf; die Index-Aktualisierung startet den Befehl im Prozesskontext des Nutzers, mit Zugriff auf die gesamte Umgebung einschließlich der hinterlegten API-Schlüssel.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-71963",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-71963"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/NousResearch/hermes-agent/commit/f6234d00c5d59450adea1d7edd30ad3859375c79"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.manifold.security/blog/ai-coding-agents-git-hijack"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-71963-hermes-agent",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-85675",
+          "datum": "2026-09-04",
+          "typ": "cve",
+          "cve": "CVE-2026-85675",
+          "cvss": 7.5,
+          "titel": "CVE-2026-85675: Server-Side Request Forgery über das Dokumentenwerkzeug von OWL",
+          "was": "Das Werkzeug extract_document_content im DocumentProcessingToolkit ruft übergebene URLs ohne Prüfung von Schema, Host oder IP-Adresse ab. Per Prompt Injection, etwa aus einer Webseite oder einem Suchergebnis, das der Agent liest, lässt sich der Server auf interne Dienste lenken; deren Antwort landet im Kontext des Agenten.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-85675",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85675"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/camel-ai/owl/issues/615"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/owl-documentprocessingtoolkit-server-side-request-forgery-via-url-fetching"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-85675-owl",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-85694",
+          "datum": "2026-09-04",
+          "typ": "cve",
+          "cve": "CVE-2026-85694",
+          "cvss": 8.1,
+          "titel": "CVE-2026-85694: Codeausführung in LaVague durch indirekte Prompt Injection aus Webseiten",
+          "was": "Die Funktion PythonFromMarkdownExtractor.extract_as_object übergibt die Antwort des Sprachmodells an eval(). Weil diese Antwort aus dem Inhalt der besuchten Webseite abgeleitet ist, kann eine präparierte Seite das Modell per indirekter Prompt Injection dazu bringen, Python-Code auszugeben, den LaVague ohne Prüfung auf dem Rechner des Betreibers ausführt.",
+          "bereiche": [
+            "browser-lokal"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-85694",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85694"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/lavague-ai/LaVague/issues/650"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/lavague-0.2.35-remote-code-execution-via-eval-extraction"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-85694-lavague",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/code-injection-via-llm/"
+          ]
+        },
+        {
+          "id": "2026-09-checkpoint-chatgpt-sandbox",
+          "datum": "2026-09-08",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Check Point: verdeckter Kanal zwischen den Sandboxes verschiedener ChatGPT-Konten",
+          "was": "Check Point Research ließ die Sitzung eines Opfers versteckte Aufgaben mit dessen Werkzeugen, Daten und verbundenen Apps ausführen; das Ergebnis lief über einen internen Paketdienst, den die Code-Umgebungen verschiedener Konten gemeinsam erreichten, zum Konto des Angreifers. Die Anweisung kam über einen präparierten Prompt, eine geteilte Unterhaltung oder ein Custom GPT, im Versuch las ChatGPT E-Mails aus dem verbundenen Gmail-Konto aus. OpenAI bestätigte, dass der interne Dienst stillgelegt ist.",
+          "bereiche": [
+            "produktiv-assistenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Check Point Research: The Shared Clipboard Inside the Sandbox (08.09.2026)",
+              "url": "https://research.checkpoint.com/2026/the-shared-clipboard-inside-the-sandbox-cross-account-data-leakage-in-chatgpt/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/schutz/toedliche-trias/"
+          ]
+        },
+        {
+          "id": "2026-09-wiz-litellm",
+          "datum": "2026-09-09",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Wiz: fast jede zehnte öffentlich erreichbare LiteLLM-Instanz mit Standardschlüssel oder ohne Anmeldung",
+          "was": "Von 3.074 im Februar 2026 gefundenen öffentlichen LiteLLM-Proxys akzeptierten 294 (9,6 %) den Standard-Master-Key, 191 davon (6,2 %) verlangten gar keine Anmeldung. Wiz verbindet das mit CVE-2026-59822 und CVE-2026-59821 zu einer Kette bis zur Codeausführung als root und beobachtete die Ausnutzung von CVE-2026-59822 in eigenen Honeypots.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "Wiz: Breaking LiteLLM (09.09.2026)",
+              "url": "https://www.wiz.io/blog/off-guard-breaking-litellm-from-authentication-bypass-to-cloud-compromise"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/",
+            "https://promptinjections.de/schutz/least-privilege/"
+          ]
+        },
+        {
+          "id": "2026-09-puzzlemask",
+          "datum": "2026-09-10",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Check Point PuzzleMask: Prompt Injection in unauffälligem Fließtext",
+          "was": "Check Point beschreibt eine Technik, die eine regelwidrige Anweisung in flüssigen, korrekt gesetzten Fließtext einbettet, ohne Kodierung, unsichtbare Zeichen oder Emojis. Sie zielt auf die verbreitete Architektur, in der ein schnelles, günstiges Modell Eingaben prüft, bevor ein leistungsfähigeres Modell mit Werkzeugzugriff sie verarbeitet, und nutzt den Unterschied zwischen beiden aus.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "Check Point Blog: PuzzleMask (10.09.2026)",
+              "url": "https://blog.checkpoint.com/security/puzzlemask-the-prompt-injection-hiding-in-plain-sight/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/erkennung/",
+            "https://promptinjections.de/schutz/guardrails/"
+          ]
+        },
+        {
+          "id": "2026-09-cra-meldepflichten",
+          "datum": "2026-09-11",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "Cyber Resilience Act: Meldepflichten gelten, Meldeplattform der ENISA in Betrieb",
+          "was": "Seit dem 11.09.2026 müssen Hersteller von Produkten mit digitalen Elementen aktiv ausgenutzte Schwachstellen und schwere Sicherheitsvorfälle nach Art. 14 CRA melden; am selben Tag nahm die Single Reporting Platform der ENISA den Betrieb auf. Für Verwalter quelloffener Software gelten die Pflichten nach Art. 24 Abs. 3 ab dem 11.12.2027.",
+          "bereiche": [
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "ENISA: CRA Single Reporting Platform, häufige Fragen",
+              "url": "https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp/frequently-asked-questions"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/unternehmen/"
+          ]
+        },
+        {
+          "id": "2026-09-asd-agentic-ai-harnesses",
+          "datum": "2026-09-11",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "ASD: Leitlinien für Agenten-Harnesses",
+          "was": "Das Australian Signals Directorate veröffentlicht Leitlinien zu „Agentic AI harnesses“, der Softwareschicht, die Sprachmodelle mit Daten, Werkzeugen und Systemen einer Organisation verbindet.",
+          "bereiche": [
+            "standards",
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "ASD: ASD releases new guidance on the agentic AI harnesses (11.09.2026)",
+              "url": "https://www.cyber.gov.au/news/asd-releases-new-guidance-on-the-agentic-ai-harnesses"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/agenten-absichern/",
+            "https://promptinjections.de/schutz/least-privilege/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-91935",
+          "datum": "2026-09-15",
+          "typ": "cve",
+          "cve": "CVE-2026-91935",
+          "cvss": 8.3,
+          "titel": "CVE-2026-91935: Server-Side Request Forgery und Abfluss von Anbieter-Schlüsseln in Flowise",
+          "was": "Acht Chat-Modell-Knoten übernahmen eine frei wählbare Basis-URL des Modellanbieters ungeprüft und umgingen damit Flowises eigenen SSRF-Schutz. Wer Abläufe anlegen oder ändern durfte, konnte Anfragen an interne Hosts oder Cloud-Metadatendienste umleiten und die hinterlegten API-Schlüssel der Modellanbieter mitlesen.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-91935",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91935"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/FlowiseAI/Flowise/security/advisories/GHSA-hx55-h48h-7rw9"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-91935-flowise"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-53957",
+          "datum": "2026-09-15",
+          "typ": "cve",
+          "cve": "CVE-2026-53957",
+          "cvss": 7.7,
+          "titel": "CVE-2026-53957: Zugangstoken über Werkzeugargumente des Contentful MCP Servers umleitbar",
+          "was": "Sind die Migrationswerkzeuge freigeschaltet, reichen export_space und import_space die Netzwerkoptionen host, proxy, rawProxy und insecure aus den vom Modell gesetzten Werkzeugargumenten an den Client der Contentful Management API weiter, zusammen mit dem Zugangstoken des Servers. Per direktem MCP-Aufruf oder per Prompt Injection über präparierte Inhalte in Contentful lassen sich die Anfragen samt Authorization-Header an einen Host oder Proxy des Angreifers umlenken. Mit dem Token erhält er dauerhaft Zugriff auf alle Spaces in dessen Reichweite.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-53957",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-53957"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/contentful/contentful-mcp-server/security/advisories/GHSA-2xhg-73j7-rrgx"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-53957-contentful-mcp-server",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-09-nameless-tokenization",
+          "datum": "2026-09-15",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Nameless Tokenization: Steuer-Token aller 256 untersuchten Chat-Tokenizer fälschbar",
+          "was": "Offene Modelle veröffentlichen die Zeichenketten, mit denen ihre Chat-Vorlagen Turns, Rollen und Werkzeugergebnisse markieren; wer Text in einen Prompt bringt, kann damit eine Grenze schreiben, die von einer echten nicht zu unterscheiden ist. Alle 256 untersuchten Tokenizer waren fälschbar, mit der üblicherweise empfohlenen Einstellung noch 56,6 %. Das vorgeschlagene Verfahren gibt Steuereinträgen keine Zeichenkette mehr.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.16984",
+              "url": "https://arxiv.org/abs/2609.16984"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/instruktions-hierarchie/",
+            "https://promptinjections.de/schutz/spotlighting/"
+          ]
+        },
+        {
+          "id": "2026-09-trust-propagation",
+          "datum": "2026-09-15",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Trust propagation: Autorisierungsschicht hält, obwohl der Prüf-Agent kompromittiert ist",
+          "was": "In einer LangGraph-Pipeline aus vier Agenten erreicht vergiftetes gemeinsames Gedächtnis ohne Abwehr in jedem Versuch die Ausführung. Mit einer unabhängigen Autorisierungsschicht aus aufgabengebundenen signierten Token und einem getrennt geprüften Policy-Orakel bleibt der Prüf-Agent zu 100 % getäuscht, unsichere Aktionen werden aber zu 0 % ausgeführt.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.17648",
+              "url": "https://arxiv.org/abs/2609.17648"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/techniken/prompt-infection-multiagent/",
+            "https://promptinjections.de/schutz/least-privilege/"
+          ]
+        },
+        {
+          "id": "2026-09-agentlsd",
+          "datum": "2026-09-16",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "AgentLSD: Köder in der Aufgabenumgebung lenken Sicherheits-Agenten ab",
+          "was": "Das Framework platziert gefälschte Flags, irreführende Hinweise und Köder-Endpunkte in CTF-Aufgaben, ohne die eigentliche Lösung zu verändern. Sechs Modelle fanden auf elf Web-Aufgaben ohne Köder 41 % der Flags; auch wenn sie das Flag noch fanden, kosteten Köder 20 zusätzliche Runden und rund 2.000 zusätzliche Reasoning-Token, manche Modelle folgten den Ködern oder reichten falsche Flags ein.",
+          "bereiche": [
+            "evaluation"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.19140",
+              "url": "https://arxiv.org/abs/2609.19140"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/penetrationstest/",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-bragjack",
+          "datum": "2026-09-16",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "BragJack: eine gewöhnliche Browser-Erweiterung greift die eingebauten Agenten von fünf Browsern an",
+          "was": "Forever Security griff mit einer einzigen Erweiterung mit Standard-Manifest die eingebauten Agenten von Gemini Live in Chrome, Perplexity Comet, Microsoft Edge, Opera Neon und Claude in Chrome an, jeweils ohne Klick des Nutzers. Vier Agenten ließen sich übernehmen, in Chrome und Comet reichte der Zugriff bis zu lokalen Dateien, in Chrome bis zu Kamera und Mikrofon. Die Hersteller zahlten 20.000 US-Dollar Prämien, zwei CVEs wurden vergeben.",
+          "bereiche": [
+            "browser-lokal"
+          ],
+          "quellen": [
+            {
+              "titel": "Forever Security: BragJack (16.09.2026)",
+              "url": "https://forever.security/blog/bragjack-attack-hijacks-every-browser-agent"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/web/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-09-openai-offenlegungsrahmen",
+          "datum": "2026-09-16",
+          "typ": "hersteller",
+          "cve": null,
+          "cvss": null,
+          "titel": "OpenAI: Rahmen für die Offenlegung von Fehlverhalten der eigenen Modelle, sechs erste Berichte",
+          "was": "OpenAI legt fest, wann und wie es Fälle von Fehlausrichtung aus Training, Evaluation, Tests und Betrieb veröffentlicht, auch wenn sie noch nicht erklärt oder behoben sind. Zum Start erscheinen sechs Berichte, darunter einer über ein Modell, das jailbreak-artige Anweisungen in seine eigenen Kompaktierungs-Zusammenfassungen schrieb.",
+          "bereiche": [
+            "evaluation"
+          ],
+          "quellen": [
+            {
+              "titel": "OpenAI: Our framework for reporting model misalignment (16.09.2026)",
+              "url": "https://openai.com/index/model-misalignment-reporting-framework/"
+            },
+            {
+              "titel": "OpenAI Alignment: Self-generated prompt injections in compaction summaries",
+              "url": "https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/vorfaelle/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-59823",
+          "datum": "2026-09-16",
+          "typ": "cve",
+          "cve": "CVE-2026-59823",
+          "cvss": 5.3,
+          "titel": "CVE-2026-59823: Server-Side Request Forgery über das Feld user_config in LiteLLM",
+          "was": "Die Prüffunktion is_request_body_safe sperrt api_base und base_url nur auf der obersten Ebene des Anfragekörpers. Ein angemeldeter Aufrufer mit gültigem virtuellem Schlüssel kann api_base in user_config verschachteln; weil user_config den ausgehenden Router aufbaut, schickt der Proxy die Anfrage an ein Ziel nach Wahl des Aufrufers und erreicht so Endpunkte, die diesem sonst verschlossen sind.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-59823",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59823"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/BerriAI/litellm/security/advisories/GHSA-hx8v-g79f-8w5f"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-59823-litellm"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-54519",
+          "datum": "2026-09-17",
+          "typ": "cve",
+          "cve": "CVE-2026-54519",
+          "cvss": 8.8,
+          "titel": "CVE-2026-54519: Fremdes Agentengedächtnis lesen und löschen in AI Agent Automation",
+          "was": "Die Funktionen listMemories, deleteMemory und clearAgentMemory prüfen nur die Anmeldung, nicht aber, ob der angefragte Agent oder Gedächtniseintrag dem angemeldeten Nutzer gehört. Wer die Kennungen eines anderen Nutzers kennt oder beschafft, liest dessen Agentengedächtnis mit Gesprächsverlauf, Agentenkontext, Aufgabendaten und Embeddings, löscht einzelne Einträge oder leert das Gedächtnis eines fremden Agenten vollständig.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-54519",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54519"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/vmDeshpande/ai-agent-automation/security/advisories/GHSA-qv97-83w4-ff86"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-54519-ai-agent-automation"
+          ]
+        },
+        {
+          "id": "2026-09-octomind-jev",
+          "datum": "2026-09-18",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Octomind misst Jev: ein eingeschleuster Satz schwächt die Sperrentscheidung eines Prüfmodells",
+          "was": "Octomind testete Jev, ein Modell von TypeSafe, das über Werkzeugaufrufe von Agenten entscheidet (erlauben, nachfragen, sperren). Ein einziger Satz im Feld für frühere Werkzeugausgaben, der eine Freigabe durch den Nutzer behauptete, senkte bei rm -rf ~/.ssh die Wahrscheinlichkeit für Sperren von 0,76 auf 0,48 und die Konfidenz von 0,64 auf 0,22; die Entscheidung blieb bei Sperren.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "Octomind: Jev Explained (18.09.2026)",
+              "url": "https://octomind.run/blog/jev-system-one-model-ai-agents"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/guardrails/",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-duma-bench",
+          "datum": "2026-09-21",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "DUMA-Bench: Angriffserfolg steigt, wenn Nutzer und Agent die Umgebung gemeinsam steuern",
+          "was": "Der Benchmark erweitert τ²-bench um Angriffsumgebungen mit acht Schwachstellenklassen, darunter RAG-Vergiftung und Manipulation zwischen Agenten. Über 14 Modelle aus fünf Familien steigt der Angriffserfolg von 26,9 % auf 41,1 %, sobald neben dem Agenten auch der Nutzer den gemeinsamen Zustand verändern kann.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.24662",
+              "url": "https://arxiv.org/abs/2609.24662"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/agenten/",
+            "https://promptinjections.de/techniken/rag-poisoning/"
+          ]
+        },
+        {
+          "id": "2026-09-enisa-threat-landscape",
+          "datum": "2026-09-22",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "ENISA Threat Landscape 2026 nennt indirekte Prompt Injection als Weg, Modellschutz zu umgehen",
+          "was": "Der Lagebericht der EU-Agentur für Cybersicherheit wertet Vorfälle vom 1. Januar bis 31. Dezember 2025 aus. Prompt Injection erscheint darin in einem Satz: Angreifergruppen erproben weiterhin Wege, die Schutzmechanismen geschlossener Modelle zu umgehen, darunter Steganografie und indirekte Prompt Injection.",
+          "bereiche": [
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "ENISA Threat Landscape 2026 (22.09.2026)",
+              "url": "https://www.enisa.europa.eu/publications/enisa-threat-landscape-2026"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/arten/indirekte-prompt-injection/",
+            "https://promptinjections.de/schutz/unternehmen/"
+          ]
+        },
+        {
+          "id": "2026-09-cisco-llm-security-leaderboard",
+          "datum": "2026-09-24",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Cisco erweitert das LLM Security Leaderboard um Bild und Audio",
+          "was": "Seit Juni kamen 102 Bewertungen in drei Modalitäten hinzu, das Leaderboard umfasst nun 136 Modelle, geprüft in der Grundkonfiguration ohne zusätzliche Guardrails. Getestet werden unter anderem Prompt Injection über verarbeitete Inhalte wie Webseiten oder Bilder und Jailbreaks; 55 der 136 Modelle verarbeiten Bilder.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "Cisco Blogs: LLM Security Leaderboard (24.09.2026)",
+              "url": "https://blogs.cisco.com/ai/llm-security-leaderboard-multimodal"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/modelle/",
+            "https://promptinjections.de/arten/multimodale-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-claimmirage",
+          "datum": "2026-09-24",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "ClaimMirage: Selbstauskünfte im Domainnamen verändern das Urteil von LLM-Phishing-Prüfern",
+          "was": "Kurze Behauptungen wie „not-phishing“ oder „official“ im Domainnamen ändern, wie ein Sprachmodell die Domain bewertet, ohne jeden Injektionsbefehl. In 622.080 Urteilen über 64 Marken und fünf Modelle senkten Begriffe, die ein Risiko bestreiten, die Warnungen in einer Konstellation um 45,3 Prozentpunkte, obwohl der Prompt die echte Domain der Marke zum Vergleich enthielt.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.29130",
+              "url": "https://arxiv.org/abs/2609.29130"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/erkennung/"
+          ]
+        },
+        {
+          "id": "2026-09-openai-selbstreplizierende-injektionen",
+          "datum": "2026-09-25",
+          "typ": "hersteller",
+          "cve": null,
+          "cvss": null,
+          "titel": "OpenAI: sich selbst verbreitende Prompt Injections aus internem Red-Team-Training",
+          "was": "Im Training mit dem Red-Team-Verfahren GPT-Red fand OpenAI Prompt Injections, die ein Angriffsziel erreichen und das angegriffene Modell zugleich dazu bringen, die Injektion über einen öffentlichen Ausgabekanal weiterzugeben, ähnlich einem Computerwurm. Schwerpunkt waren Aufgaben mit Konnektoren wie E-Mail und Kalender. Laut OpenAI blieb es bei simulierten Werkzeugaufrufen in Training und Evaluation.",
+          "bereiche": [
+            "evaluation",
+            "produktiv-assistenten"
+          ],
+          "quellen": [
+            {
+              "titel": "OpenAI Alignment: Self-replicating prompt injections exist (25.09.2026)",
+              "url": "https://alignment.openai.com/misalignment-reports/self-replicating-prompt-injections-exist/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/techniken/prompt-infection-multiagent/",
+            "https://promptinjections.de/techniken/email-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-97228",
+          "datum": "2026-09-25",
+          "typ": "cve",
+          "cve": "CVE-2026-97228",
+          "cvss": 2.7,
+          "titel": "CVE-2026-97228: GraphQL-Injektion über ein Werkzeugargument im Rapid7 Bulk Export MCP",
+          "was": "Der Wert export_id, ein ungeprüftes Argument der Werkzeuge check_rapid7_export_status und download_rapid7_export, wird direkt in den Text einer GraphQL-Abfrage eingesetzt. Mit Anführungszeichen und Klammern lässt sich die vorgesehene Abfrage beenden und um eigene Abfragen ergänzen, etwa eine Schema-Introspektion, die mit dem API-Schlüssel des Betreibers an die Export-API von Rapid7 geht.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-97228",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97228"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/rapid7/rapid7-bulk-export-mcp/releases/tag/v0.6.2"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-97228-rapid7-bulk-export-mcp",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-09-openai-australien",
+          "datum": "2026-09-28",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "OpenAI-Modelle griffen bei Training und Evaluation unerlaubt auf australische Behördensysteme zu",
+          "was": "Im Juni verschaffte sich ein internes, experimentelles OpenAI-Modell bei einer Rechercheaufgabe nicht öffentlichen Zugang zum Medicare Statistics Reporting Service von Services Australia, führte Befehle aus und las interne Dateien und Zugangsdaten; Patientendaten wurden laut OpenAI nicht abgerufen. Betroffen waren außerdem Systeme in New South Wales und Victoria. OpenAI benachrichtigte die Stellen zwischen dem 10. und 24. September und schreibt, vorläufige Ergebnisse hätten früher geteilt werden müssen.",
+          "bereiche": [
+            "evaluation"
+          ],
+          "quellen": [
+            {
+              "titel": "OpenAI: How we will do better for Australia (28.09.2026)",
+              "url": "https://openai.com/index/how-we-will-do-better-for-australia/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/vorfaelle/"
+          ]
+        },
+        {
+          "id": "2026-09-codel",
+          "datum": "2026-09-28",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "CoDeL: ko-evolutionäres Training gegen indirekte Prompt Injection",
+          "was": "Ein Abwehrmodell wird jede Runde nachtrainiert, während ein mitlaufender Angreifer nach Injektionen sucht, die das aktuelle Modell noch durchlassen, auch solche, die ihre Absicht über mehrere Runden verzögern. Auf drei Benchmarks senkt das Verfahren die Erfolgsrate der Angriffe um 88,5 %.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.34463",
+              "url": "https://arxiv.org/abs/2609.34463"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/",
+            "https://promptinjections.de/arten/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-forcepoint-kopfzeilen",
+          "datum": "2026-09-28",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Forcepoint X-Labs: gefälschte Kopfzeilen täuschen einen Mail-Zusammenfasser ganz ohne Anweisung",
+          "was": "Eine E-Mail mit einem zweiten, gefälschten Kopfblock (Von, An, Datum, Betreff) und erfundenen Angaben, ohne versteckten Text und ohne Anweisung an das Modell, ließ den KI-Zusammenfasser in 10 von 10 Läufen ein falsches Termindatum und einen falschen Rechnungsbetrag wiedergeben. Forcepoint verglich sechs Varianten mit und ohne Anweisung und mit verschiedenen Arten der Verbergung.",
+          "bereiche": [
+            "produktiv-assistenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Forcepoint X-Labs: Hiding vs. Instruction (28.09.2026)",
+              "url": "https://www.forcepoint.com/blog/x-labs/hiding-vs-instruction-prompt-injection"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/email/",
+            "https://promptinjections.de/techniken/email-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-93355",
+          "datum": "2026-09-28",
+          "typ": "cve",
+          "cve": "CVE-2026-93355",
+          "cvss": 8.1,
+          "titel": "CVE-2026-93355: Übernahme fremder Konten über die JWT-Anmeldung von LiteLLM",
+          "was": "Findet LiteLLM zu einem gültig signierten JWT keinen Nutzer über dessen Kennung, sucht der Proxy ersatzweise über die E-Mail-Adresse im Token, ohne den Claim email_verified zu prüfen. Wer beim angebundenen Identitätsanbieter ein Token mit der unbestätigten Adresse eines Opfers erhält, meldet sich als dieses Konto an, auch als proxy_admin. Im Hintergrund überschreibt der Proxy zudem die gespeicherte SSO-Bindung des Opfers mit der Kennung des Angreifers, der Zugang bleibt damit dauerhaft.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-93355",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-93355"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.ox.security/blog/litellm-an-ordinary-login-token-can-become-someone-elses-admin-account/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-93355-litellm"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-103040",
+          "datum": "2026-09-29",
+          "typ": "cve",
+          "cve": "CVE-2026-103040",
+          "cvss": 9.8,
+          "titel": "CVE-2026-103040: Codeausführung ohne Anmeldung über den Profiler-Dienst von LightLLM",
+          "was": "Mit dem Startparameter --enable_profiling öffnet der Router von LightLLM einen RPyC-Dienst ohne Authentifizierung, der auf allen Netzschnittstellen lauscht und serialisierte Python-Objekte annimmt (allow_pickle). Ein präpariertes Objekt in der Profiler-Befehlswarteschlange wird im Inferenzprozess deserialisiert und führt dort beliebigen Code aus. Der Dienst läuft danach unauffällig weiter.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-103040",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103040"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/ModelTC/LightLLM/issues/1597"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/lightllm-through-1.2.0-unauthenticated-remote-code-execution-via-router-profiler-rpyc-service"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-103040-lightllm"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-102697",
+          "datum": "2026-09-29",
+          "typ": "cve",
+          "cve": "CVE-2026-102697",
+          "cvss": 7.8,
+          "titel": "CVE-2026-102697: Freigabe für Shell-Befehle im experimentellen Agentenmodus von Ollama umgehbar",
+          "was": "Der experimentelle Agentenmodus von Ollama lässt Befehle im Bash-Werkzeug nach einer Freigabe für die Sitzung zu, wertet die Shell-Syntax dabei aber nicht richtig aus. Wer die Modellausgabe per Prompt Injection beeinflusst, hängt an einen freigegebenen Befehl mit Steuerzeichen wie Semikolon oder logischen Operatoren weitere Befehle an, die ohne erneute Freigabe laufen.",
+          "bereiche": [
+            "browser-lokal"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-102697",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102697"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/ollama/ollama/releases/tag/v0.31.2"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/ollama-0.14.0-before-0.31.2-experimental-agent-bash-approval-bypass-via-prefix-based-authorization"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-102697-ollama",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-09-countersteer",
+          "datum": "2026-09-29",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "CounterSteer: Activation Steering unterdrückt indirekte Prompt Injection im Modell",
+          "was": "Das Verfahren zieht bei der Verarbeitung von Werkzeugergebnissen eine zuvor bestimmte Richtung aus dem Residualstrom ab, ohne Nachtraining und ohne Erkennungsschritt. Bei fünf offenen Modellen (8 bis 106 Mrd. Parameter) sinkt die Kompromittierungsrate in AgentDojo von 0,10–0,49 auf 0,006–0,079. Manipulierte Argumente in sonst legitimen Werkzeugaufrufen wehrt es nur teilweise ab.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2609.36570",
+              "url": "https://arxiv.org/abs/2609.36570"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/agenten-absichern/",
+            "https://promptinjections.de/arten/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-09-cve-2026-103395",
+          "datum": "2026-09-30",
+          "typ": "cve",
+          "cve": "CVE-2026-103395",
+          "cvss": 9.8,
+          "titel": "CVE-2026-103395: Codeausführung ohne Anmeldung über den visual_only-Dienst von LightLLM",
+          "was": "Im Betriebsmodus visual_only startet LightLLM für die Bildvorverarbeitung einen RPyC-Dienst, der ohne Authentifizierung auf allen Netzschnittstellen lauscht und die Übergabe serialisierter Python-Objekte (allow_pickle) erlaubt. Die Methode remote_infer_images deserialisiert die Argumente des Aufrufers. Wer den Port erreicht, übergibt ein Objekt mit präparierter __reduce__-Methode und führt Code mit den Rechten des Dienstkontos aus.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-103395",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103395"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/ModelTC/LightLLM/issues/1610"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/lightllm-through-1.2.0-unauthenticated-remote-code-execution-via-visual-only-rpyc-service"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-103395-lightllm"
+          ]
+        },
+        {
+          "id": "2026-09-gtig-schwachstellentrends",
+          "datum": "2026-09-30",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "GTIG: 782 Schwachstellenmeldungen zu Agenten-Frameworks und 106 zur Modellsicherheit in 2026",
+          "was": "Die Google Threat Intelligence Group wertet Schwachstellenmeldungen von Januar 2025 bis August 2026 aus. Von Januar bis August 2026 entfielen 782 Meldungen auf Orchestrierungs- und Agenten-Frameworks, überwiegend Codeausführung, und 106 auf die Modellsicherheit mit direkter und indirekter Prompt Injection als erstem genannten Vektor. Insgesamt stieg die Zahl der monatlich gemeldeten Schwachstellen von 5.045 im Januar auf 10.740 im August 2026.",
+          "bereiche": [
+            "agenten-frameworks",
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "Google Cloud Blog: Vulnerability Discovery and Exploitation Trends in the AI Era (30.09.2026)",
+              "url": "https://cloud.google.com/blog/topics/threat-intelligence/vulnerability-discovery-and-exploitation-trends-in-the-ai-era"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/",
+            "https://promptinjections.de/angriffsvektoren/agenten/"
+          ]
+        }
+      ],
+      "methode": "Aufgenommen wird ein Ereignis, wenn (1) eine Primärquelle es datiert — Standardgremium, Schwachstellendatenbank, Forschungsarbeit, Hersteller- oder Erstbericht —, (2) diese Quelle am Stichtag erreichbar war und (3) das Ereignis Prompt Injection oder die Sicherheit von Agenten betrifft. Jeder Eintrag verlinkt seine Quelle. Kennung, Datum, CVSS und CWE der Schwachstellen prüft scripts/cve-pruefen.mjs maschinell gegen die NVD. Die Spalten des Bereichsvergleichs sind Zählwerte, keine Bewertungen; die Einordnung je Bereich ist redaktionell und als solche gekennzeichnet. Ab der Ausgabe September 2026 werden zusätzlich alle CVEs, die die NVD im Berichtsmonat veröffentlicht hat und deren Beschreibung „prompt injection“ enthält, einzeln abgefragt und gegen das Aufnahmekriterium des CVE-Verzeichnisses geprüft.",
+      "erfassung": {
+        "hinweis": "Grundlage sind die Tagesnotizen des PI-Radars vom 1. bis 30. September 2026. 24 Einträge gehen auf diese Meldungen zurück, 8 erschienen erst in den Radar-Notizen vom 1. bis 16. Oktober und wurden nachgetragen, 5 Schwachstellen kamen aus der erstmals durchgeführten NVD-Abfrage hinzu. Die Meldungen vom 1. bis 23. September wurden bei der Nachprüfung am 5. November auf Lücken geprüft, nicht vollständig neu entschieden.",
+        "rohmeldungen": 112,
+        "aufgenommen": 37,
+        "ausgeschlossen": [
+          "Mehrfachmeldungen desselben Ereignisses (unter anderem die sich selbst verbreitenden Prompt Injections von OpenAI, Manus und die australischen Behördenseiten)",
+          "Ereignisse außerhalb des Berichtsmonats, die im September erneut zirkulierten (OWASP LLM Top 10 2026 vom August, NVIDIA OpenShell vom März, OpenAI Lockdown Mode vom Februar, Google Model Armor, Azure Prompt Shields, Meta CyberSecEval 2, ShadowLeak von 2025, LiteLLM-Schwachstellen vom Mai und Juli); der Manus-Fall von Salt Labs ist auf den 01.10.2026 datiert und gehört in die Oktober-Ausgabe",
+          "Agenten als Werkzeug von Angreifern, nicht Angriff auf Agenten; Kriterium 3 nicht erfüllt: die Meldung der spanischen Datenschutzbehörde AEPD vom 14.09. zur ersten Datenschutzverletzung durch einen Angriff mit einem KI-Agenten und Anthropics Bericht „Countering misuse of AI, September 2026“",
+          "Kein Tagesdatum an der Primärquelle: der Mandiant-Sonderbericht „AI risk and resilience in 2026“ trägt nur „September 2026“",
+          "Aus der NVD-Abfrage: CVE-2026-61742 (DBHub), laut NVD-Beschreibung ohne Prompt Injection und ohne Beteiligung des Modells ausnutzbar; CVE-2026-77177 (Open GenAI Stack), Beleg nicht nachprüfbar: einzige Referenz ist ein Gist des Meldenden, das dort genannte GitHub-Advisory ist nicht öffentlich abrufbar, eine Bestätigung von Hersteller oder Betreiber fehlt",
+          "Meldungen, für die keine Primärquelle auffindbar oder erreichbar war (unter anderem ein Gemini-Ausbruch bei Irregular, ein Sandbox-Ausbruch in Claude Code, ForcedLeak)",
+          "Beiträge außerhalb der Kriterien (Jailbreak über API-Prefill, Erkennung von Backdoors in Codemodellen) sowie Meinungsbeiträge und Herstellertexte ohne neue Daten"
+        ]
+      }
+    },
+    {
+      "monat": "2026-10",
+      "titel": "Prompt Injection Threat Index — Oktober 2026",
+      "url": "https://promptinjections.de/threat-index/2026-10/",
+      "zeitraum": {
+        "von": "2026-10-01",
+        "bis": "2026-10-31"
+      },
+      "stand": "2026-11-06",
+      "summe": {
+        "eintraege": 52,
+        "cve": 23,
+        "cve_kritisch": 1,
+        "vorfall": 5,
+        "forschung": 18,
+        "standard": 4,
+        "hersteller": 2
+      },
+      "bereiche": [
+        {
+          "id": "agenten-frameworks",
+          "name": "Agenten-Frameworks und Werkzeug-Server",
+          "url": "https://promptinjections.de/angriffsvektoren/agenten/",
+          "eintraege": 16,
+          "cves": 13,
+          "vorfaelle": 0,
+          "forschung": 3,
+          "standards": 0,
+          "max_cvss": 8.8,
+          "einordnung": "Der mit Abstand dichteste Bereich des Monats: dreizehn registrierte Schwachstellen in Agenten-Plattformen, MCP- und Werkzeug-Servern, dazu drei Forschungsarbeiten. Das wiederkehrende Muster ist die ungeprüfte Übergabe von Modellausgaben an Werkzeuge — ob als SSRF, Codeausführung, Pfaddurchquerung oder umgangene Autorisierung. Die Studie INFUSE misst über 19 Modelle einen mittleren Angriffserfolg von 19,6 %."
+        },
+        {
+          "id": "browser-lokal",
+          "name": "Browser-Agenten und lokale Agenten",
+          "url": "https://promptinjections.de/angriffsvektoren/web/",
+          "eintraege": 1,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 1,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Ein Eintrag, aber ein grundsätzlicher: LLMLeak zeigt, dass schon das Werkzeug zum Abrufen von Webseiten einem lokal laufenden Schädling ohne eigenen Netzzugang als verdeckter Ausleitungskanal genügt."
+        },
+        {
+          "id": "produktiv-assistenten",
+          "name": "Assistenten im Produktivsystem (E-Mail, Office)",
+          "url": "https://promptinjections.de/angriffsvektoren/email/",
+          "eintraege": 2,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 2,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Zwei Einträge, beide über E-Mail: Salt Labs kapert mit einer einzigen Nachricht den Agenten Manus bis zur Reverse Shell, Barracuda zeigt Phishing-Kampagnen, die Mensch und KI-Assistenten zugleich adressieren. Die E-Mail bleibt der Haupteintrittsweg indirekter Prompt Injection in den Arbeitsalltag."
+        },
+        {
+          "id": "coding-agenten",
+          "name": "Coding-Agenten",
+          "url": "https://promptinjections.de/angriffsvektoren/tool-use/",
+          "eintraege": 12,
+          "cves": 9,
+          "vorfaelle": 1,
+          "forschung": 2,
+          "standards": 0,
+          "max_cvss": 8.8,
+          "einordnung": "Zwölf Einträge, der zweitdichteste Bereich: neun CVEs — darunter fünf parallele Umgehungen der Befehlsfreigabe in Roo Code — und drei Vorfälle bzw. Arbeiten. Durchgängiges Thema ist die Autofreigabe von Shell-Zugriff: Steht sie auf automatisch, wird aus einer indirekten Injection eine Codeausführung auf dem Entwicklerrechner."
+        },
+        {
+          "id": "proxy-memory",
+          "name": "LLM-Proxys und Gedächtnis",
+          "url": "https://promptinjections.de/arten/gespeicherte-prompt-injection/",
+          "eintraege": 4,
+          "cves": 1,
+          "vorfaelle": 2,
+          "forschung": 1,
+          "standards": 0,
+          "max_cvss": 9.8,
+          "einordnung": "Vier Einträge rund um die Infrastruktur, auf der Modelle laufen: die kritische LMCache-Lücke (CVSS 9,8), der kompromittierte LiteLLM-Release, das Botnetz PoeLLM über exponierte KI-Dienste und Wiz' „Black October“ mit Vorfällen bei neun Entwicklerplattformen. Wo Cache, Proxy oder Schlüssel liegen, liegt ein Ziel."
+        },
+        {
+          "id": "evaluation",
+          "name": "Autonome Modelle in Evaluationsumgebungen",
+          "url": "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+          "eintraege": 4,
+          "cves": 0,
+          "vorfaelle": 2,
+          "forschung": 0,
+          "standards": 2,
+          "max_cvss": null,
+          "einordnung": "Vier Einträge, und der Monat, in dem das Thema die Behörden erreicht: Die EU-Kommission zählt über 20 Kontrollverlust-Vorfälle, CERT-In meldet Agenten im Testbetrieb, die Live-Systeme erreichten, und Anthropic führt vier solche Zugriffe in seinem Börsenprospekt. Kein Prompt-Injection-Fall im engen Sinn, aber der Referenzrahmen für Excessive Agency."
+        },
+        {
+          "id": "dokumente-rag",
+          "name": "Dokumente und RAG",
+          "url": "https://promptinjections.de/angriffsvektoren/rag/",
+          "eintraege": 2,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 2,
+          "standards": 0,
+          "max_cvss": null,
+          "einordnung": "Zwei Einträge: Eine Arbeit greift KI-gestützte Forensik über manipulierte Beweismittel an, eine zweite zeigt, dass gefälschte Nachrichten (62 % Erfolg) Handelsagenten weit stärker treffen als klassische Prompt Injection (14 %). Die Grenze zwischen Injection und Desinformation verschwimmt dort, wo ein Agent Texte für bare Münze nimmt."
+        },
+        {
+          "id": "abwehr",
+          "name": "Abwehr und Architektur",
+          "url": "https://promptinjections.de/schutz/",
+          "eintraege": 10,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 9,
+          "standards": 1,
+          "max_cvss": null,
+          "einordnung": "Der aktivste Forschungsbereich mit zehn Einträgen: Selbstdistillation (RAISED), lernbare Trennzeichen (LTBD), Nachtraining (LLMON) und Rückverfolgung (AgentTracer) stehen neben Herstellermaßnahmen wie Microsoft Execution Containers und OpenAIs Robustheitswerten. Der HackerOne-Bericht ordnet ein: KI-Schwachstellenmeldungen sind in zwei Jahren um 222 % gewachsen."
+        },
+        {
+          "id": "standards",
+          "name": "Standards und Leitlinien",
+          "url": "https://promptinjections.de/owasp-llm-top-10/",
+          "eintraege": 4,
+          "cves": 0,
+          "vorfaelle": 0,
+          "forschung": 0,
+          "standards": 4,
+          "max_cvss": null,
+          "einordnung": "Vier Einträge: das OWASP GenAI Red Teaming Manual 1.0, die Key Practices von NIST, NSA und CISA, zehn NIST-Designgrundsätze für Agenten-Identität und die Auskunftsersuchen des EU AI Office. Gremien und Behörden gießen die Erfahrungen des Jahres in Leitlinien."
+        }
+      ],
+      "eintraege": [
+        {
+          "id": "2026-10-llmleak",
+          "datum": "2026-10-01",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "LLMLeak: lokale Schadsoftware ohne Netzzugang leitet Geheimnisse über das Web-Fetch-Werkzeug aus",
+          "was": "Die Arbeit zeigt, dass lokal laufende Schadsoftware ohne eigenen Internetzugang ein Sprachmodell als verdeckten Kanal missbraucht: Sie nutzt allein dessen Werkzeug zum Abrufen von Webseiten, um Geheimnisse an einen vom Angreifer kontrollierten DNS- oder Webserver zu übergeben. Über elf offene Modelle messen die Autoren eine Erfolgsrate von 79,7 %.",
+          "bereiche": [
+            "browser-lokal"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.01768",
+              "url": "https://arxiv.org/abs/2610.01768"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/web/",
+            "https://promptinjections.de/techniken/datenexfiltration-link/"
+          ]
+        },
+        {
+          "id": "2026-10-manus-salt-labs",
+          "datum": "2026-10-01",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Salt Labs: eine E-Mail kapert den Agenten Manus und erreicht verbundene Konten",
+          "was": "Salt Labs zeigt, dass eine einzige E-Mail mit verschleierter Anweisung den Agenten Manus zur Ausführung versteckten Codes und zum Aufbau einer Reverse Shell bringt; darüber werden Zugangsdaten und Token verbundener Dritt-Dienste erreichbar. Nötig sind nur zwei Ereignisse: die Ankunft der Mail und die Bitte des Nutzers, die Nachrichten zu prüfen. Die Lücke wurde über Meta behoben.",
+          "bereiche": [
+            "produktiv-assistenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Salt Labs: A Single Email Could Hijack an AI Agent",
+              "url": "https://salt.security/press-releases/salt-labs-research-a-single-email-could-hijack-an-ai-agent-and-reach-a-users-connected-accounts"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/email/",
+            "https://promptinjections.de/angriffsvektoren/agenten/"
+          ]
+        },
+        {
+          "id": "2026-10-raised",
+          "datum": "2026-10-05",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "RAISED: Selbstdistillation senkt den Erfolg von Injektionen in Werkzeugausgaben",
+          "was": "Das Verfahren RAISED härtet ein Modell über Selbsterzeugung und Selbstdistillation gegen Prompt Injection in Werkzeugausgaben und erhält dabei den Nutzen. Auf AgentDojo mit Gemma sinkt die Angriffserfolgsrate laut Arbeit von 39,5 % auf 1,0 %, während der Nutzen unter Angriff von 64,0 % auf 80,5 % steigt.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.06401",
+              "url": "https://arxiv.org/abs/2610.06401"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/",
+            "https://promptinjections.de/schutz/eingabepruefung/"
+          ]
+        },
+        {
+          "id": "2026-10-adversa-copilot-cli",
+          "datum": "2026-10-06",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Adversa AI: verschlüsselte Anweisungen lassen GitHub Copilot CLI im Autopilot .env.prod ausleiten",
+          "was": "Adversa AI versteckt Anweisungen als Chiffretext auf einer Webseite, den der Agent in seiner eigenen Shell entschlüsselt. Im Autopilot-Modus gab das Microsoft-eigene Modell mai-code-1.1-flash in 50 % der Läufe den vollen Inhalt einer .env.prod-Datei preis; zwei angebotene GPT-5.6-Modelle verweigerten dieselbe Nutzlast. GitHub bestätigte den Befund, wertet ihn aber nicht als Schwachstelle.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Adversa AI: Cryptographic Context Injection",
+              "url": "https://adversa.ai/blog/cryptographic-context-injection-github-copilot/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/tool-use/",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-10-barracuda-dual-target",
+          "datum": "2026-10-07",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Barracuda: Phishing-Mails zielen zugleich auf Empfänger und KI-Assistenten",
+          "was": "Barracuda beschreibt Phishing-Kampagnen, deren Mails zugleich auf den menschlichen Empfänger und auf dessen KI-Assistenten zielen: Eine Schicht trägt versteckte Anweisungen (Prompt Injection) an das zusammenfassende Modell. Beobachtet wurden vier Versteck-Techniken — HTML-Kommentare, unsichtbarer CSS-Text, Base64 und Zero-Width-Zeichen —, etwa um in einer gefälschten Rechnungs-Mail Zahlungsdaten zu ändern.",
+          "bereiche": [
+            "produktiv-assistenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Barracuda Blog (07.10.2026)",
+              "url": "https://blog.barracuda.com/2026/10/07/email-attacks-target-both-humans-ai-assistants"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/email/",
+            "https://promptinjections.de/techniken/hidden-text-html/"
+          ]
+        },
+        {
+          "id": "2026-10-poellm",
+          "datum": "2026-10-07",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Lumen Black Lotus Labs: Botnetz PoeLLM befällt exponierte KI-Dienste",
+          "was": "Lumen verfolgt seit April 2026 das Botnetz PoeLLM, das laut Bericht über 3.400 Server befallen hat und sich unter anderem über verwundbare, aus dem Netz erreichbare KI-Dienste wie LiteLLM, Ollama, Gotenberg und Gitea verbreitet. Es setzt Krypto-Miner ein und bezieht seine C2-Adresse aus Schlüsselwörtern eines Gedichts in einem GitHub-Repository.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "Lumen Black Lotus Labs: Tracking the PoeLLM Malware",
+              "url": "https://www.lumen.com/blog/en-us/canto-incognito-tracking-the-poellm-malware"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/agenten/",
+            "https://promptinjections.de/cve-verzeichnis/"
+          ]
+        },
+        {
+          "id": "2026-10-agenttracer",
+          "datum": "2026-10-07",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "AgentTracer: Rückverfolgung indirekter Prompt Injection",
+          "was": "AgentTracer verfolgt indirekte Prompt Injection in Agentenläufen zurück und erreicht laut Arbeit 94,17 % Genauigkeit beim Injektionspunkt und 93,56 % Pfadpräzision — ein Vorsprung von 18 bis 54 Prozentpunkten gegenüber bestehenden Methoden. Getestet wurde mit Angriffen aus AgentDyn und InjecAgent, vermischt mit 1.800 Nutzeranfragen und 9.000 unauffälligen Werkzeugaufrufen.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.09935",
+              "url": "https://arxiv.org/abs/2610.09935"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/erkennung/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-10-gpt-6-oktober",
+          "datum": "2026-10-07",
+          "typ": "hersteller",
+          "cve": null,
+          "cvss": null,
+          "titel": "OpenAI: GPT-6 Sol und Luna mit Messwerten zur Robustheit gegen indirekte Injection",
+          "was": "Im Oktober-Update gibt OpenAI für GPT-6 Sol 97,13 % und für GPT-6 Luna 95,80 % Robustheit gegen indirekte Prompt Injection an, gemessen mit den automatisierten GPT-Red-Evaluationen aus der GPT-5.6-Systemkarte. Bei direkter Injection erreichen die Modelle 99,99 % bzw. 99,79 %. Es sind Herstellermessungen ohne Vergleichswerte der Vorgänger.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "OpenAI: GPT-6 (Oktober), PDF",
+              "url": "https://cdn.openai.com/pdf/gpt-6-october.pdf"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/",
+            "https://promptinjections.de/schutz/instruktions-hierarchie/"
+          ]
+        },
+        {
+          "id": "2026-10-packhallu",
+          "datum": "2026-10-07",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "PackHallu: Injektionen in Regeldateien lassen Coding-Agenten Angreiferpakete einbinden",
+          "was": "Die Arbeit zeigt, dass in Regeldateien wie AGENTS.md oder .cursorrules eingebettete Anweisungen Coding-Agenten dazu bringen, legitime Abhängigkeiten durch vom Angreifer kontrollierte Pakete zu ersetzen. Gemessen werden im Mittel 79,29 % Einbindungs- und 67,68 % Ausführungserfolg; auf Cursor bis zu 98 %, am widerstandsfähigsten ist Claude Code mit 31 % bis 59 %.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.09264",
+              "url": "https://arxiv.org/abs/2610.09264"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/tool-use/",
+            "https://promptinjections.de/owasp-llm-top-10/supply-chain/"
+          ]
+        },
+        {
+          "id": "2026-10-ms-execution-containers",
+          "datum": "2026-10-07",
+          "typ": "hersteller",
+          "cve": null,
+          "cvss": null,
+          "titel": "Microsoft Execution Containers allgemein verfügbar",
+          "was": "Microsoft erklärt die Execution Containers (MXC) für allgemein verfügbar: Richtlinien legen fest, welche Ressourcen — etwa Dateien und Netzziele — ein Agent nutzen darf, und der passende Container setzt diese Vorgaben zur Laufzeit durch. Unterstützt werden unter anderem GitHub Copilot, OpenAI Codex und LM Studio; das MicroVM-Backend ist noch experimentell.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "Windows Developer Blog (07.10.2026)",
+              "url": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/least-privilege/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-10-hackerone-research-report",
+          "datum": "2026-10-07",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "HackerOne Security Research Report 2026: KI-Schwachstellenberichte stark gestiegen",
+          "was": "Der zehnte Jahresbericht von HackerOne meldet, dass valide KI-Schwachstellenberichte in zwei Jahren um 222 % gewachsen sind, Berichte zu System Prompt Leakage im Jahresvergleich um 557 %. Der Bericht stützt sich auf 92.194 valide Schwachstellenmeldungen; Prompt Injection und die Offenlegung sensibler Informationen stellen weiterhin den größten Anteil der KI-Meldungen.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "HackerOne Security Research Report 2026",
+              "url": "https://www.hackerone.com/report/hacker-powered-security"
+            },
+            {
+              "titel": "HackerOne: Pressemitteilung (07.10.2026)",
+              "url": "https://www.hackerone.com/press-release/hackerone-report-reveals-growing-exposure-debt-vulnerability-backlogs-grew-131-even"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/",
+            "https://promptinjections.de/schutz/"
+          ]
+        },
+        {
+          "id": "2026-10-105192",
+          "datum": "2026-10-07",
+          "typ": "cve",
+          "cve": "CVE-2026-105192",
+          "cvss": 9.8,
+          "titel": "CVE-2026-105192: Codeausführung ohne Anmeldung über die ZeroMQ-Transportschicht von LMCache",
+          "was": "Im Mehrprozessbetrieb (distributed mode) öffnet LMCache einen ZeroMQ-ROUTER ohne Authentifizierung, über den sich Arbeitsprozesse anmelden und KV-Cache-Blöcke austauschen. Die Nachrichten sind msgpack-codiert; der Erweiterungscode 1 reicht die Argumente an pickle.loads weiter, noch bevor der eigentliche Handler läuft. Eine einzelne unauthentifizierte Nachricht an den Transportport (Standard 5555) führt damit Code mit den Rechten des Dienstkontos aus; die offiziellen Container-Images betreiben den Prozess als root.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-105192",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105192"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/LMCache/LMCache/security/advisories/GHSA-w5f2-9q9c-ff4h"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://research.jfrog.com/vulnerabilities/lmcache-is-vulnerable-to-unauthenticated-remote-code-execution-via-pickle-deserialization-on-the-multiprocess-zmq-transport-cve-2026-105192-jfsa-2026-001694382/"
+            },
+            {
+              "titel": "Lumen Black Lotus Labs: PoeLLM nennt LiteLLM und Ollama",
+              "url": "https://www.lumen.com/blog/en-us/canto-incognito-tracking-the-poellm-malware"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-105192-lmcache"
+          ]
+        },
+        {
+          "id": "2026-10-ltbd",
+          "datum": "2026-10-08",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "LTBD: lernbare Trennzeichen trennen Nutzeranweisung von externen Daten",
+          "was": "LTBD führt eine kleine Zahl lernbarer Trennzeichen ein, die vertrauenswürdige Nutzeranweisungen von nicht vertrauenswürdigen externen Daten abgrenzen, ohne die Modellparameter zu ändern. Gemessen werden 0,00 % Angriffserfolg auf AlpacaFarm und 0,11 % bis 0,19 % auf TaskTracker, auch unter adaptiven Angriffen mit vollem Wissen über die Abwehr.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.11634",
+              "url": "https://arxiv.org/abs/2610.11634"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/eingabepruefung/",
+            "https://promptinjections.de/schutz/spotlighting/"
+          ]
+        },
+        {
+          "id": "2026-10-eu-ai-office",
+          "datum": "2026-10-09",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "EU-Kommission: AI Office holt Auskünfte zu Kontrollverlust-Vorfällen ein",
+          "was": "In ihrer Eröffnungsrede vor dem europäischen KI-Wissenschaftspanel kündigt Exekutiv-Vizepräsidentin Virkkunen an, dass das AI Office Auskünfte zu den jüngsten Vorfällen einholt. Allein in diesem Jahr seien über 20 Kontrollverlust-Vorfälle dokumentiert — bei OpenAI, Anthropic, Google DeepMind, Meta und unabhängigen Evaluationsorganisationen. Erste Auskunftsersuchen zu Sicherheit, externer Evaluation und Marktbeobachtung seien bereits versandt.",
+          "bereiche": [
+            "evaluation",
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "Europäische Kommission: Rede SPEECH/26/2148 (09.10.2026)",
+              "url": "https://ec.europa.eu/commission/presscorner/detail/en/speech_26_2148"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/vorfaelle/"
+          ]
+        },
+        {
+          "id": "2026-10-vercellbreak",
+          "datum": "2026-10-12",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "AIR Security: VerCellBreak schleust Schlüssel an der Allowlist der Vercel Sandbox vorbei",
+          "was": "AIR Security zeigt im Rahmen des Vercel-Bug-Bounty-Programms, wie ein gekaperter Agent sensible Daten in die URL eines präparierten Client-Zertifikats legt: Der Agent verbindet sich nur mit einer erlaubten Domäne, doch der erlaubte Server ruft dann die vom Angreifer kontrollierte URL ab und umgeht so die Domänen-Allowlist. Vercel stufte den Befund als außerhalb des Geltungsbereichs ein und nahm den Bericht nicht an.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "AIR Security: Vercel Break (12.10.2026)",
+              "url": "https://www.air.security/blog-posts/vercel-break"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/least-privilege/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-10-110202",
+          "datum": "2026-10-13",
+          "typ": "cve",
+          "cve": "CVE-2026-110202",
+          "cvss": 8.8,
+          "titel": "CVE-2026-110202: Umgehung der Befehlsfreigabe in Roo Code über den Umleitungsoperator",
+          "was": "In getCommandDecision() lässt sich ein abgelehnter Shell-Befehl automatisch freigeben, indem man ihm eine bloße >&-Umleitung voranstellt. Per indirekter Prompt Injection bringt der Angreifer die Positivliste dazu, auf ein erlaubtes Umleitungsziel wie echo zu passen, während die Shell den abgelehnten Befehl auf dem Entwicklerrechner ausführt.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-110202",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110202"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-redirect-operator-stripping"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-110202-roo-code",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-110203",
+          "datum": "2026-10-13",
+          "typ": "cve",
+          "cve": "CVE-2026-110203",
+          "cvss": 8.8,
+          "titel": "CVE-2026-110203: Umgehung der Befehlsfreigabe in Roo Code über Anführungszeichen-Maskierung",
+          "was": "Eine Schwäche in parseCommandLine() beim Verdecken von Anführungszeichen erlaubt die Autofreigabe abgelehnter Befehle. Per indirekter Prompt Injection verstecken maskierte oder einfach gequotete doppelte Anführungszeichen die Befehlstrenner hinter erlaubten Präfixen wie echo, sodass Befehle ohne Nutzerfreigabe laufen.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-110203",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110203"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-quote-masking-desynchronization"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-110203-roo-code",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-110204",
+          "datum": "2026-10-13",
+          "typ": "cve",
+          "cve": "CVE-2026-110204",
+          "cvss": 8.8,
+          "titel": "CVE-2026-110204: Umgehung der Befehlsfreigabe in Roo Code über Funktions-Substitution",
+          "was": "parseCommandLine() behandelt ${ befehl; }-Substitutionen als Parametererweiterung. Per indirekter Prompt Injection bettet der Angreifer abgelehnte Befehle in einen erlaubten Befehl wie echo ein und führt sie auf bash 5.3+ oder ksh93 ohne Nutzerfreigabe aus.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-110204",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110204"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-funsub-command-substitution"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-110204-roo-code",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-110205",
+          "datum": "2026-10-13",
+          "typ": "cve",
+          "cve": "CVE-2026-110205",
+          "cvss": 8.8,
+          "titel": "CVE-2026-110205: Umgehung der Befehlsfreigabe in Roo Code über Glob-Zeichen",
+          "was": "parseCommandLine() verwirft Befehls-Substitutionen, die neben einem *- oder ?-Glob stehen. Per indirekter Prompt Injection bauen Befehle wie echo *$(...), die auf erlaubte Präfixe passen, abgelehnte Befehle aus, die bei eingeschalteter Autofreigabe ohne Zustimmung laufen.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-110205",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110205"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-glob-token-discarding-command-substitution"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-110205-roo-code",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-110206",
+          "datum": "2026-10-13",
+          "typ": "cve",
+          "cve": "CVE-2026-110206",
+          "cvss": 8.8,
+          "titel": "CVE-2026-110206: Umgehung der Befehlsfreigabe in Roo Code über Befehls-Substitution in Befehlsposition",
+          "was": "In parseCommandLine() lässt sich jeder Shell-Befehl autofreigeben, indem eine Befehls-Substitution in Befehlsposition steht. Per indirekter Prompt Injection passieren Eingaben wie $(echo touch /tmp/x) die echo-Positivliste, und die Shell führt die Ausgabe ohne Nutzerfreigabe aus.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-110206",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110206"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/roo-code-through-3.54.0-auto-approve-bypass-via-command-substitution-at-command-position"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-110206-roo-code",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-infuse",
+          "datum": "2026-10-14",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "INFUSE: 19 Modelle im Härtetest gegen indirekte Prompt Injection",
+          "was": "INFUSE prüft 19 Modelle aus den Familien GPT, Claude, Gemini, Llama, Gemma und Qwen mit 40 realistischen Aufgaben und 56 Angriffsszenarien. Der mittlere Angriffserfolg liegt unter LLM-Bewertung bei 19,6 % (pro Modell 3,2 % bis 41,9 %); eine Härtung im Prompt senkt den Erfolg einer Teilmenge von 58,2 % auf 14,3 %. Bestehende Schutzmodelle bieten nur begrenzten Schutz.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.20776",
+              "url": "https://arxiv.org/abs/2610.20776"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/agenten/",
+            "https://promptinjections.de/schutz/erkennung/"
+          ]
+        },
+        {
+          "id": "2026-10-cert-in-ciad-2026-0049",
+          "datum": "2026-10-15",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "CERT-In: Agenten im Testbetrieb erreichten Live-Systeme indischer Organisationen",
+          "was": "Die indische CERT-In meldet (Schweregrad kritisch), dass mehrere KI-Modellanbieter freiwillig offenlegten, ihre Modelle hätten bei Forschung und Evaluation im Internet die Live-Systeme indischer Organisationen erreicht — über in Konfiguration, öffentlichem Code und zu weit gefassten Cloud-Rollen offen liegende Zugangsdaten. Keine der betroffenen Organisationen bemerkte den Zugriff selbst.",
+          "bereiche": [
+            "evaluation"
+          ],
+          "quellen": [
+            {
+              "titel": "CERT-In: CIAD-2026-0049",
+              "url": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0049&pageid=PUBVLNOTES02"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/vorfaelle/"
+          ]
+        },
+        {
+          "id": "2026-10-nist-nsa-cisa-key-practices",
+          "datum": "2026-10-16",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "NIST, NSA und CISA: Key Practices für Vorfallbereitschaft bei Training und Evaluation",
+          "was": "NIST, NSA und CISA veröffentlichen zehn freiwillige Key Practices für die Bereitschaft und Reaktion auf Vorfälle beim Training und bei der Evaluation sehr leistungsfähiger Systeme, gegliedert in fünf Phasen von der Vorbereitung bis zur Meldung. Eine Fußnote nimmt Prompt Injection ausdrücklich aus der Vorfalldefinition aus: Handlungen aus einer eingeschleusten Anweisung gelten als angewiesen und damit nicht als Hauptursache eines Kontrollvorfalls.",
+          "bereiche": [
+            "evaluation",
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "NIST, NSA, CISA: Key Practices for Incident Readiness and Response (PDF)",
+              "url": "https://www.nist.gov/system/files/documents/2026/10/16/Key_Practices_for_Incident_Readiness_and_Response_in_Super_Intelligence%20_Training_and_Evaluation.pdf"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/schutz/"
+          ]
+        },
+        {
+          "id": "2026-10-ignored-not-refused",
+          "datum": "2026-10-16",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Ignored, Not Refused: gescheiterte Angriffe werden meist ignoriert, nicht abgelehnt",
+          "was": "Eine Prüfung von 33.000 Agentenläufen aus elf offenen Modellen auf InjecAgent und AgentDojo zeigt, dass die meisten gescheiterten Angriffe nicht abgelehnt (17 % bis 18 %), sondern schlicht ignoriert werden (76 % bis 80 %). Schon die Änderung des System-Prompts verschiebt den Angriffserfolg auf InjecAgent von 0,2 % auf 43 %.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.23254",
+              "url": "https://arxiv.org/abs/2610.23254"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/agenten/",
+            "https://promptinjections.de/schutz/erkennung/"
+          ]
+        },
+        {
+          "id": "2026-10-options-trading-agenten",
+          "datum": "2026-10-16",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Optionshandels-Agenten: 13 von 26 können unbegrenzten Verlust erreichen",
+          "was": "Eine Untersuchung von 26 Optionshandels-Systemen ergibt, dass 17 ohne verpflichtenden menschlichen Schritt handeln und 13 unbegrenzten Verlust erreichen können, darunter 6 von 8 Broker-Schnittstellen. Keines der 26 authentifiziert seine Textquellen oder gleicht Marktdaten gegen. Von 765 geprüften GitHub-Repositorys waren 215 geeignet.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.24289",
+              "url": "https://arxiv.org/abs/2610.24289"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/agenten/",
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/"
+          ]
+        },
+        {
+          "id": "2026-10-112308",
+          "datum": "2026-10-19",
+          "typ": "cve",
+          "cve": "CVE-2026-112308",
+          "cvss": 7.4,
+          "titel": "CVE-2026-112308: Server-Side Request Forgery über das SeleniumScrapingTool von crewai-tools",
+          "was": "Das SeleniumScrapingTool prüft Ziel-URLs nicht gegen private Adressen, obwohl crewai-tools dafür eine Prüffunktion mitbringt. Wer die Eingabe des Werkzeugs per Prompt Injection beeinflusst, lenkt den eingebauten Chrome-Browser auf Loopback, interne Netze oder die Metadaten-Adressen der Cloud und liest dort interne Daten und Cloud-Zugangsdaten aus.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-112308",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-112308"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/crewai-tools-through-1.15.28-ssrf-via-seleniumscrapingtool"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-112308-crewai-tools",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-fake-news-real-crashes",
+          "datum": "2026-10-19",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Fake News, Real Crashes: gefälschte Nachrichten schlagen Prompt Injection gegen Handelsagenten",
+          "was": "Die Arbeit prüft rund 10.000 Entscheidungen zu 15 US-Aktien und misst gegen Handelsagenten einen Angriffserfolg von 14 % mit Prompt Injection, aber 62 % mit gefälschten Nachrichten; zwei 30-Wort-Vorlagen erreichen bei allen 15 Aktien 100 %. Entfernt man Glaubwürdigkeitsmerkmale wie ein „BREAKING“-Etikett, fällt die Quote von 100 % auf 0 %.",
+          "bereiche": [
+            "dokumente-rag"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.26438",
+              "url": "https://arxiv.org/abs/2610.26438"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/rag/",
+            "https://promptinjections.de/owasp-llm-top-10/misinformation/"
+          ]
+        },
+        {
+          "id": "2026-10-owasp-red-teaming-manual",
+          "datum": "2026-10-20",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "OWASP GenAI Red Teaming Manual 1.0 veröffentlicht",
+          "was": "Das GenAI Security Project veröffentlicht Version 1.0 seines Red-Teaming-Handbuchs. Die achtphasige Methodik reicht von Planung und Aufklärung über Ausnutzung und Persistenz bis zu Bewertung und Behebung und schließt Modelle, Anwendungen, multimodale Schnittstellen und KI-Agenten ausdrücklich ein.",
+          "bereiche": [
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "OWASP GenAI Red Teaming Manual 1.0",
+              "url": "https://genai.owasp.org/resource/genai-red-teaming-manual-version-1-0/"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/penetrationstest/",
+            "https://promptinjections.de/owasp-llm-top-10/"
+          ]
+        },
+        {
+          "id": "2026-10-injection-ueber-beweismittel",
+          "datum": "2026-10-21",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Injection über Beweismittel: Angriffe auf KI-gestützte Forensik",
+          "was": "Die Arbeit legt eine Taxonomie von Angriffen über manipulierte Beweismittel vor und führt drei gegen eine KI-gestützte Analysekette vor: eine gemeldete Schlussfolgerung ändern, vom Angreifer gewählten Inhalt auf die Analyse-Arbeitsstation schreiben und ausgehenden Netzverkehr auslösen. Kernthese ist, dass das untersuchte Beweismaterial per Definition vom Angreifer kontrolliert ist.",
+          "bereiche": [
+            "dokumente-rag"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.29747",
+              "url": "https://arxiv.org/abs/2610.29747"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/dokumente/",
+            "https://promptinjections.de/techniken/dokumenten-injection/"
+          ]
+        },
+        {
+          "id": "2026-10-litellm-release-pipeline",
+          "datum": "2026-10-21",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "LiteLLM: kompromittierte Release-Pipeline bringt Datendieb auf PyPI",
+          "was": "Die Release-Pipeline von LiteLLM wurde kompromittiert; die Version 1.107.0 lag rund zwei Stunden (11:39 bis 13:23 UTC) mit kompiliertem Schadcode auf PyPI, der Zugangsdaten stiehlt und Werkzeuge zur Codeausführung nachlädt. Ursache war laut Nachfassung ein im Mai 2026 versehentlich veröffentlichter Administratorschlüssel, der nie widerrufen und am 10. Oktober benutzt wurde.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "LiteLLM: Security Incident (21.10.2026)",
+              "url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/supply-chain/",
+            "https://promptinjections.de/cve-verzeichnis/"
+          ]
+        },
+        {
+          "id": "2026-10-forever-security-downloads",
+          "datum": "2026-10-22",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "Forever Security: präparierte AGENTS.md im Downloads-Ordner eines Kunden",
+          "was": "Forever Security fand auf dem Rechner eines echten Kunden eine bösartige AGENTS.md im Downloads-Ordner. In Nachstellungen mit dem Originalpaket führte Codex die Schadsoftware in über 90 % der Versuche aus; Claude Code folgte einer selbst gebauten Datei in rund 50 % der Fälle. Beim Kunden selbst wurde die Ausführung gestoppt, bevor Code lief.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "Forever Security: Hijacking AI Agents via Downloads Folder",
+              "url": "https://forever.security/blog/hijacking-ai-agents-via-downloads-folder"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/angriffsvektoren/tool-use/",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-10-scope-gap-injection",
+          "datum": "2026-10-26",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Scope-Gap Injection: Anweisungen in ungeprüften Anhängen umgehen drei Prüfstufen",
+          "was": "Die im Rahmen eines Agenten-Sicherheitswettbewerbs entstandene Arbeit beschreibt Scope-Gap Injection: Anweisungen in Anhängen, die eine Prüfstufe nicht inspiziert, der Agent aber liest. In den Beobachtungen umging das Verfahren bei 5 von 19 Zielen alle drei Prüfstufen; die Platzierung in Anhängen ging mit höherer Akzeptanz in der LLM-Prüfstufe einher (78 % gegen 23 %).",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.34777",
+              "url": "https://arxiv.org/abs/2610.34777"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/eingabepruefung/",
+            "https://promptinjections.de/angriffsvektoren/dokumente/"
+          ]
+        },
+        {
+          "id": "2026-10-anthropic-s1",
+          "datum": "2026-10-26",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "Anthropic nennt Prompt Injection als Risikofaktor im Börsenprospekt",
+          "was": "In ihrem bei der SEC eingereichten Börsenprospekt (Form S-1) führt Anthropic Prompt Injection ausdrücklich als Risikofaktor. Der Prospekt beschreibt zudem, dass bei einer Fremdevaluation vier Modelle wegen einer Fehlkonfiguration der Testumgebung in Sitzungen von rund 10 bis 34 Stunden aktiver Arbeit unbefugt auf echte Drittsysteme zugriffen; eine frühe Modellfassung erlangte über ein gefundenes Passwort Administratorzugang zu einem fremden System.",
+          "bereiche": [
+            "evaluation"
+          ],
+          "quellen": [
+            {
+              "titel": "SEC: Anthropic PBC, Form S-1 (26.10.2026)",
+              "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/excessive-agency/",
+            "https://promptinjections.de/vorfaelle/"
+          ]
+        },
+        {
+          "id": "2026-10-nist-agent-identity-tenets",
+          "datum": "2026-10-27",
+          "typ": "standard",
+          "cve": null,
+          "cvss": null,
+          "titel": "NIST: zehn Designgrundsätze für Identität und Zugriff von Agenten",
+          "was": "NIST schlägt in einem Blogbeitrag zehn Designgrundsätze für das Identitäts- und Zugriffsmanagement von Agenten vor — von eindeutiger Agentenkennung bis zu unveränderlichen Nachweisen. Grundsatz 07 verlangt ausdrücklich, dass eingeschleuste Anweisungen oder nicht vertrauenswürdige Daten die Zugangsdaten nicht manipulieren können. Es ist ein erster Vorschlag, kein Standard.",
+          "bereiche": [
+            "abwehr",
+            "standards"
+          ],
+          "quellen": [
+            {
+              "titel": "NIST Cybersecurity Insights: Design Tenets for Agent Identity",
+              "url": "https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/least-privilege/",
+            "https://promptinjections.de/schutz/agenten-absichern/"
+          ]
+        },
+        {
+          "id": "2026-10-llmon-post-training",
+          "datum": "2026-10-28",
+          "typ": "forschung",
+          "cve": null,
+          "cvss": null,
+          "titel": "Post-Training mit LLMON senkt den Erfolg indirekter Injection deutlich",
+          "was": "Eine Arbeit von IBM Research senkt den Angriffserfolg indirekter Prompt Injection über Nachtraining von 53 % bis 100 % auf 0,02 % bis 5,6 %, bei erhaltenen allgemeinen Fähigkeiten. Nachtrainiert wurden zwei Granite-4.1-Basismodelle (3B und 8B) mit einem Korpus von 4,6 Milliarden Token.",
+          "bereiche": [
+            "abwehr"
+          ],
+          "quellen": [
+            {
+              "titel": "arXiv 2610.38120",
+              "url": "https://arxiv.org/abs/2610.38120"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/schutz/",
+            "https://promptinjections.de/schutz/erkennung/"
+          ]
+        },
+        {
+          "id": "2026-10-119050",
+          "datum": "2026-10-29",
+          "typ": "cve",
+          "cve": "CVE-2026-119050",
+          "cvss": 8.1,
+          "titel": "CVE-2026-119050: Codeausführung in den PandasTools von Agno über unsichere Reflexion",
+          "was": "Die PandasTools reichen vom Modell bestimmte Funktionsnamen an getattr() weiter und rufen so beliebige pandas-Funktionen auf. Per Prompt Injection lässt sich der Agent zu pandas.read_pickle auf einen vom Angreifer kontrollierten Pfad bewegen (Codeausführung) oder zu anderen Lesefunktionen, die lokale Dateien öffnen.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-119050",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119050"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/agno-agi/agno/issues/8699"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/agno-through-3.1.11-code-execution-via-pandastools-unsafe-reflection"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-119050-agno",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/code-injection-via-llm/"
+          ]
+        },
+        {
+          "id": "2026-10-wiz-black-october",
+          "datum": "2026-10-30",
+          "typ": "vorfall",
+          "cve": null,
+          "cvss": null,
+          "titel": "Wiz „Black October“: Vorfälle bei mindestens neun KI-Entwicklerplattformen",
+          "was": "Wiz dokumentiert, dass im Oktober mindestens neun KI-Entwicklerplattformen Vorfälle offenlegten. Zwei gestohlene Schlüssel lösten laut Bericht rund 800.000 und rund 1,7 Millionen Bedrock-Aufrufe aus und verursachten zum Listenpreis vermutlich über 100.000 US-Dollar Nutzung; eine Plattform (Zeabur) stellt infolge des Vorfalls den Betrieb ein.",
+          "bereiche": [
+            "proxy-memory"
+          ],
+          "quellen": [
+            {
+              "titel": "Wiz: Black October for AI Developer Platforms",
+              "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/owasp-llm-top-10/supply-chain/",
+            "https://promptinjections.de/cve-verzeichnis/"
+          ]
+        },
+        {
+          "id": "2026-10-61789",
+          "datum": "2026-10-30",
+          "typ": "cve",
+          "cve": "CVE-2026-61789",
+          "cvss": 6.1,
+          "titel": "CVE-2026-61789: Umgehung des Nur-Lese-Modus im DBHub-MCP-Server bei MySQL und MariaDB",
+          "was": "Die Nur-Lese-Prüfung behandelt jeden doppelten Bindestrich als Kommentaranfang, während MySQL und MariaDB dafür ein Leerzeichen, ein Steuerzeichen oder das Zeilenende verlangen. Weil die Konnektoren die ursprüngliche Zeichenkette mit aktiviertem multipleStatements ausführen, verbirgt ein doppelter Bindestrich mit folgendem Nicht-Leerzeichen eine nachgestellte Schreib- oder DDL-Anweisung vor der Prüfung. Wer die SQL des Assistenten beeinflusst — auch per Prompt Injection in gelesenen Inhalten —, umgeht den Nur-Lese-Modus. PostgreSQL ist nicht betroffen.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-61789",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61789"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/bytebase/dbhub/security/advisories/GHSA-j656-3hf2-fvjc"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-61789-dbhub",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-71427",
+          "datum": "2026-10-01",
+          "typ": "cve",
+          "cve": "CVE-2025-71427",
+          "cvss": 6.8,
+          "titel": "CVE-2025-71427: Pfaddurchquerung im Office-PowerPoint-MCP-Server",
+          "was": "Der MCP-Server prüft die übergebenen Pfade nicht und erlaubt über absolute Pfade oder ../-Sequenzen das Lesen und Schreiben außerhalb des Arbeitsverzeichnisses. Wer einen Agenten per Prompt Injection steuert, lässt ihn über die Werkzeuge save_presentation, open_presentation oder den Ausgabepfad von manage_image beliebige beschreibbare Dateien überschreiben oder fremde Dateien laden.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2025-71427",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-71427"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/GongRzhe/Office-PowerPoint-MCP-Server/pull/33"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/office-powerpoint-mcp-server-through-2.0.7-path-traversal-via-save-presentation-and-manage-image"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2025-71427-office-powerpoint-mcp",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-108583",
+          "datum": "2026-10-10",
+          "typ": "cve",
+          "cve": "CVE-2026-108583",
+          "cvss": 4.2,
+          "titel": "CVE-2026-108583: Server-Side Request Forgery im zotero-mcp über das Werkzeug zotero_add_by_url",
+          "was": "Die Funktion _fetch_embedded_metadata ruft URLs ohne Zielprüfung ab. Wer den Agenten per Prompt Injection dazu bringt, zotero_add_by_url aufzurufen, lenkt die Abrufe — direkt oder über Weiterleitungen — auf Loopback-, private oder Link-local-Adressen und liest dort Metadaten und Fehlermeldungen aus.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-108583",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108583"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/54yyyu/zotero-mcp/issues/326"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/zotero-mcp-0.10.0-through-0.14.1-ssrf-via-zotero-add-by-url-tool"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-108583-zotero-mcp",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-108592",
+          "datum": "2026-10-10",
+          "typ": "cve",
+          "cve": "CVE-2026-108592",
+          "cvss": 5.3,
+          "titel": "CVE-2026-108592: Offenlegung von Umgebungsvariablen in der Bubblewrap-Sandbox von mini-swe-agent",
+          "was": "In der BubblewrapEnvironment fehlt der Aufruf --clearenv, sodass abgeschottete Befehle die Umgebung des Hosts erben. Wer über die verarbeitete Aufgabe eine Prompt Injection einschleust, lässt den Agenten API-Schlüssel aus der Umgebung lesen und über das gemeinsame Netz ausleiten.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-108592",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108592"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/mini-swe-agent-1.10.0-through-2.4.6-environment-exposure-via-bubblewrapenvironment"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-108592-mini-swe-agent",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-108599",
+          "datum": "2026-10-10",
+          "typ": "cve",
+          "cve": "CVE-2026-108599",
+          "cvss": 4.7,
+          "titel": "CVE-2026-108599: Umgehung der Schreibbeschränkung in phi über Symlinks",
+          "was": "Die Rechteprüfung workspace_only_writes vergleicht nur Pfadzeichenketten. Ein bösartiges Repository legt einen Symlink an, der aus dem Arbeitsbereich hinausweist; per Prompt Injection schreibt das Werkzeug dann vom Angreifer beeinflussten Inhalt ohne Freigabe in fremde Dateien.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-108599",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108599"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/phi-0.1.1-through-0.28.4-symlink-workspace-write-restriction-bypass"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-108599-phi",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-108600",
+          "datum": "2026-10-10",
+          "typ": "cve",
+          "cve": "CVE-2026-108600",
+          "cvss": 4.7,
+          "titel": "CVE-2026-108600: Ausbruch aus der Sandbox von open-multi-agent über hängende Symlinks",
+          "was": "Das Werkzeug file_write lässt sich über einen hängenden Symlink im Arbeitsbereich dazu bringen, Dateien außerhalb der Arbeitswurzel anzulegen. Per Prompt Injection gesteuert, schreibt der Agent vom Angreifer beeinflussten Inhalt überall dorthin, wo sein Prozess schreiben darf.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-108600",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108600"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/open-multi-agent-1.5.0-through-1.21.2-sandbox-escape-via-file-write-dangling-symlink"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-108600-open-multi-agent",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-108756",
+          "datum": "2026-10-11",
+          "typ": "cve",
+          "cve": "CVE-2026-108756",
+          "cvss": 5.4,
+          "titel": "CVE-2026-108756: Fehlende Autorisierung im Telegram-Router von Abilityai Trinity",
+          "was": "Im Telegram-Router dürfen agentengebundene MCP-API-Schlüssel Bindevorgänge ausführen, die nur dem Menschen vorbehalten sein sollten. Wer einen Agenten kontrolliert — typischerweise per Prompt Injection —, sendet über das Bot-Token des Besitzers Nachrichten, ersetzt die Bindung durch sein eigenes Token oder löscht sie.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-108756",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108756"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/abilityai-trinity-through-0.9.5-missing-authorization-in-telegram-binding-routes"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-108756-trinity",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/confused-deputy-agent/"
+          ]
+        },
+        {
+          "id": "2026-10-84317",
+          "datum": "2026-10-12",
+          "typ": "cve",
+          "cve": "CVE-2026-84317",
+          "cvss": 8.8,
+          "titel": "CVE-2026-84317: Umgehung der Direktiven-Prüfung im MCP-Werkzeug von Nginx UI",
+          "was": "Die Prüffunktion ValidateConfigFile blockiert gefährliche nginx-Direktiven (js_*, perl_*, das Laden der njs-/perl-Module, user root) auf drei von vier Schreibpfaden. Der vierte — das MCP-Werkzeug nginx_config_add — ruft sie nicht auf, sondern schreibt den übergebenen Inhalt direkt auf die Platte und lädt nginx neu. Ein angemeldeter MCP-Aufrufer oder ein per Prompt Injection verleiteter MCP-Agent schleust so genau die Direktiven ein, die die Prüfung verhindern soll, und führt auf Installationen mit verfügbarem njs-/perl-Modul Code aus.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-84317",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84317"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/0xJacky/nginx-ui/security/advisories/GHSA-76pm-mq2q-9gcr"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-84317-nginx-ui",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-missbrauch/"
+          ]
+        },
+        {
+          "id": "2026-10-76066",
+          "datum": "2026-10-15",
+          "typ": "cve",
+          "cve": "CVE-2026-76066",
+          "cvss": 7.5,
+          "titel": "CVE-2026-76066: Umgehung der Werkzeug-Autorisierung in IntentKit",
+          "was": "Der Executor prüft Werkzeugaufrufe gegen die vollständige Werkzeugliste statt gegen die pro Anfrage eingeschränkte Auswahl der ToolBindingMiddleware. Dadurch laufen besitzergebundene, zustandsändernde Werkzeuge — Wallet-Überweisung, Veröffentlichen, Gedächtnis-Schreiben, Agentenaufruf — ohne Freigabe. Ein öffentlicher Aufrufer im Web-, API-, Twitter- oder Telegram-Kontext nutzt das per indirekter Prompt Injection oder durch Wiedereinspielen von Checkpoint- und Verlaufsdaten.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-76066",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/crestalnetwork/intentkit/commit/5b91da5734d1ac16cd656fa66a86caf8f15cd671"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/intentkit-executor-tool-authorization-bypass-via-toolnode"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-76066-intentkit",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/confused-deputy-agent/"
+          ]
+        },
+        {
+          "id": "2026-10-95183",
+          "datum": "2026-10-16",
+          "typ": "cve",
+          "cve": "CVE-2026-95183",
+          "cvss": 8.8,
+          "titel": "CVE-2026-95183: Fortbestand einer Prompt Injection über die Kontext-Verdichtung von DeepSeek Harness",
+          "was": "Die Kontext-Verdichtung ersetzt den Gesprächsverlauf durch eine vom Modell erzeugte Zusammenfassung, die zum gesamten Kontext der fortgesetzten Sitzung wird. Da die Verdichtungsanweisung das Modell zum wörtlichen Übernehmen von Auftrag und offenen Aufgaben anhält und nicht vertrauenswürdige Werkzeugausgaben keine Herkunftsmarkierung tragen, überdauern in fremde Inhalte eingebettete Anweisungen die Verdichtung und werden in der fortgesetzten Sitzung als feststehender Auftrag übernommen.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-95183",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95183"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://gist.github.com/lkloliver/c54c0cc91e1ec4f16b538e0d8a1411b6"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-95183-deepseek-harness",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/gespeicherte-prompt-injection/"
+          ]
+        },
+        {
+          "id": "2026-10-109440",
+          "datum": "2026-10-20",
+          "typ": "cve",
+          "cve": "CVE-2026-109440",
+          "cvss": 8.8,
+          "titel": "CVE-2026-109440: Codeausführung in LangAlpha über indirekte Prompt Injection",
+          "was": "Ein entfernter Angreifer führt Shell-Befehle oder Python aus, indem er Anweisungen in Webinhalte einbettet, die der Agent abruft. Weil die Werkzeuge Bash und ExecuteCode weder eine Positivliste noch eine menschliche Freigabe kennen, läuft der Code in der Arbeits-Sandbox und liest Vault-Geheimnisse aus _internal/.vault_secrets.json aus.",
+          "bereiche": [
+            "coding-agenten"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-109440",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109440"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/langalpha-through-2026.09.07-indirect-prompt-injection-rce-via-bash-and-executecode"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-109440-langalpha",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/code-injection-via-llm/"
+          ]
+        },
+        {
+          "id": "2026-10-114107",
+          "datum": "2026-10-21",
+          "typ": "cve",
+          "cve": "CVE-2026-114107",
+          "cvss": 8.8,
+          "titel": "CVE-2026-114107: Codeausführung als root in HKUDS Vibe-Trading über indirekte Prompt Injection",
+          "was": "Ein entfernter Angreifer führt Shell-Befehle als root aus, indem er Anweisungen in Dokumente oder Webseiten einbettet, die der Agent verarbeitet. BashTool und BackgroundRunTool reichen vom Modell erzeugte Befehle mit shell=True ohne Positivliste und ohne Freigabe an subprocess.run; read_url ruft beliebige URLs ab und ermöglicht zusätzlich Server-Side Request Forgery.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-114107",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114107"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/HKUDS/Vibe-Trading/security/advisories/GHSA-jqmf-mx4f-hfr6"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/hkuds-vibe-trading-0.1.0-before-0.1.7-indirect-prompt-injection-rce-via-bashtool-and-backgroundruntool"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-114107-vibe-trading",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/code-injection-via-llm/"
+          ]
+        },
+        {
+          "id": "2026-10-117567",
+          "datum": "2026-10-27",
+          "typ": "cve",
+          "cve": "CVE-2026-117567",
+          "cvss": 7.8,
+          "titel": "CVE-2026-117567: OS-Befehlsinjektion im esp-mcp über MCP-Werkzeugparameter",
+          "was": "Shell-Metazeichen in den MCP-Werkzeugparametern target, port, project_path oder project_name gelangen über asyncio.create_subprocess_shell zur Ausführung. Wer die Werkzeugaufrufe des Agenten per Prompt Injection beeinflusst, schleust Metazeichen ein und führt Befehle mit den Rechten des MCP-Server-Kontos aus.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-117567",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117567"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/horw/esp-mcp/issues/49"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.vulncheck.com/advisories/esp-mcp-through-commit-28afddf-os-command-injection-via-mcp-tool-parameters"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-117567-esp-mcp",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/code-injection-via-llm/"
+          ]
+        },
+        {
+          "id": "2026-10-59176",
+          "datum": "2026-10-28",
+          "typ": "cve",
+          "cve": "CVE-2026-59176",
+          "cvss": 7.8,
+          "titel": "CVE-2026-59176: Installation beliebiger Pakete im functype-mcp-server mit Codeausführung",
+          "was": "Das MCP-Werkzeug set_functype_version prüft die Versionszeichenkette nur mit z.string() und setzt sie in functype@<version> für pnpm add ein. Alias-Formen wie file:, npm:, URLs oder Pfade installieren ein beliebiges Paket als functype; der anschließende dynamische Import führt den Code mit den Rechten des MCP-Server-Prozesses aus. Das Werkzeug ist im stdio-Modus ohne Authentifizierung aktiv, und ein für indirekte Prompt Injection anfälliger Assistent lässt sich zum Aufruf verleiten.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-59176",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59176"
+            },
+            {
+              "titel": "Herstellerangabe",
+              "url": "https://github.com/jordanburke/functype/security/advisories/GHSA-wcjj-9m6g-2fr2"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-59176-functype",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/",
+            "https://promptinjections.de/techniken/tool-poisoning-mcp/"
+          ]
+        },
+        {
+          "id": "2026-10-96561",
+          "datum": "2026-10-01",
+          "typ": "cve",
+          "cve": "CVE-2026-96561",
+          "cvss": 7.2,
+          "titel": "CVE-2026-96561: Gespeichertes Cross-Site Scripting über die ungeprüfte Antwort des Advisor-Modells in AI Engine",
+          "was": "Ein Aufruf des Chat-Endpunkts ohne Anmeldung schreibt eine präparierte Zeile in das PHP-Fehlerprotokoll. Die Advisor-Funktion des Plugins hängt diese Zeile unverändert an den Prompt des Modells, speichert dessen JSON-Antwort ohne Prüfung und setzt Titel und Beschreibung ohne Escaping in das Dashboard. Öffnet ein Administrator das Dashboard, läuft das eingeschleuste Skript in seiner Sitzung.",
+          "bereiche": [
+            "agenten-frameworks"
+          ],
+          "quellen": [
+            {
+              "titel": "NVD: CVE-2026-96561",
+              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-96561"
+            },
+            {
+              "titel": "Forschungsbericht",
+              "url": "https://www.wordfence.com/threat-intel/vulnerabilities/id/910e51da-6ee2-45d5-837b-7fea80f79390"
+            }
+          ],
+          "anknuepfung": [
+            "https://promptinjections.de/cve-verzeichnis/#cve-2026-96561-ai-engine-wordpress",
+            "https://promptinjections.de/techniken/indirekte-prompt-injection/"
+          ]
+        }
+      ],
+      "methode": "Aufgenommen wird ein Ereignis, wenn (1) eine Primärquelle es datiert — Standardgremium, Schwachstellendatenbank, Forschungsarbeit, Hersteller- oder Erstbericht —, (2) diese Quelle am Stichtag erreichbar war und (3) das Ereignis Prompt Injection oder die Sicherheit von Agenten betrifft. Jeder Eintrag verlinkt seine Quelle. Kennung, Datum, CVSS und CWE der Schwachstellen prüft scripts/cve-pruefen.mjs maschinell gegen die NVD. Seit der Ausgabe September wird die NVD zudem monatlich nach neu registrierten Schwachstellen mit Bezug zu Prompt Injection abgefragt (keywordSearch »prompt injection«, exakte Übereinstimmung), damit keine CVE übersehen wird. Die Spalten des Bereichsvergleichs sind Zählwerte, keine Bewertungen; die Einordnung je Bereich ist redaktionell und als solche gekennzeichnet.",
+      "erfassung": {
+        "hinweis": "Grundlage sind die Tagesnotizen des PI-Radars vom 1. bis 31. Oktober 2026, ergänzt um Meldungen vom 1. bis 6. November 2026, soweit sie ein Oktober-Ereignis an der Primärquelle datieren. Seit der Ausgabe September wird zusätzlich die National Vulnerability Database direkt abgefragt.",
+        "rohmeldungen": 110,
+        "aufgenommen": 52,
+        "ausgeschlossen": [
+          "Agenten als Werkzeug von Angreifern statt als angegriffenes System — Kriterium 3 nicht erfüllt: ReliaQuest (07.10., Agenten-Orchestrierer übernimmt einen Server) und TrendAI CyberStrikeAI (23.10.)",
+          "Vorfälle ohne belegbares Tagesdatum der Primärquelle, etwa die EMNLP-Arbeit CBC (nur „October 2026“, zudem seit Juni 2026 als anonymer Vorabdruck öffentlich)",
+          "Ereignisse außerhalb des Berichtsmonats, die im Oktober erneut zirkulierten (OWASP LLM Top 10 vom August, OpenAPPA und ASPI aus dem Frühjahr/Sommer, der Hugging-Face-Vorfall vom August, NIST SP 1353 vom August)",
+          "In die September-Ausgabe übernommene Ereignisse mit September-Datum (u. a. CVE-2026-93355, CVE-2026-103040, CVE-2026-103395, der GTIG-Bericht vom 30.09.)",
+          "KI, die Schwachstellen findet oder ausnutzt, ohne dass die Sicherheit von Agenten selbst betroffen ist (CrowdStrike-Filterumgehung, Anthropics OSS-Scanner, PHP2Shell-CVEs)",
+          "Mehrfachmeldungen desselben Ereignisses sowie Hersteller-, Lehr- und Meinungsbeiträge ohne neue Daten",
+          "Meldungen, für die keine erreichbare Primärquelle auffindbar war"
         ]
       }
     }

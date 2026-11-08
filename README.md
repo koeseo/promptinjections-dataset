@@ -55,6 +55,7 @@ strukturierten Fakten dahinter, nicht die Aufbereitung.
 
 ## Versionen
 
+- **2.2.0** (2026-11-08): Threat Index um die Ausgaben September (37 Einträge) und Oktober 2026 (52 Einträge) ergänzt; CVE-Verzeichnis von 12 auf 52 Einträge (alle NVD-geprüft); Vorfälle aktualisiert. 256 Einträge gesamt.
 - **2.1.0** (2026-09-05): CVE-Verzeichnis (12 Einträge, NVD-geprüft) und Prompt Injection Threat Index (Ausgabe August 2026) neu; Export und API (`/api/v1/`) aus derselben Bibliothek.
 - **2.0.0** (2026-09-01): Wechsel auf die OWASP-Fassung 2026.
 - **1.0.0** (2026-08-10): Erstveröffentlichung mit 198 Einträgen.
@@ -65,7 +66,7 @@ Jede Datei folgt derselben Form:
 
 ```json
 {
-  "meta": { "titel": "…", "version": "2.1.0", "stand": "2026-09-05", "lizenz": "CC-BY-4.0", "anzahl": 52 },
+  "meta": { "titel": "…", "version": "2.2.0", "stand": "2026-11-06", "lizenz": "CC-BY-4.0", "anzahl": 52 },
   "eintraege": [ { "slug": "…", "url": "…", "quelle_url": "…", "belegt": true } ]
 }
 ```
@@ -138,7 +139,7 @@ eigene Texte und keine autorisierte Übersetzung.
 
 ```
 Köse, G. (2026). Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
-(Version 2.1.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
+(Version 2.2.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
 ```
 
 Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.

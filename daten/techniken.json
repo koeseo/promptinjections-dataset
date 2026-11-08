@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Techniken der Prompt Injection",
     "title_en": "Prompt injection techniques",
-    "version": "2.1.0",
-    "stand": "2026-09-05",
+    "version": "2.2.0",
+    "stand": "2026-11-06",
     "sprache": "de",
     "anzahl": 52,
     "herausgeber": "Gökhan Köse, koeseo",
