@@ -24,7 +24,8 @@ const anzahl = (index.datensaetze || []).reduce((s, d) => s + (d.anzahl || 0), 0
 const zip = path.join('/tmp', `promptinjections-dataset-${tag}.zip`);
 execFileSync('git', ['archive', '--format=zip', `--prefix=promptinjections-dataset-${version}/`, '-o', zip, ref], { cwd: root });
 
-const h = { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' };
+const UA = 'promptinjections-dataset-zenodo/1.0 (+https://promptinjections.de/daten/)';
+const h = { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json', 'User-Agent': UA };
 const call = async (url, init = {}) => {
   const r = await fetch(url, { ...init, headers: { ...h, ...(init.headers || {}) } });
   if (!r.ok && r.status !== 204) throw new Error(`${init.method || 'GET'} ${url}: ${r.status} ${await r.text()}`);
@@ -41,7 +42,7 @@ if (concept) {
 }
 
 const bucket = dep.links.bucket;
-const up = await fetch(`${bucket}/${path.basename(zip)}`, { method: 'PUT', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/octet-stream' }, body: fs.readFileSync(zip) });
+const up = await fetch(`${bucket}/${path.basename(zip)}`, { method: 'PUT', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/octet-stream', 'User-Agent': UA }, body: fs.readFileSync(zip) });
 if (!up.ok) throw new Error(`upload ${up.status} ${await up.text()}`);
 
 const metadata = {

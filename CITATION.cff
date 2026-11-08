@@ -25,5 +25,10 @@ keywords:
   - Sprachmodelle
   - IT-Sicherheit
 license: CC-BY-4.0
+doi: 10.5281/zenodo.24054570
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24054569
+    description: "Konzept-DOI, zeigt immer auf die neueste Version"
 version: 2.2.0
 date-released: "2026-11-08"

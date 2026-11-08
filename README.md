@@ -1,5 +1,7 @@
 # Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24054569.svg)](https://doi.org/10.5281/zenodo.24054569)
+
 Offene, belegte Daten zu Angriffen auf Anwendungen mit großen Sprachmodellen.
 **256 Einträge, jeder einzelne mit verlinkter Primärquelle.** Dieselben Daten liegen als API unter [promptinjections.de/api/v1/](https://promptinjections.de/api/).
 
@@ -55,7 +57,7 @@ strukturierten Fakten dahinter, nicht die Aufbereitung.
 
 ## Versionen
 
-- **2.2.0** (2026-11-08): Threat Index um die Ausgaben September (37 Einträge) und Oktober 2026 (52 Einträge) ergänzt; CVE-Verzeichnis von 12 auf 52 Einträge (alle NVD-geprüft); Vorfälle aktualisiert. 256 Einträge gesamt.
+- **2.2.0** (2026-11-08, DOI [10.5281/zenodo.24054570](https://doi.org/10.5281/zenodo.24054570)): Threat Index um die Ausgaben September (37 Einträge) und Oktober 2026 (52 Einträge) ergänzt; CVE-Verzeichnis von 12 auf 52 Einträge (alle NVD-geprüft); Vorfälle aktualisiert. 256 Einträge gesamt.
 - **2.1.0** (2026-09-05): CVE-Verzeichnis (12 Einträge, NVD-geprüft) und Prompt Injection Threat Index (Ausgabe August 2026) neu; Export und API (`/api/v1/`) aus derselben Bibliothek.
 - **2.0.0** (2026-09-01): Wechsel auf die OWASP-Fassung 2026.
 - **1.0.0** (2026-08-10): Erstveröffentlichung mit 198 Einträgen.
@@ -139,7 +141,7 @@ eigene Texte und keine autorisierte Übersetzung.
 
 ```
 Köse, G. (2026). Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
-(Version 2.2.0) [Datensatz]. promptinjections.de. https://promptinjections.de/daten/
+(Version 2.2.0) [Datensatz]. promptinjections.de. https://doi.org/10.5281/zenodo.24054570
 ```
 
 Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.
