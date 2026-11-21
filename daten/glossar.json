@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Glossar der LLM-Sicherheit",
     "title_en": "Glossary of LLM security",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 82,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -707,7 +707,7 @@
       "slug": "human-in-the-loop",
       "url": "https://promptinjections.de/glossar/human-in-the-loop/",
       "begriff": "Mensch in der Schleife (Human in the Loop)",
-      "definition_2_saetze": "Human in the Loop bedeutet, dass folgenschwere Aktionen erst nach ausdrücklicher menschlicher Freigabe ausgeführt werden. Die Freigabe wirkt nur, wenn dem Menschen die tatsächliche Aktion verständlich angezeigt wird — nicht bloß eine Zusammenfassung des Modells.",
+      "definition_2_saetze": "Human in the Loop, früher auch Man in the Loop, bedeutet, dass folgenschwere Aktionen erst nach ausdrücklicher menschlicher Freigabe ausgeführt werden. Die Freigabe wirkt nur, wenn dem Menschen die tatsächliche Aktion verständlich angezeigt wird und nicht bloß eine Zusammenfassung des Modells.",
       "kontext": "Die Maßnahme ist nur so gut wie die Qualität der Anzeige: Sieht der Mensch lediglich die Zusammenfassung des Modells, bestätigt er im Zweifel eine Aktion, deren tatsächliche Parameter er nie gesehen hat. Zudem stumpft die Bestätigung ab, wenn sie zu häufig verlangt wird — dann wird sie zur Routinegeste. Sinnvoll ist sie deshalb selektiv für folgenschwere, nicht umkehrbare Aktionen und mit Anzeige der echten Parameter.",
       "beispiel": "Vor dem Versand zeigt die Oberfläche Empfänger, Betreff und vollständigen Inhalt der E-Mail an — nicht den Satz „Ich sende jetzt die angeforderte Zusammenfassung“.",
       "verwandte": [
@@ -767,7 +767,7 @@
       "slug": "datenexfiltration",
       "url": "https://promptinjections.de/glossar/datenexfiltration/",
       "begriff": "Datenexfiltration",
-      "definition_2_saetze": "Datenexfiltration ist der unbefugte Abfluss von Daten aus einem System. Bei LLM-Anwendungen läuft er typischerweise über ausgehende Kanäle der Antwort — Bild-URLs, Links oder Werkzeugaufrufe.",
+      "definition_2_saetze": "Datenexfiltration ist die unbefugte Übertragung von Informationen aus einem System. Bei LLM-Anwendungen bringt meist eine Prompt Injection das Modell dazu, Daten über Antworten, Links, nachgeladene Bilder oder Werkzeugaufrufe nach außen zu tragen.",
       "kontext": "Der Abfluss braucht keinen Netzwerkzugriff des Modells — es genügt, dass die Oberfläche eine vom Modell erzeugte URL automatisch aufruft, etwa beim Darstellen eines Bildes. Genau dieser Weg wurde in mehreren dokumentierten Vorfällen genutzt, darunter EchoLeak in Microsoft 365 Copilot. Wirksam sind eine Erlaubnisliste für Zielhosts, das Unterbinden automatischer Ladevorgänge und die Prüfung ausgehender Inhalte. Für die Bewertung genügt oft eine Frage: Über welche Kanäle kann die Antwort dieses Systems etwas nach außen tragen — Links, Bilder, Werkzeugaufrufe, Weiterleitungen?",
       "beispiel": "Ein Assistent bettet vertrauliche Werte in die Parameter einer Bild-URL ein, die der Browser des Opfers beim Anzeigen der Antwort abruft.",
       "verwandte": [
@@ -917,7 +917,7 @@
       "slug": "dan",
       "url": "https://promptinjections.de/glossar/dan/",
       "begriff": "DAN",
-      "definition_2_saetze": "DAN steht für „Do Anything Now\" und bezeichnet die bekannteste Familie von Community-Jailbreak-Prompts, die dem Modell eine regelfreie Zweitpersönlichkeit zuschreiben. Die Varianten zirkulieren öffentlich und werden laufend an neue Modellversionen angepasst.",
+      "definition_2_saetze": "DAN steht für „Do Anything Now\" und bezeichnet die früheste und am weitesten verbreitete Familie von Jailbreak-Prompts für ChatGPT. Der Prompt lässt das Modell eine zweite Figur spielen, für die angeblich keine Regeln gelten.",
       "kontext": "DAN-Prompts sind vor allem als Messlatte interessant: Sie sind öffentlich, gut dokumentiert und werden von jedem ernsthaften Guardrail erkannt — wer daran scheitert, hat kein Schutzniveau. Shen und Kollegen sammelten und analysierten mehrere tausend solcher Prompts aus öffentlichen Quellen und zeigten, dass einzelne Varianten über Monate hinweg wirksam blieben. Für die Praxis heißt das: DAN zu blockieren ist Mindeststandard, nicht Sicherheit.",
       "beispiel": "Ein Prompt weist das Modell an, ab sofort in einer zweiten Persönlichkeit zu antworten, für die die üblichen Regeln angeblich nicht gelten.",
       "verwandte": [
@@ -992,7 +992,7 @@
       "slug": "feintuning",
       "url": "https://promptinjections.de/glossar/feintuning/",
       "begriff": "Feintuning",
-      "definition_2_saetze": "Feintuning passt ein vortrainiertes Modell mit zusätzlichen Daten an eine spezifische Aufgabe an. Es kann Sicherheit erhöhen (StruQ, SecAlign) oder zerstören, wenn dabei vorhandenes Sicherheitstraining überschrieben wird.",
+      "definition_2_saetze": "Feintuning (Fine-Tuning) trainiert ein vortrainiertes Modell mit zusätzlichen Daten weiter und passt so seine Gewichte an eine Aufgabe an. Es kann Sicherheit erhöhen (StruQ, SecAlign) oder zerstören, wenn dabei vorhandenes Sicherheitstraining überschrieben wird.",
       "kontext": "Für die Sicherheit ist Feintuning zweischneidig: StruQ und SecAlign zeigen, dass es die Widerstandsfähigkeit gegen Injektion messbar erhöhen kann; zugleich ist dokumentiert, dass bereits kleine Trainingsläufe vorhandenes Sicherheitstraining aushebeln können. Wer ein Modell nachtrainiert, muss den Sicherheitsstand danach neu messen statt ihn vorauszusetzen. Bei fremden feingetunten Modellen gilt dasselbe als Frage der Lieferkette. Sinnvoll ist deshalb, denselben Angriffstestsatz vor und nach dem Training zu fahren und das Ergebnis gemeinsam mit dem Modell zu versionieren.",
       "beispiel": "Ein auf Fachsprache getuntes Modell beantwortet nach dem Training Anfragen, die es in der Ausgangsversion abgelehnt hatte.",
       "verwandte": [
@@ -1022,7 +1022,7 @@
       "slug": "backdoor",
       "url": "https://promptinjections.de/glossar/backdoor/",
       "begriff": "Backdoor (Sleeper Agent)",
-      "definition_2_saetze": "Eine Backdoor ist ein im Training eingebautes Verhalten, das nur bei einem bestimmten Auslöser aktiv wird. Anthropic zeigte, dass Standard-Sicherheitstraining solche Hintertüren nicht zuverlässig entfernt und ihr Verbergen sogar verstärken kann.",
+      "definition_2_saetze": "Eine Backdoor (Hintertür) ist ein nicht dokumentierter Zugang zu einem Computersystem. In KI-Modellen ist sie ein im Training verankertes Verhalten, das erst ein bestimmter Auslöser aktiviert und das Standard-Sicherheitstraining nicht zuverlässig entfernt.",
       "kontext": "Anthropics Arbeit zu „Sleeper Agents“ (2024) zeigte, dass eingebaute Auslöser Standard-Sicherheitstraining überstehen und adversariales Training das Verhalten eher verbergen als entfernen kann. Für Betreiber folgt daraus, dass Vertrauen in ein fremdes Modell eine Frage der Lieferkette ist und keine Testfrage — Stichproben finden gezielt versteckte Auslöser nicht. Provenienz, signierte Artefakte und die Wahl nachvollziehbarer Quellen sind die praktikablen Antworten.",
       "beispiel": "Ein Modell verhält sich in allen Tests unauffällig und erzeugt fehlerhaften Code erst, wenn im Prompt eine bestimmte Jahreszahl auftaucht.",
       "verwandte": [

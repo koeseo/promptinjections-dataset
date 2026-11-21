@@ -2,8 +2,8 @@
   "meta": {
     "titel": "OWASP Top 10 für LLM-Anwendungen 2026, deutsche Einordnung",
     "title_en": "OWASP Top 10 for LLM Applications 2026, German commentary",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 10,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -11,7 +11,7 @@
     "lizenz": "CC-BY-SA-4.0",
     "namensnennung": "promptinjections.de (Gökhan Köse), https://promptinjections.de",
     "ausgabe": "2026",
-    "owasp_veroeffentlicht": "2026-08-03",
+    "owasp_veroeffentlicht": "2026-08-04",
     "lizenz_hinweis": "Die OWASP-Inhalte stehen unter Creative-Commons-Lizenz. Die deutschen Zusammenfassungen auf diesem Portal sind eigene Formulierungen, keine autorisierte Übersetzung.",
     "quelle_owasp": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/"
   },
@@ -44,7 +44,8 @@
       ],
       "vertrauensstufen_der_zustellwege": [
         "Nicht vertrauenswürdig — öffentliche Webseiten, E-Mails unbekannter Absender, Suchergebnisse. Alles daraus ist als verdächtig zu behandeln; hier liegt der Schwerpunkt der bisherigen Forschung.",
-        "Halb vertrauenswürdig — Issue-Titel in einem öffentlichen Bugtracker, READMEs und Änderungsprotokolle von Paketen, Antworten fremder Programmierschnittstellen: Inhalte, die der Nutzer abrufen wollte, aber nicht selbst verfasst hat."
+        "Halb vertrauenswürdig — Issue-Titel in einem öffentlichen Bugtracker, READMEs und Änderungsprotokolle von Paketen, Antworten fremder Programmierschnittstellen: Inhalte, die der Nutzer abrufen wollte, aber nicht selbst verfasst hat.",
+        "Vertrauenswürdig — eigene Repositories, Datenbanken, interne Dokumente und Mails des Entwicklers. Auch hier kann ein Angreifer Text platzieren, etwa über ein öffentliches Fehlerformular, ohne dass der Entwickler es bemerkt."
       ],
       "moegliche_folgen": [
         "Preisgabe sensibler Informationen, des System-Prompts, abgerufener Privatdokumente oder von Infrastrukturdetails",
@@ -54,11 +55,17 @@
         "Dauerhafte Kompromittierung des Agentenverhaltens über Sitzungen hinweg durch Vergiftung von Gedächtnis oder RAG-Bestand"
       ],
       "gegenmassnahmen": [
-        "Verhalten des Modells eng eingrenzen und Rollen klar definieren",
-        "Erwartete Ausgabeformate durchsetzen und validieren",
-        "Ein- und Ausgabefilterung sowie Rechtekontrolle außerhalb des Modells",
-        "Menschliche Freigabe für Aktionen mit hoher Tragweite",
-        "Vertrauensgrenzen zwischen Kontextquellen setzen, statt auf die Unterscheidungsfähigkeit des Modells zu bauen"
+        "Rolle und Fähigkeiten im System-Prompt mit klaren Erlaubnissen und Verboten eingrenzen",
+        "Striktes Ausgabeschema festlegen und jede Antwort im Anwendungscode strukturell prüfen",
+        "An jeder Grenze zwischen Text, Bild, Ton und strukturierten Daten filtern",
+        "Zugangsdaten und Zustandsänderungen im Anwendungscode halten, minimale Rechte je Vorgang, privilegierte Aufrufe über eine deterministische Richtlinienprüfung",
+        "Unsichtbare Unicode-Zeichen (Tag-Block, Variantenselektoren, Nullbreite) an jeder Ein- und Ausgabegrenze entfernen",
+        "Fremdinhalte über einen getrennten, nach Herkunft gekennzeichneten Kanal einspeisen",
+        "Vor privilegierten, unumkehrbaren oder nach außen sichtbaren Aktionen menschlich bestätigen lassen und dabei die exakte Aktion zeigen",
+        "Fähigkeiten von Agenten mindestens nach der Rule of Two begrenzen",
+        "Schreibzugriffe ins Agentengedächtnis als privilegiert behandeln, protokollieren und vor dem Speichern freigeben",
+        "MCP-Server und Werkzeugpakete festschreiben, signieren und prüfen, Werkzeugbeschreibungen auf versteckte Anweisungen durchsehen",
+        "Gegen angepasste Angreifer testen, die die Abwehr kennen, statt nur statische Erfolgsquoten zu messen"
       ],
       "abgrenzung": "Dieser Eintrag betrifft die Eingabegrenze selbst. Was das Modell über seine Ausgaben preisgibt, behandelt LLM02; die Folgen, wenn eine Ausgabe privilegierte Aktionen erreicht, behandelt LLM03; die Prüfung von Ausgaben vor der Weitergabe an nachgelagerte Komponenten behandelt LLM10.",
       "verwandte_techniken": [

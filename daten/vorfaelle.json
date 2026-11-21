@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Dokumentierte Vorfälle",
     "title_en": "Documented incidents",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 9,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -25,15 +25,15 @@
       "behebung": "Serverseitig durch Microsoft behoben",
       "zusammenfassung": "EchoLeak gilt als erster öffentlich dokumentierter Zero-Click-Prompt-Injection-Angriff auf ein produktives KI-System: Eine einzige präparierte E-Mail genügte, damit Microsoft 365 Copilot bei einer späteren, völlig normalen Nutzeranfrage Inhalte aus dem Kontext des Opfers nach außen gab — ohne dass jemand die Mail öffnen oder auf etwas klicken musste.",
       "hergang": [
-        "Die Schwachstelle wurde vom Forschungsteam von Aim Security veröffentlicht und in der National Vulnerability Database als CVE-2025-32711 mit einem CVSS-Basiswert von 9.3 als kritisch geführt.",
+        "Die Schwachstelle wurde vom Forschungsteam von Aim Security veröffentlicht und in der National Vulnerability Database unter der [CVE](/glossar/cve/)-Nummer CVE-2025-32711 mit einem CVSS-Basiswert von 9.3 als kritisch geführt. In [MITRE ATLAS](/glossar/mitre-atlas/) ist der Fall als Fallstudie AML.CS0059 geführt.",
         "Der Angriffsweg ist der klassische indirekte: Die Anweisung steckt nicht in der Nutzereingabe, sondern in Fremddaten, die der Assistent im Auftrag des Nutzers verarbeitet — hier in einer E-Mail im angebundenen Postfach.",
         "Der veröffentlichten Analyse zufolge wurden dabei mehrere Schutzschichten nacheinander umgangen, darunter ein Klassifikator für Injektionsversuche und die Bereinigung ausgehender Links.",
-        "Microsoft behob die Lücke serverseitig; ein Eingriff durch Kunden war nicht erforderlich."
+        "Microsoft behob die Lücke serverseitig; ein Eingriff durch Kunden war nicht erforderlich. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#echoleak)."
       ],
       "lehren": [
         "Zero-Click bedeutet: Es gibt kein Nutzerverhalten, das den Angriff verhindert hätte. Sensibilisierung von Mitarbeitenden greift hier nicht.",
         "Je mehr Quellen ein Assistent lesen darf — Postfächer, Dateien, Chats —, desto mehr Kanäle stehen als Injektionsvektor offen.",
-        "Gestaffelte Filter erhöhen den Aufwand, ersetzen aber keine Begrenzung dessen, was das System nach außen senden darf."
+        "Gestaffelte Filter erhöhen den Aufwand, ersetzen aber keine Begrenzung dessen, was das System nach außen senden darf. Über welche Kanäle [Datenexfiltration](/glossar/datenexfiltration/) läuft und was sie begrenzt, erklärt das Glossar."
       ],
       "verwandte_techniken": [
         "zero-click-injection",
@@ -78,7 +78,7 @@
         "Ausgangspunkt war eine indirekte Injektion: Der Assistent verarbeitete Inhalte einer vom Angreifer kontrollierten Webseite.",
         "Statt nur die laufende Antwort zu manipulieren, veranlasste die eingeschleuste Anweisung das System, einen Eintrag in den persistenten Speicher zu schreiben.",
         "Damit überdauerte die Anweisung die Sitzung: Sie wurde bei späteren Gesprächen erneut in den Kontext geladen und wirkte dort fort.",
-        "OpenAI schloss die Lücke in der macOS-App mit Version 1.2024.247; die Gegenmaßnahme setzte nach Darstellung des Forschers an der Exfiltration an."
+        "OpenAI schloss die Lücke in der macOS-App mit Version 1.2024.247; die Gegenmaßnahme setzte nach Darstellung des Forschers an der Exfiltration an. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#spaiware)."
       ],
       "lehren": [
         "Persistente Speicher verschieben die Sicherheitsfrage: Es geht nicht mehr nur darum, eine Eingabe zu filtern, sondern welche Autorität gespeicherte Inhalte beim Wiedereinlesen erhalten.",
@@ -128,7 +128,7 @@
         "Der Angreifer benötigte keinen Zugriff auf den privaten Kanal, sondern nur die Möglichkeit, Text in einem Bereich zu platzieren, den die Suchfunktion des Assistenten später einbezieht.",
         "Fasst der Assistent Inhalte zusammen, gelangt die eingeschleuste Anweisung in denselben Kontext wie die berechtigten Daten und wird als Anweisung befolgt.",
         "Die Exfiltration lief über die Ausgabe: Der Assistent formulierte einen Link, in dessen Parametern die abzugreifenden Daten steckten.",
-        "Der Fall zeigt die Kombination aus indirekter Injektion und Datenabfluss über die Antwortdarstellung."
+        "Der Fall zeigt die Kombination aus indirekter Injektion und Datenabfluss über die Antwortdarstellung. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#slack-ai)."
       ],
       "lehren": [
         "Berechtigungen im Quellsystem schützen nicht, wenn ein Assistent berechtigte und unberechtigte Inhalte im selben Kontext verarbeitet.",
@@ -174,7 +174,7 @@
         "Kalendereinträge sind Fremddaten wie jede Webseite oder E-Mail — sie landen ungefiltert im Kontextfenster, sobald der Assistent den Kalender auswertet.",
         "Die Besonderheit: Eine Einladung erreicht das Postfach des Opfers, ohne dass dieses sie annehmen oder überhaupt öffnen muss.",
         "In der Demonstration reichte die Wirkung bis in die Steuerung angebundener Geräte, weil der Assistent über entsprechende Werkzeuge verfügte.",
-        "Der Fall verbindet damit indirekte Injektion mit dem Kernproblem agentischer Systeme: Reichweite der Rechte."
+        "Der Fall verbindet damit indirekte Injektion mit dem Kernproblem agentischer Systeme: Reichweite der Rechte. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#gemini-kalender)."
       ],
       "lehren": [
         "Jede von außen befüllbare Datenquelle ist ein Injektionsvektor — auch scheinbar harmlose wie ein Kalender.",
@@ -198,8 +198,8 @@
       ],
       "quellen": [
         {
-          "titel": "SafeBreach: Prompt-Injection-Angriff auf den Gemini-Sprachassistenten",
-          "url": "https://www.safebreach.com/blog/gemini-voice-assistant-prompt-injection-exploit/"
+          "titel": "SafeBreach (Or Yair, Ben Nassi, Stav Cohen): Invitation Is All You Need: Hacking Gemini, 06.08.2025",
+          "url": "https://www.safebreach.com/blog/invitation-is-all-you-need-hacking-gemini/"
         }
       ],
       "belegt": true
@@ -214,13 +214,13 @@
       "system": "Agentische Browser mit KI-Assistent, untersucht am Beispiel Comet",
       "wirkung": "Der Assistent führt Anweisungen aus der besuchten Seite aus, statt sie als Inhalt zu behandeln",
       "kennung": null,
-      "behebung": "Vom Hersteller nach der Veröffentlichung adressiert",
+      "behebung": "Erste Korrektur am 27. Juli 2025, laut Brave unvollständig; nach der Veröffentlichung meldete Brave, der Angriffstyp sei weiterhin nicht vollständig entschärft",
       "zusammenfassung": "Das Browser-Team von Brave analysierte, wie sich indirekte Prompt Injection gegen agentische Browser richtet: Anweisungen auf einer aufgerufenen Webseite gelangen in den Kontext des Assistenten und werden von ihm befolgt — mit den Rechten der laufenden Browser-Sitzung des Nutzers.",
       "hergang": [
         "Ein agentischer Browser liest den Seiteninhalt, um den Nutzer zu unterstützen. Damit übernimmt er zwangsläufig auch alles, was ein Angreifer auf dieser Seite platziert hat.",
         "Anweisungen lassen sich für Menschen unsichtbar einbetten — als weiße Schrift, in Kommentaren oder in ausgeblendeten Elementen —, bleiben für den Assistenten aber lesbar.",
         "Kritisch wird es, weil der Assistent in der angemeldeten Sitzung des Nutzers arbeitet und damit auf dessen Konten zugreifen kann.",
-        "Die Analyse ordnet das als strukturelles Problem der Bauform ein, nicht als Fehler einer einzelnen Implementierung."
+        "Die Analyse ordnet das als strukturelles Problem der Bauform ein, nicht als Fehler einer einzelnen Implementierung. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#comet)."
       ],
       "lehren": [
         "Ein Assistent mit Sitzungsrechten ist ein verwirrter Stellvertreter, sobald er Fremdinhalte als Anweisung akzeptiert.",
@@ -244,7 +244,7 @@
       ],
       "quellen": [
         {
-          "titel": "Brave: Unseeable Prompt Injections in agentic browsers",
+          "titel": "Brave (Artem Chaikin, Shivan Kaul Sahib): Agentic Browser Security: Indirect Prompt Injection in Perplexity Comet, 20.08.2025",
           "url": "https://brave.com/blog/comet-prompt-injection/"
         }
       ],
@@ -266,7 +266,7 @@
         "Ein Coding-Agent liest Projektdateien, um Kontext zu gewinnen. Diese Dateien stammen häufig aus fremden Quellen: geklonte Repositories, Abhängigkeiten, generierte Artefakte.",
         "Enthält eine solche Datei Anweisungen, gelangen sie in denselben Kontext wie der Auftrag des Entwicklers.",
         "Weil das Werkzeug Befehle ausführen darf, kann aus einer gelesenen Zeile eine ausgeführte Aktion auf dem Entwicklerrechner werden.",
-        "Der Befund reiht sich in die Klasse der Angriffe auf agentische Werkzeuge ein, bei denen Lesen und Handeln nicht getrennt sind."
+        "Der Befund reiht sich in die Klasse der Angriffe auf agentische Werkzeuge ein, bei denen Lesen und Handeln nicht getrennt sind. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#gemini-cli)."
       ],
       "lehren": [
         "Der Arbeitsordner eines Coding-Agenten ist eine nicht vertrauenswürdige Datenquelle, keine Konfiguration.",
@@ -312,7 +312,7 @@
         "Werkzeugbeschreibungen sind Text, der in den Kontext des Modells geladen wird, damit es das Werkzeug versteht.",
         "Wer einen Werkzeug-Server kontrolliert, kontrolliert diesen Text — und damit einen Kanal, der vor jeder Nutzerinteraktion wirkt.",
         "Der Angriff braucht keinen Aufruf des präparierten Werkzeugs; das bloße Vorhandensein im Verzeichnis genügt.",
-        "Damit verschiebt sich das Vertrauensproblem in die Lieferkette: Jeder eingebundene Server ist eine Vertrauensentscheidung."
+        "Damit verschiebt sich das Vertrauensproblem in die Lieferkette: Jeder eingebundene Server ist eine Vertrauensentscheidung. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#mcp-werkzeuge)."
       ],
       "lehren": [
         "Werkzeugverzeichnisse sind Angriffsfläche, nicht Infrastruktur — sie gehören geprüft und versioniert.",
@@ -358,7 +358,7 @@
         "Die Anweisung gelangt über einen präparierten Prompt, eine geteilte Konversation oder ein benutzerdefiniertes GPT in den Kontext des Opfers.",
         "Eine gewöhnliche Nachricht des Opfers löst neben der sichtbaren Aufgabe den Auftrag des Angreifers aus, mit den Werkzeugen und verbundenen Apps der Sitzung.",
         "Im Proof of Concept las ChatGPT E-Mails aus dem verbundenen Gmail-Konto und legte sie im gemeinsam erreichbaren internen Dienst ab.",
-        "Der Container des Angreifers holte die Daten von dort ab. Gesprächsverlauf und Dateien der Sitzung hätten denselben Weg nehmen können."
+        "Der Container des Angreifers holte die Daten von dort ab. Gesprächsverlauf und Dateien der Sitzung hätten denselben Weg nehmen können. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#chatgpt-container)."
       ],
       "lehren": [
         "Die Isolation von Ausführungsumgebungen ist eine Sicherheitsgrenze, nicht ein Betriebsdetail: Jeder gemeinsam erreichbare interne Dienst ist ein möglicher Kanal.",
@@ -404,7 +404,7 @@
         "Der Angreifer schickt eine E-Mail, deren Anweisungen im HTML versteckt sind: winzige Schrift, weiß auf weiß, Layout-Tricks.",
         "Der Nutzer beauftragt Deep Research mit einer Recherche über sein Postfach. Der Agent liest dabei auch die präparierte Mail.",
         "Die Mail gibt sich als legitimer Auftrag aus, behauptet, die Ziel-URL sei öffentlich und sicher, und verlangt, die Daten Base64-kodiert anzuhängen.",
-        "Der Agent ruft die URL mit seinem Werkzeug browser.open() auf. Die Anfrage geht von OpenAIs Infrastruktur aus, nicht vom Gerät des Nutzers."
+        "Der Agent ruft die URL mit seinem Werkzeug browser.open() auf. Die Anfrage geht von OpenAIs Infrastruktur aus, nicht vom Gerät des Nutzers. Neben anderen belegten Fällen steht der Vorfall auch unter [Prompt Injection Beispiele](/prompt-injection-beispiele/#shadowleak)."
       ],
       "lehren": [
         "Abfluss, der auf der Anbieterseite passiert, sieht kein Schutzsystem beim Kunden. Die Kontrolle muss dort sitzen, wo der Agent seine Werkzeuge aufruft.",

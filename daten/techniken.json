@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Techniken der Prompt Injection",
     "title_en": "Prompt injection techniques",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 52,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -106,7 +106,7 @@
       "name_de": "System-Prompt-Auslesen",
       "name_en": "Prompt Leaking",
       "kategorie": "direkte-injection",
-      "kurzdefinition": "Angriff mit dem Ziel, den verborgenen System-Prompt einer Anwendung offenzulegen — samt Regeln, Rollenbeschreibung und teils eingebetteten Geschäftsgeheimnissen.",
+      "kurzdefinition": "Prompt Leaking ist ein Angriff, der den verborgenen System-Prompt einer LLM-Anwendung offenlegt, samt Regeln, Rollenbeschreibung und mitunter eingebetteten Interna. Den Begriff führten Fábio Perez und Ian Ribeiro 2022 neben Goal Hijacking als eine von zwei Angriffsarten ein.",
       "funktionsweise": [
         "Der Angreifer bittet das Modell, seine „Anweisungen von oben\" wiederzugeben, zu übersetzen oder zusammenzufassen.",
         "Umwege wie Formatwechsel (als Gedicht, als JSON, als Code-Kommentar) unterlaufen einfache Sperrlisten.",
@@ -842,7 +842,7 @@
       "name_de": "Many-Shot-Jailbreaking",
       "name_en": "Many-shot Jailbreaking",
       "kategorie": "multi-turn",
-      "kurzdefinition": "Von Anthropic veröffentlichte Technik: Sehr viele fingierte Dialogbeispiele, in denen ein „Assistent\" regelwidrig antwortet, werden in den Prompt gestellt — das Modell setzt das Muster fort.",
+      "kurzdefinition": "Many-Shot-Jailbreaking füllt den Prompt mit Hunderten gefälschter Dialoge, in denen ein Assistent bereitwillig verbotene Fragen beantwortet. Am Ende steht die eigentliche Frage, und das Modell setzt das Muster fort, statt abzulehnen. Anthropic veröffentlichte die Technik im April 2024.",
       "funktionsweise": [
         "Große Kontextfenster erlauben hunderte gefälschter Beispieldialoge.",
         "In-Context-Lernen überschreibt Teile des Sicherheitstrainings.",
@@ -933,7 +933,7 @@
       "funktionsweise": [
         "Ausgangspunkt sind menschlich formulierte Jailbreak-Prompts.",
         "Ein hierarchischer genetischer Algorithmus mutiert und selektiert Varianten.",
-        "Ergebnis sind flüssig lesbare Prompts mit hoher Erfolgsquote."
+        "Ergebnis sind flüssig lesbare Prompts mit hoher Erfolgsquote; die Varianten beschreibt das Glossar unter [AutoDAN und seine Varianten](/glossar/autodan/)."
       ],
       "risiko": "hoch",
       "schutz": [
@@ -1644,7 +1644,7 @@
       "name_de": "Tool-Poisoning (MCP)",
       "name_en": "Tool Poisoning",
       "kategorie": "agenten-angriff",
-      "kurzdefinition": "Die Beschreibung eines Werkzeugs — etwa eines MCP-Servers — enthält versteckte Anweisungen. Der Agent liest sie beim Auflisten der verfügbaren Tools, noch bevor er das Werkzeug überhaupt aufruft.",
+      "kurzdefinition": "Tool Poisoning ist das bekannteste Risiko des Model Context Protocol (MCP): Die Beschreibung eines Werkzeugs enthält versteckte Anweisungen, die der Agent schon beim Auflisten der Werkzeuge liest, bevor er eines aufruft. Für Nutzer sind sie unsichtbar, für das Modell nicht.",
       "funktionsweise": [
         "Tool-Beschreibungen gelangen ungeprüft in den System-Kontext des Agenten.",
         "Ein bösartiger Server kann so Verhalten für alle anderen Tools umdefinieren.",
@@ -1675,7 +1675,7 @@
         ],
         [
           "OWASP-Klassifikation",
-          "[LLM01](/owasp-llm-top-10/prompt-injection/) · [LLM03 Supply Chain](/owasp-llm-top-10/supply-chain/)"
+          "[LLM01](/owasp-llm-top-10/prompt-injection/) · [LLM04 Lieferkette](/owasp-llm-top-10/supply-chain/)"
         ],
         [
           "Bezogenes Protokoll",
@@ -1695,7 +1695,7 @@
         ],
         [
           "Erstmals dokumentiert",
-          "Anfang 2025 nach breiter MCP-Adoption; systematisiert im MCPTox-Benchmark 2025"
+          "Invariant Labs, 1. April 2025; systematisch gemessen im Benchmark MCPTox (August 2025)"
         ],
         [
           "Wirksamste Gegenmaßnahme",
@@ -1710,12 +1710,14 @@
         "name": "Tool-Poisoning (MCP)",
         "alternateName": [
           "MCP Tool Poisoning",
-          "Tool Description Injection"
+          "Tool Description Injection",
+          "MCP-Risiken"
         ],
         "description": "Angriff auf Agenten-Systeme, bei dem die Beschreibung eines Werkzeugs (etwa eines MCP-Servers) versteckte Anweisungen enthält. Der Agent liest diese beim Auflisten der verfügbaren Tools, noch bevor er das Werkzeug überhaupt aufruft.",
         "owaspUrl": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
         "sameAs": [
-          "https://arxiv.org/abs/2510.14300",
+          "https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks",
+          "https://arxiv.org/abs/2508.14925",
           "https://www.anthropic.com/news/model-context-protocol"
         ]
       },
@@ -1736,7 +1738,7 @@
       "name_de": "Prompt-Infektion in Multi-Agenten-Systemen",
       "name_en": "Prompt Infection",
       "kategorie": "agenten-angriff",
-      "kurzdefinition": "Eine Injektion, die sich selbst weitergibt: Ein kompromittierter Agent reicht die Anweisung samt Vervielfältigungsauftrag an die nächsten Agenten weiter — wurmartige Ausbreitung im Verbund.",
+      "kurzdefinition": "Prompt Infection ist eine Prompt Injection, die sich in Multi-Agenten-Systemen selbst weitergibt: Ein kompromittierter Agent reicht die Anweisung samt Auftrag zur Vervielfältigung an die nächsten Agenten weiter, ähnlich einem Computervirus. Donghyun Lee und Mo Tiwari beschrieben den Angriff im Oktober 2024.",
       "funktionsweise": [
         "Der Payload enthält die Anweisung, sich in jede Weitergabe einzufügen.",
         "Agenten vertrauen einander typischerweise mehr als externen Quellen.",
@@ -1773,7 +1775,7 @@
       "schutz": [
         "Rechte des Agenten auf das für die Aufgabe Nötige beschränken.",
         "Aktionen mit Außenwirkung an eine menschliche Freigabe binden.",
-        "Die tödliche Trias vermeiden: private Daten, fremde Inhalte, Außenkommunikation."
+        "[Die tödliche Trias vermeiden](/schutz/toedliche-trias/): private Daten, fremde Inhalte, Außenkommunikation."
       ],
       "verwandte": [
         "tool-missbrauch",
@@ -1821,7 +1823,7 @@
       "funktionsweise": [
         "Die injizierte Anweisung verlangt eine Bild-Referenz mit dynamischer URL.",
         "Vertrauliche Kontextdaten werden in den URL-Pfad kodiert.",
-        "Der Client lädt das Bild automatisch — kein Klick des Nutzers nötig."
+        "Der Client lädt das Bild automatisch — kein Klick des Nutzers nötig. Den Oberbegriff erklärt das Glossar unter [Datenexfiltration](/glossar/datenexfiltration/)."
       ],
       "risiko": "hoch",
       "schutz": [
@@ -1848,7 +1850,7 @@
       "funktionsweise": [
         "Die Injektion verlangt einen Link mit eingebetteten Kontextdaten.",
         "Der Text wirkt legitim („hier weiterlesen\").",
-        "PromptArmor demonstrierte dies für den Abzug von Daten aus privaten Slack-Kanälen."
+        "PromptArmor demonstrierte dies für den Abzug von Daten aus privaten Slack-Kanälen. Den Oberbegriff erklärt das Glossar unter [Datenexfiltration](/glossar/datenexfiltration/)."
       ],
       "risiko": "hoch",
       "schutz": [
@@ -1996,7 +1998,7 @@
       "name_de": "Backdoor im Modell (Sleeper Agent)",
       "name_en": "Sleeper Agents / Model Backdoor",
       "kategorie": "daten-vergiftung",
-      "kurzdefinition": "Ein Modell wird im Training so präpariert, dass es sich normal verhält, bis ein bestimmter Auslöser erscheint — Anthropic zeigte, dass Standard-Sicherheitstraining solche Hintertüren nicht zuverlässig entfernt.",
+      "kurzdefinition": "Ein Sleeper Agent (deutsch etwa: Schläfer) ist ein Sprachmodell mit eingebauter Hintertür: Es verhält sich unauffällig, bis ein bestimmter Auslöser im Prompt erscheint, und folgt dann einem versteckten Ziel. Anthropic zeigte im Januar 2024, dass Standard-Sicherheitstraining solche Hintertüren nicht zuverlässig entfernt.",
       "funktionsweise": [
         "Ein seltener Auslöser wird beim Training mit abweichendem Verhalten verknüpft.",
         "Im Normalbetrieb bleibt das Verhalten unauffällig.",

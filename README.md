@@ -57,6 +57,7 @@ strukturierten Fakten dahinter, nicht die Aufbereitung.
 
 ## Versionen
 
+- **2.2.1** (2026-11-21): Korrekturen bei gleichem Umfang und Schema. Die OWASP Top 10 für LLM-Anwendungen 2026 erschienen am 4. August 2026, nicht am 3. (Eintrag im Threat Index August 2026). Vorfall „Gemini und Kalender“: richtige Primärquelle (SafeBreach, 06.08.2025). Vorfall „Agentische Browser“: Titel der Quelle und Stand der Behebung laut Brave. Texte von 9 Techniken, 5 Glossarbegriffen und 9 Vorfällen überarbeitet. 256 Einträge gesamt.
 - **2.2.0** (2026-11-08, DOI [10.5281/zenodo.24054570](https://doi.org/10.5281/zenodo.24054570)): Threat Index um die Ausgaben September (37 Einträge) und Oktober 2026 (52 Einträge) ergänzt; CVE-Verzeichnis von 12 auf 52 Einträge (alle NVD-geprüft); Vorfälle aktualisiert. 256 Einträge gesamt.
 - **2.1.0** (2026-09-05): CVE-Verzeichnis (12 Einträge, NVD-geprüft) und Prompt Injection Threat Index (Ausgabe August 2026) neu; Export und API (`/api/v1/`) aus derselben Bibliothek.
 - **2.0.0** (2026-09-01): Wechsel auf die OWASP-Fassung 2026.
@@ -68,7 +69,7 @@ Jede Datei folgt derselben Form:
 
 ```json
 {
-  "meta": { "titel": "…", "version": "2.2.0", "stand": "2026-11-06", "lizenz": "CC-BY-4.0", "anzahl": 52 },
+  "meta": { "titel": "…", "version": "2.2.1", "stand": "2026-11-21", "lizenz": "CC-BY-4.0", "anzahl": 52 },
   "eintraege": [ { "slug": "…", "url": "…", "quelle_url": "…", "belegt": true } ]
 }
 ```
@@ -141,7 +142,7 @@ eigene Texte und keine autorisierte Übersetzung.
 
 ```
 Köse, G. (2026). Prompt Injection und LLM-Sicherheit: ein deutschsprachiger Datensatz
-(Version 2.2.0) [Datensatz]. promptinjections.de. https://doi.org/10.5281/zenodo.24054570
+(Version 2.2.1) [Datensatz]. promptinjections.de. https://doi.org/10.5281/zenodo.24054569
 ```
 
 Für Literaturverwaltungen liegt eine [`CITATION.cff`](CITATION.cff) bei.

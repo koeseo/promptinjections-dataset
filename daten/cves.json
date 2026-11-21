@@ -2,8 +2,8 @@
   "meta": {
     "titel": "CVE-Verzeichnis: Schwachstellen in LLM- und Agenten-Software",
     "title_en": "CVE directory: vulnerabilities in LLM and agent software",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 52,
     "herausgeber": "Gökhan Köse, koeseo",

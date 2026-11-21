@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Werkzeuge gegen Prompt Injection",
     "title_en": "Tools against prompt injection",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 32,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -31,9 +31,9 @@
       "anbieter": "Lakera",
       "typ": "red-teaming",
       "lizenz": "kommerziell",
-      "was": "Frei zugängliches Lernspiel, in dem Nutzer stufenweise versuchen, einem geschützten Sprachmodell ein Passwort zu entlocken — verbreitetes Schulungswerkzeug für Sicherheitsteams. Die Stufen bilden typische Schutzschichten nach, von fehlender Filterung bis zu kombinierter Ein- und Ausgabeprüfung, und machen deren jeweilige Grenzen unmittelbar erfahrbar.",
+      "was": "Lernspiel zu Prompt Injection, in dem Spielende einem Sprachmodell stufenweise ein Passwort aus seinem System-Prompt entlocken. Die Stufen bilden Schutzschichten nach, vom Abwehrtext im System-Prompt über Wortfilter bis zu einem zweiten Prüfmodell. Die Adresse gandalf.lakera.ai führt am 21.11.2026 zum Nachfolger Agent Breaker mit zehn simulierten KI-Anwendungen.",
       "einsatz": "Sensibilisierung und Schulung; die gesammelten Versuche fließen in Lakeras Angriffsdatenbestand ein. Als Bewertungsmaßstab für die eigene Anwendung taugt es nicht: Gemessen wird eine didaktisch aufgebaute Übung, kein produktives System.",
-      "quelle_url": "https://gandalf.lakera.ai/",
+      "quelle_url": "https://play.lakera.ai/agent-breaker",
       "belegt": true
     },
     {

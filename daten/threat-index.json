@@ -2,8 +2,8 @@
   "meta": {
     "titel": "Prompt Injection Threat Index",
     "title_en": "Prompt injection threat index, monthly issues",
-    "version": "2.2.0",
-    "stand": "2026-11-06",
+    "version": "2.2.1",
+    "stand": "2026-11-21",
     "sprache": "de",
     "anzahl": 3,
     "herausgeber": "Gökhan Köse, koeseo",
@@ -21,7 +21,7 @@
         "von": "2026-08-01",
         "bis": "2026-08-31"
       },
-      "stand": "2026-09-05",
+      "stand": "2026-11-21",
       "summe": {
         "eintraege": 20,
         "cve": 10,
@@ -144,7 +144,7 @@
       "eintraege": [
         {
           "id": "2026-08-owasp-llm-top-10-2026",
-          "datum": "2026-08-03",
+          "datum": "2026-08-04",
           "typ": "standard",
           "cve": null,
           "cvss": null,
